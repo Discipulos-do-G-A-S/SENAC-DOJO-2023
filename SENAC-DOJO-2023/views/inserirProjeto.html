@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InserirProjeto</title>
+</head>
+
+<body>
+    <form action="../controllers/controllerProjeto.php" method="post">
+        <input type="text" name="nomeProjeto" id="nomeProjeto" placeholder="nome do projeto">
+        <input type="text" name="cidadeProjeto" id="" placeholder="cidade do projeto">
+        <textarea name="descricaoProjeto" id="" cols="30" rows="10" placeholder="Descrição do projeto"></textarea>
+        <input type="text" name="objetivoProjeto" id="" placeholder="objetivo do projeto">
+        <input type="number" name="id" id="" placeholder="coloque seu ID">
+        <input type="number" name="ods" id="" placeholder="ods do projeto">
+        <input type="file" id="photo" multiple /></br>
+        <input type="text" id="chave" name="chave">
+        <input type="button" value="vizualizar dados json" onclick="acessJson()">
+        <input type="submit" value="Enviar">
+    </form>
+    <form name="form_main">
+        <div>
+          <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>:<span id="millisecond">000</span>
+        </div>
+        <br />
+        <button type="button" name="start">start</button>
+        <button type="button" name="pause">pause</button>
+        <button type="button" name="reset">reset</button>
+      </form>
+    <button id="upload" onclick="uploadImage()">Upload Image</button>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    <script src="../JavaScript/inserirImagen.js"></script>
+    
+</body>
+</html>

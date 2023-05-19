@@ -1,0 +1,47 @@
+footer
+{   
+    background-color: #F6F6F6;
+    padding: 10px;
+}
+
+.css-footer-container
+{
+
+    margin: auto;
+    display: inline-flex;
+}
+
+.footer-social-links 
+{
+    padding-left: 20px;
+}
+
+.footer-social-links a
+{
+    padding-right: 12px;
+}
+
+.footer-right
+{
+    justify-content: space-between;
+    margin: auto;
+}
+
+.footer-right li
+{
+    list-style: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+.footer-right ul
+{
+    padding-left: 100px;
+    float: right;
+}
+
+.footer-right h5
+{
+    font-size: 32px;
+    color: #1B98E0;
+}

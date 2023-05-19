@@ -1,0 +1,26 @@
+.c-item{
+    height: 480px;
+   
+   }
+   .c-img{
+   height: 100%;
+   object-fit: cover;
+   filter: brightness(0.6);
+   }
+   .btn{
+       color: white;
+       background-color:#1B98E0;
+       
+   }
+   .h1 {
+       color: #1B98E0;
+   }
+
+   .subtitulo {
+    font-size: 3vh;
+    margin: 1.5%;
+    align-items: center;
+    max-width: 960px;
+    padding: 35px;
+    padding-left: 20%;
+   }
