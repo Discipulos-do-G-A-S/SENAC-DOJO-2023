@@ -34,12 +34,15 @@ foreign key (ods_id_1) references ODs(id_ods)
 
 create table projetos_com_parceiros(
 projetos_id int not null,
-parceiros_id int not null,
+ods_id int not null,
 foreign key (projetos_id) references projetos(id_projetos),
-foreign key (parceiros_id) references parceiros(id_parceiros)
+foreign key (ods_id) references ods(id_ods)
 );
 
-
+insert into projetos_com_parceiros values (2,1),
+                                           (2,2),
+                                           (2,3);
+                                           
 insert into logins values (null,'lucas pedroso','12345','pedrosolucas1745@gmail.com','teste');
 insert into ODs values  (null,'Erradicação da pobreza'),
 					    (null,'Fome zero e agricultura sustentável'),
@@ -59,18 +62,8 @@ insert into ODs values  (null,'Erradicação da pobreza'),
                         (null,'Paz, justiça e instituições eficazes'),
                         (null,'Parceria e meios de implementação');
                         
-insert into projetos values (null,'Tramandai mais verde','tramandai/RS','descrição do projeto','fazer com que tramandai se torne mais verde',null,1,15);
-insert into projetos values (null,'Tramandai mais verde','tramandai/RS','descrição do projeto','fazer com que tramandai se torne mais verde',null,1,15,null,null,null),
-							(null,'Erradicação da pobreza em tramndai/RS','tramandai/RS','descrição do projeto','fazer com que tramandai mais rica',null,1,1),
-                            (null,'Tramandai fome zero e agricultura sustentavel','tramandai/RS','descrição do projeto','fazer com que tramandai tenha menos fome',null,2,2),
-                            (null,'Tramandai mais saudável','tramandai/RS','descrição do projeto','fazer com que tramandai se torne maid saudavel',null,3,3);
-							insert into projetos values (null,'teste','tramandai/RS','descrição do projeto','fazer com que tramandai se torne mais saudavel',null,3,3);
-                            insert into projetos values (null,'teste','tramandai/RS','descrição do projeto','fazer com que tramandai se torne mais saudavel',null,3,6,3);
-                            insert into parceiros values (null,'coca-cola'),
-														 (null,'subway');
-                            insert into projetos_com_parceiros values (1,2);
-                            insert into logins values(null,'teste','1234')
-select cpf_user, senha_user, id_logins from logins where cpf_user = '11111111111' and senha_user = 'teste';
+select * from projetos where nome_projeto = 'teste de projeto';
+select * from projetos ;
 select * from ODs;
 select * from logins;
 select * from projetos;
@@ -79,5 +72,6 @@ select * from projetos_com_parceiros;
 select * from projetos where login_criador_projeto = 1;
 select * from projetos where ods_id = 15;
 delete from projetos where id_projetos = 1;
+delete  from logins where id_logins = 2;
 drop database db_projetos_somar; 
 drop table projetos;

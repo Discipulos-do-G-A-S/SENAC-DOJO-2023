@@ -121,3 +121,50 @@ xhr.send();
      .catch(console.error);
      const errorMsgElement = document.querySelector('span#errorMsg');
      }
+     ======================================================================================================
+
+     document.querySelectorAll('button[name="btn"]').forEach(function(botao) {
+  botao.addEventListener('click', function() {
+    // Chame a função que fará a requisição AJAX para buscar os dados
+    buscarDados(botao.value);
+  });
+});
+     function buscarDados(valorBotao) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `buscar_dados.php?valor=${valorBotao}`);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const dados = JSON.parse(xhr.responseText);
+      // Crie um elemento div para cada conjunto de dados
+      for (let i = 0; i < dados.length; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = `<h2>${dados[i].titulo}</h2><p>${dados[i].descricao}</p>`;
+        // Adicione o elemento div à página HTML
+        document.body.appendChild(div);
+      }
+    } else {
+      console.log('Erro ao buscar dados');
+    }
+  };
+  xhr.send();
+}
+============================================================================================================================
+for (var i = 0; i < responseJson.length; i++) {
+        var registro = responseJson[i];
+  
+        if (i % 8 === 0 && i !== 0) {
+          html += '</div>'; // Fecha a div anterior
+          html += '<div class="registro">'; // Inicia uma nova div
+        }
+  
+        html += '<p> id do projeto:' + registro[0] + '</p>';
+        html += '<p> nomde do projeto:' + registro[1] + '</p>';
+        html += '<p> cidade do projeto:' + registro[2] + '</p>';
+        html += '<p>descrição do projeto:' + registro[3] + '</p>';
+        html += '<p> objetivo do projeto:' + registro[4] + '</p>';
+        html += '<p>chave de midia:' + registro[5] + '</p>';
+        html += '<p> id criador:' + registro[6] + '</p>';
+        html += '<p> ods do projeto:' + registro[7] + '</p>';
+      }
+      
+      html += '</div>'; // Fecha a última div

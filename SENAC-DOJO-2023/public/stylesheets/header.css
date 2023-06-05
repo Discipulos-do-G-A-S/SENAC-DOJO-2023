@@ -4,44 +4,32 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-.header
+header
 {
-  overflow: hidden;
   background-color: #F6F6F6;
-  padding: 20px 10px;
+  width: 100%;
+  padding: 2vh 0;
 }
 
-.css-header-container
-{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
+.container-header {
+    display: flex;
+    max-width: 85rem;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header a
+.logo-header img {
+    width: 70%;
+}
+
+.container-header a
 {
   color: #1B98E0;
-  text-align: center;
-  padding: 12px;
-  padding-bottom: 5px;
   text-decoration: none;
-  font-size: 2.2vh;
+  font-size: 2.0vh;
   font-weight: bold;
-  line-height: 25px;
-}
-
-.logo-header img
-{
-  height: 70%;
-  width: 70%;
-}
-
-.header-right
-{
-  float: right;
+  padding-right: 25px;
 }
 
 .login-button
@@ -49,10 +37,9 @@
   background-color: #1B98E0;
   color: #fff;
   border: none;
-  padding: 10px 40px;
-  margin-left: 15px;
+  padding: 0.8rem 2rem;
   border-radius: 5px;
-  font-size: 2.2vh;
+  font-size: 2.0vh;
   cursor: pointer;
   font-weight: bold;
   transition: 0.2s ease-in-out;
@@ -75,7 +62,7 @@
 {
   content: '';
   position: absolute;
-  width: 100%;
+  width: 75%;
   transform: scaleX(0);
   height: 2px;
   bottom: 0;
@@ -89,16 +76,5 @@
 {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
 }
 

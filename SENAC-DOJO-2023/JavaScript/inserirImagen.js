@@ -22,11 +22,18 @@ function uploadImage() {
    }
    else{   
    var folderRef = storage.ref().child(nomePasta);
-   var photoFile = document.querySelector("#photo").files[0];
+   let input= document.getElementById("photo");
+   let arquivos= Array.from(input.files);
+
+   for (let i = 0; i < arquivos.length; i++) {
+      var photoFile = arquivos[i];
    var photoRef = folderRef.child(photoFile.name);
       photoRef.put(photoFile).then(function(snapshot) {
         console.log('Photo uploaded successfully!');
       })
+      
+   }
+   
    // Create the folder
    /*folderRef.put(document.querySelector("#photo").files[0]).then(function (snapshot) {
       console.log('Folder created successfully!');
@@ -43,61 +50,13 @@ function uploadImage() {
    });*/
 }
 }
-
 function acessJson() {
-   let request = new XMLHttpRequest();
-   request.open('GET', '../json/dadosProjeto.json', true);
-   request.onload = function () {
-      if (request.status >= 200 && request.status < 400) {
-         let data = JSON.parse(request.responseText);
-         console.log(data);
-         // faça algo com os dados aqui
-      } else {
-         console.error('Erro ao buscar arquivo JSON');
-      }
-   };
-   request.onerror = function () {
-      console.error('Erro de conexão');
-   };
-   request.send();
-}
-"use strict";
-
-let hour = 0;
-let minute = 0;
-let second = 0;
-let millisecond = 0;
-
-let cron;
-
-function start() {
-   pause();
-   cron = setInterval(() => { timer(); }, 10);
-}
-
-function pause() {
-   clearInterval(cron);
-}
-function timer() {
-   if ((millisecond += 10) == 1000) {
-      millisecond = 0;
-      second++;
-   }
-   if (second == 60) {
-      second = 0;
-      minute++;
-   }
-   if (minute == 60) {
-      minute = 0;
-      hour++;
-   }
-   document.getElementById('hour').innerText = returnData(hour);
-   document.getElementById('minute').innerText = returnData(minute);
-   document.getElementById('second').innerText = returnData(second);
-   document.getElementById('millisecond').innerText = returnData(millisecond);
-}
-
-function returnData(input) {
-   return input > 10 ? input : `0${input}`
-}
-
+   fetch('../json/dadosProjeto.json')
+     .then(response => response.json())
+     .then(data => {
+       const selectedData = data.filter(item => item['ods'] === '11');
+       selectedData.forEach(item => {
+         console.log(item.nomeProjeto);
+       });
+     })
+     .catch(error => console.error(error))}

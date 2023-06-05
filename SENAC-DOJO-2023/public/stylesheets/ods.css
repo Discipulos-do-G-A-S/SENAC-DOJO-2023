@@ -57,3 +57,21 @@ h1
     color: #1B98E0;
     font-size: 3.76vh;
 }
+.textoODs
+{
+    font-size: 3.76vh;
+    color: black;
+}
+span
+{
+    color: #1B98E0;
+    font-size: 3.76vh;
+}
+#demo
+{
+    margin-top: 2%;
+}
+.btnOds
+{
+    border-style: none;
+}
