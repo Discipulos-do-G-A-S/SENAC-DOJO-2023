@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../public/stylesheets/login.css">
+    <script type="text/javascript" src="../JavaScript/app.js"></script>
+</head>
+<body>
+  <div include-html="../assets/header.html"></div>
+  <div class="space"></div>
+  <div class="login-container">
+    <div class="login-form-container">
+        <h1>Login</h1>
+        <form class="form" action="../controllers/controllerLogin.php" method="post">
+            <input type="text" id="cpf" name="cpf" placeholder="CPF *">
+            <input type="password" id="senha" name="senha" placeholder="Senha *">
+            <button type="submit">Login</button>
+            <button type="submit" onclick="window.location.href='cadastro.html';">Cadastrar</button>
+        </form>
+    </div>
+  </div>
+  <div class="space"></div>
+  <div include-html="../assets/footer.html"></div>
+  <script>
+    includeHTML();
+  </script>
+</body>
+</html>

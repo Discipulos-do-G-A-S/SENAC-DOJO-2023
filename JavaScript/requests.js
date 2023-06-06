@@ -1,0 +1,35 @@
+const botoes = document.querySelectorAll('button[name="btn"]');
+botoes.forEach(botao => {
+    botao.addEventListener('click', () => {
+        teste(botao.value);
+    });
+});
+
+function teste(valorBotao) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/teste/controllers/controllerOds.php?valor=" + valorBotao, false);
+    xhr.send();
+  
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var responseJson = JSON.parse(xhr.responseText);
+      var html = ''; // Variável para armazenar o HTML gerado
+      if(responseJson.length <1){
+        html += '<h1 class=textoODs> Atualmente não existem projetos vinculados a esse ODS</h1>';
+      }
+      else
+      {
+        html += '<h1 class=textoODs> TOTAL DE PROJETOS DA ODS: ' +'<span>'+ responseJson.length+'</span>' + '</h1>';
+      }
+      document.getElementById('demo').innerHTML = html;
+    }
+  }
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+
