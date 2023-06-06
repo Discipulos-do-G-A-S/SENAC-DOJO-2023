@@ -3,7 +3,7 @@
    
    }
    .c-img{
-   height: 100%;
+   height: 480px;
    object-fit: cover;
    filter: brightness(0.6);
    }
@@ -18,9 +18,21 @@
 
    .subtitulo {
     font-size: 3vh;
-    margin: 1.5%;
     align-items: center;
-    max-width: 960px;
-    padding: 35px;
-    padding-left: 20%;
+    max-width: 85rem;
+    text-align: center;
+    margin: 2% 0;
+   }
+
+   .texto {
+    padding: 0 2% 2% 2%;
+   }
+
+   .texto p {
+    font-size: 2.5vh;
+   }
+
+   .containerTexto {
+    max-width: 85rem;
+    margin: auto;
    }
