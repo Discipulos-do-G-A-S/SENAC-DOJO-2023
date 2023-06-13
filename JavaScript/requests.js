@@ -7,11 +7,11 @@ botoes.forEach(botao => {
 
 function teste(valorBotao) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/teste/controllers/controllerOds.php?valor=" + valorBotao, false);
+    xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?valor=" + valorBotao, false);
     xhr.send();
-  
     if (xhr.readyState === 4 && xhr.status === 200) {
       var responseJson = JSON.parse(xhr.responseText);
+      console.log(responseJson);
       var html = ''; // Variável para armazenar o HTML gerado
       if(responseJson.length <1){
         html += '<h1 class=textoODs> Atualmente não existem projetos vinculados a esse ODS</h1>';

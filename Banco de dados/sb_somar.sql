@@ -39,9 +39,6 @@ foreign key (projetos_id) references projetos(id_projetos),
 foreign key (ods_id) references ods(id_ods)
 );
 
-insert into projetos_com_parceiros values (2,1),
-                                           (2,2),
-                                           (2,3);
                                            
 insert into logins values (null,'lucas pedroso','12345','pedrosolucas1745@gmail.com','teste');
 insert into ODs values  (null,'Erradicação da pobreza'),

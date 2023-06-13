@@ -7,6 +7,5 @@ include('../Models/InserirNovoProjeto.php');
  $INP -> objetivoProjeto = $_POST['objetivoProjeto'];
  $INP -> id_criador = $_POST['id'];
  $INP -> ods = $_POST['ods'];
- $INP -> chave_midia = $_POST['chave'];
  $INP ->inserirProjeto();
 ?>

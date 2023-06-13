@@ -25,9 +25,9 @@ class dadosLogin {
             if ($resultado == 1) { 
                 $row = mysqli_fetch_row($sql);
                 $_SESSION['id'] = $row[0]; 
-                //header('location:http://localhost/SENAC-DOJO-2023/views/inserirProjeto.html'); 
+                header('location:http://localhost/SENAC-DOJO-2023/views/inserirProjeto.html'); 
             } else { 
-                header('refresh:2.0; http://localhost/SENAC-DOJO-2023/login.html'); 
+                header('refresh:2.0; http://localhost/SENAC-DOJO-2023/views/login.html'); 
             } 
             mysqli_close($banco); 
         } 
