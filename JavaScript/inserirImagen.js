@@ -9,6 +9,7 @@ const firebaseConfig = {
  };
 firebase.initializeApp(firebaseConfig);
 function uploadImage() {
+   event.preventDefault();
    // Get a reference to the storage service
    var storage = firebase.storage();
    const ref = firebase.storage().ref();
