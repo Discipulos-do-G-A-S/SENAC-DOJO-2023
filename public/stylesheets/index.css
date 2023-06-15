@@ -21,7 +21,7 @@
     align-items: center;
     max-width: 85rem;
     text-align: center;
-    margin: 2% 0;
+    margin: 3.5% 0;
    }
 
    .texto {
@@ -35,4 +35,141 @@
    .containerTexto {
     max-width: 85rem;
     margin: auto;
+    padding: 0 10%;
    }
+
+   @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+*
+{
+  font-family: 'DM Sans', sans-serif;
+}
+
+header
+{
+  background-color: #F6F6F6;
+  width: 100%;
+  padding: 2vh 0;
+}
+
+.container-header {
+    display: flex;
+    max-width: 85rem;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-header img {
+    width: 70%;
+}
+
+.container-header a
+{
+  color: #1B98E0;
+  text-decoration: none;
+  font-size: 2.0vh;
+  font-weight: bold;
+  padding-right: 25px;
+}
+
+.login-button
+{
+  background-color: #1B98E0;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  font-size: 2.0vh;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+.login-button:hover
+{
+  background-color: #1479A9;
+  opacity: 1;
+}
+
+.hover-underline-animation 
+{
+  display: inline-block;
+  position: relative;
+  color: #0087ca;
+}
+
+.hover-underline-animation::after 
+{
+  content: '';
+  position: absolute;
+  width: 75%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after 
+{
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+footer
+{   
+    background-color: #F6F6F6;
+    text-align: start;
+    width: auto;
+}
+
+.footer__container {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 85rem;
+}
+
+.footer__container__left{
+    width: auto;
+}
+
+.footer__container__left__logo {
+    width: 60%;
+}
+
+.footer__container__left__icons {
+    display: flex;
+    list-style: none;
+    padding: 0 5%;
+}
+
+.footer__container__left__icons li{
+    margin: 0 2%;
+    padding: 0;
+}
+
+.footer__container__left__icons img{
+    width: 100%;
+}
+
+.footer__container__content h1{
+    font-size: 2.8vh;
+    color: #1B98E0;
+}
+
+.footer__container__content li{
+    list-style: none;
+    font-size: 1.85vh;
+}
+
+@media (max-width: 1251px) {
+    .footer__container__content li{
+        text-align: auto;
+        display: flex;
+    }
+}
+

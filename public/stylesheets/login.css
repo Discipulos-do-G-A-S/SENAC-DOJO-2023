@@ -10,9 +10,8 @@ body
     padding: 0;
 }
 
-.space
-{
-    height: 100px;
+.login-container {
+  padding: 5%;
 }
 
 .login-form-container

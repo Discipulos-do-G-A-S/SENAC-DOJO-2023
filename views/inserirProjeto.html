@@ -5,21 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/inserirProjeto.css">
+    <link rel="stylesheet" href="../public/stylesheets/index.css">
+    <script type="text/javascript" src="../JavaScript/app.js"></script>
     <title>InserirProjeto</title>
 </head>
 
 <body>
-    <form action="../controllers/controllerProjeto.php" method="post">
-        <input type="text" name="nomeProjeto" id="nomeProjeto" placeholder="nome do projeto">
-        <input type="text" name="cidadeProjeto" id="" placeholder="cidade do projeto">
-        <textarea name="descricaoProjeto" id="" cols="30" rows="10" placeholder="Descrição do projeto"></textarea>
-        <input type="text" name="objetivoProjeto" id="" placeholder="objetivo do projeto">
-        <input type="number" name="id" id="" placeholder="coloque seu ID">
-        <input type="number" name="ods" id="" placeholder="ods do projeto">
-        <input type="file" id="photo" multiple accept="image/*, video/*" /></br>
-        <input type="submit" value="Enviar">
+    <header>
+        <div class="container-header">
+            <a href="../index.html" class="logo-header"><img src="../public/img/logo.png"></a>
+            <div class="container-header-right">
+                <a href="../index.html" class="hover-underline-animation">Home</a>
+                <a href="../views/ods.html" class="hover-underline-animation">Projetos</a>
+            </div>
+        </div>
+    </header>
+    <div class="projeto-container">
+    <div class="projeto-form-container">    
+    <form class="form-projeto" action="../controllers/controllerProjeto.php" method="post">
+        <input type="text" name="nomeProjeto" id="nomeProjeto" placeholder="Nome do Projeto">
+        <input type="text" name="cidadeProjeto" id="" placeholder="Cidade do Projeto">
+        <textarea name="descricaoProjeto" id="" cols="30" rows="10" placeholder="Descrição do Projeto"></textarea>
+        <input type="text" name="objetivoProjeto" id="" placeholder="Objetivo do Projeto">
+        <input type="number" name="id" id="" placeholder="Coloque seu ID">
+        <input type="number" name="ods" id="" placeholder="Ods do Projeto">
+        <input type="file" id="photo" multiple accept="image/*, video/*" />
+        <input class="enviar" type="submit" value="Enviar">
     </form>
+    </div>
+    <div class="divBotao">
     <button id="upload" onclick="uploadImage()">Enviar arquivos</button>
+    </div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
     <script src="../JavaScript/inserirImagen.js"></script>

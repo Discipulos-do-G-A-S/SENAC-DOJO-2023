@@ -69,6 +69,7 @@ select * from projetos_com_parceiros;
 select * from projetos where login_criador_projeto = 1;
 select * from projetos where ods_id = 15;
 delete from projetos where id_projetos = 1;
+delete  from logins where id_logins =2;
 delete  from logins where id_logins = 2;
 drop database db_projetos_somar; 
 drop table projetos;

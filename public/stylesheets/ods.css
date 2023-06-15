@@ -13,15 +13,20 @@ body
 
 .ods-container
 {
-    text-align: center;
-    width: 100%;
-    padding: 2%;
+    max-width: 85rem;
+    display: table;
+    margin: auto;
+    padding: 2% 0;
+}
+
+.ods-row 
+{
+    padding-bottom: 0.5%;
 }
 
 .ods-row img
 {
-    width: 115px;
-    height: 115px;
+    width: 16vh;
     transition: 0.2s ease-in-out;
 }
 
@@ -38,6 +43,7 @@ body
 {
     max-width: 85rem;
     margin: auto;
+    padding: 0 9%;
 }
 
 .text-container p
@@ -53,5 +59,28 @@ body
     color: #1B98E0;
     font-size: 2.84rem;
     font-weight: bold;
-    padding: 1% 0;
+    padding: 2% 0;
+}
+
+.btnOds 
+{
+    border-style: none;    
+}
+
+.textoODs
+{    
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+#demo 
+{
+    max-width: 85rem;
+    margin-top: 2%;
+}
+
+#totalOds 
+{
+    max-width: 85rem;
+    margin-top: 2%;
 }
