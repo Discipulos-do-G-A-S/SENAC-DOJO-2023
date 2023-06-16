@@ -42,7 +42,7 @@ body
 {
   width: 40%;
   padding: 10px;
-  margin-top: 80px;
+  margin-top: 2%;
   border: none;
   border-radius: 20px;
   background-color: #1B98E0;
@@ -88,4 +88,12 @@ input:focus::placeholder {
   font-weight: bold;
   transition: 0.2s ease-in-out;
   font-size: 1.6vh;
+}
+
+#snhError {
+  max-width: 450px;
+  font-size: 1.5vh;
+  text-align: center;
+  padding: 2% 0;
+  color: #b70906;
 }
