@@ -1,0 +1,170 @@
+// Initialize Firebase
+var firebaseConfig = {
+   apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",
+      authDomain: "teste-170423.firebaseapp.com",
+      projectId: "teste-170423",
+      storageBucket: "teste-170423.appspot.com",
+      messagingSenderId: "564787693295",
+      appId: "1:564787693295:web:c7e7590016eace397cbd1a",
+      measurementId: "G-D5Q69CPL1D"
+};
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the storage service
+var storage = firebase.storage();
+
+// Create a reference to the folder you want to create
+var folderRef = storage.ref().child('myFolder');
+
+// Create the folder
+folderRef.put(null).then(function(snapshot) {
+  console.log('Folder created successfully!');
+  // Generate a media key for the folder
+  folderRef.getMetadata().then(function(metadata) {
+    console.log('Media key for the folder:', metadata.fullPath);
+    // Upload 5 photos inside the folder
+    for (var i = 1; i <= 5; i++) {
+      var photoRef = folderRef.child('photo' + i + '.jpg');
+      var photoFile = // Your photo file here
+      photoRef.put(photoFile).then(function(snapshot) {
+        console.log('Photo uploaded successfully!');
+      }).catch(function(error) {
+        console.error('Error uploading photo:', error);
+      });
+    }
+  }).catch(function(error) {
+    console.error('Error getting metadata:', error);
+  });
+}).catch(function(error) {
+  console.error('Error creating folder:', error);
+});
+
+
+// Initialize Firebase
+var firebaseConfig = {
+  // Your Firebase config here
+};
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the storage service
+var storage = firebase.storage();
+
+// Read the media key for the folder from a JSON file
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'folder.json');
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    var folderKey = JSON.parse(xhr.responseText).mediaKey;
+    // Access the folder using the media key
+    var folderRef = storage.ref().child(folderKey);
+    // List the media files inside the folder
+    folderRef.listAll().then(function(res) {
+      res.items.forEach(function(itemRef) {
+        // Download the media file
+        itemRef.getDownloadURL().then(function(url) {
+          console.log('Download URL:', url);
+          // Use the download URL to download the media file
+          // ...
+        }).catch(function(error) {
+          console.error('Error getting download URL:', error);
+        });
+      });
+    }).catch(function(error) {
+      console.error('Error listing folder:', error);
+    });
+  } else {
+    console.error('Error loading JSON file:', xhr.statusText);
+  }
+};
+xhr.onerror = function() {
+  console.error('Error loading JSON file:', xhr.statusText);
+};
+xhr.send();
+
+{
+  "mediaKey": "myFolder"
+}
+
+
+
+
+    //paste here your copied configuration code
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",
+      authDomain: "teste-170423.firebaseapp.com",
+      projectId: "teste-170423",
+      storageBucket: "teste-170423.appspot.com",
+      messagingSenderId: "564787693295",
+      appId: "1:564787693295:web:c7e7590016eace397cbd1a",
+      measurementId: "G-D5Q69CPL1D"
+     };
+  
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     console.log(firebase);
+     function uploadImage() {
+        const ref = firebase.storage().ref();
+        const file = document.querySelector("#photo").files[0];
+        const name = +new Date() + "-" + file.name;
+        start();
+        const metadata = {
+           contentType: file.type
+        };
+        const task = ref.child(name).put(file, metadata);task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+        console.log(url);
+        alert('image uploaded successfully');
+         pause();
+        document.querySelector("#chave").value = url;
+     })
+     .catch(console.error);
+     const errorMsgElement = document.querySelector('span#errorMsg');
+     }
+     ======================================================================================================
+
+     document.querySelectorAll('button[name="btn"]').forEach(function(botao) {
+  botao.addEventListener('click', function() {
+    // Chame a função que fará a requisição AJAX para buscar os dados
+    buscarDados(botao.value);
+  });
+});
+     function buscarDados(valorBotao) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `buscar_dados.php?valor=${valorBotao}`);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const dados = JSON.parse(xhr.responseText);
+      // Crie um elemento div para cada conjunto de dados
+      for (let i = 0; i < dados.length; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = `<h2>${dados[i].titulo}</h2><p>${dados[i].descricao}</p>`;
+        // Adicione o elemento div à página HTML
+        document.body.appendChild(div);
+      }
+    } else {
+      console.log('Erro ao buscar dados');
+    }
+  };
+  xhr.send();
+}
+============================================================================================================================
+for (var i = 0; i < responseJson.length; i++) {
+        var registro = responseJson[i];
+  
+        if (i % 8 === 0 && i !== 0) {
+          html += '</div>'; // Fecha a div anterior
+          html += '<div class="registro">'; // Inicia uma nova div
+        }
+  
+        html += '<p> id do projeto:' + registro[0] + '</p>';
+        html += '<p> nomde do projeto:' + registro[1] + '</p>';
+        html += '<p> cidade do projeto:' + registro[2] + '</p>';
+        html += '<p>descrição do projeto:' + registro[3] + '</p>';
+        html += '<p> objetivo do projeto:' + registro[4] + '</p>';
+        html += '<p>chave de midia:' + registro[5] + '</p>';
+        html += '<p> id criador:' + registro[6] + '</p>';
+        html += '<p> ods do projeto:' + registro[7] + '</p>';
+      }
+      
+      html += '</div>'; // Fecha a última div
