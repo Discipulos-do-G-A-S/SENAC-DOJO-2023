@@ -27,8 +27,8 @@ id_criador int not null
 );
 create table projetos_com_ods_parceiros(
 projeto_id int not null,
-ods_id int not null,
-parceiro_id int not null,
+ods_id int,
+parceiro_id int,
 foreign key (projeto_id) references projetos(id_projeto),
 foreign key (ods_id) references ods(id_ods),
 foreign key (parceiro_id) references parceiros(id_parceiro)
@@ -55,5 +55,10 @@ insert into ODs values  (null,'Erradicação da pobreza'),
 insert into parceiros values(null,'ONU'),
 							(null,'SENAC'),
                             (null,'SESC');
+ insert into projetos_com_ods_parceiros (projeto_id,parceiro_id) values (1,1),
+																	(1,2),
+                                                                    (1,3);
+insert into projetos values (null,'teste','poa','fazer um teste','objetivo',null,1);
+insert into projetos_com_ods_parceiros values(1,1,1);
                             
 select id_user,cpf_user,password_user from users where cpf_user = '12345' and password_user='teste';

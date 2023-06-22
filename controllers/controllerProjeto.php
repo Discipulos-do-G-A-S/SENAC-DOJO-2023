@@ -5,8 +5,8 @@ include('../Models/InserirNovoProjeto.php');
  $INP -> cidadeProjeto = $_POST['cidadeProjeto'];
  $INP -> descricaoProjeto = $_POST['descricaoProjeto'];
  $INP -> objetivoProjeto = $_POST['objetivoProjeto'];
- $INP->op =$_POST['opcao'];
- $INP -> id_criador = $_POST['idCriador'];
- $INP -> ods = $_POST['ods'];
+ $INP -> idCriador = $_POST['idCriador'];
+ $INP->opOds =$_POST['opcaoOds'];
+ $INP->partiner =$_POST['opcaoPatrocinador'];
  $INP ->inserirProjeto();
 ?>

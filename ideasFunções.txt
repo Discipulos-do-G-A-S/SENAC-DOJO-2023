@@ -168,3 +168,13 @@ for (var i = 0; i < responseJson.length; i++) {
       }
       
       html += '</div>'; // Fecha a última div
+
+
+==============================================
+console.log("nomeProjeto: ", nomeProjeto);
+    console.log("cidadeProjeto: ", cidadeProjeto);
+    console.log("descricaoProjeto: ", descricaoProjeto);
+    console.log("objetivoProjeto: ", objetivoProjeto);
+    console.log("idCriador: ", idCriador);
+    console.log("opOds: ", opOds);
+    console.log("opPartiners: ", opPartiners);
