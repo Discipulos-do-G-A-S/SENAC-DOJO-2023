@@ -23,7 +23,8 @@ cidade_projeto varchar(45) not null,
 descricao_projeto longtext not null,
 objetivo_projeto varchar(45) not null,
 chave_midia varchar(200),
-id_criador int not null
+user_id int not null,
+foreign key (user_id) references users(id_user)
 );
 create table projetos_com_ods_parceiros(
 projeto_id int not null,
