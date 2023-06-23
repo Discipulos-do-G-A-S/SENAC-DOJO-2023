@@ -1,3 +1,6 @@
+var alterarId= document.querySelector("#idCriador");
+alterarId.value= localStorage.getItem("id");
+
 let btnEnviar = document.querySelector("#btnEnviar")
 btnEnviar.addEventListener('click', function () {
     EnviarProjeto();
@@ -25,7 +28,7 @@ function EnviarProjeto() {
     let cidadeProjeto = document.querySelector("#cidadeProjeto").value;
     let descricaoProjeto = document.querySelector("#descricaoProjeto").value;
     let objetivoProjeto = document.querySelector("#objetivoProjeto").value;
-    let idCriador = document.querySelector("#idCriador").value;
+    let idCriador = localStorage.getItem("id");
     let opOds = odsSelecionadas;
     let opPartiners = PatrocinadoresSelecionados;
     var xhr = new XMLHttpRequest();

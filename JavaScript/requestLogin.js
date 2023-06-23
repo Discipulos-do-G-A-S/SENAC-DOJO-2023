@@ -23,6 +23,7 @@ function validarLogin(event) {
               let password = document.querySelector("#senha").value="";
               document.querySelector("#cpf").focus();
             } else {
+              localStorage.setItem("id", response[0].id_user);
               window.open("../views/inserirProjeto.html");
             }
           } else {
