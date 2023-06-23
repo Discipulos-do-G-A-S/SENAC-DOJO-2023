@@ -25,15 +25,36 @@ class dadosProjetos
     $sql = mysqli_query($banco, $querry);
     $ultimo_id = mysqli_insert_id($banco);
     echo ('Projeto com id:'.$ultimo_id.' inserido com sucesso.');
-    foreach ($this->opOds as $opcao) {
-      $querryInsertOds = "insert into projetos_com_ods_parceiros (projeto_id, ods_id) values (" . $ultimo_id . ", " . $opcao . ");";
-      $sql2 = mysqli_query($banco,$querryInsertOds);
+    $totalOds = count($this->opOds);
+    $totalPartiner = count($this->partiner);
+     echo($totalOds.$totalPartiner) ;
+
+     if ($totalOds > $totalPartiner) {
+      for ($i = 0; $i < count($this->opOds); $i++) {
+        for ($j = 0; $j < count($this->partiner); $j++) {
+          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$j] . ");";
+          $sql2 = mysqli_query($banco, $querryInsertOds);
+          echo ($sql2);
+        }
+      }
+    }//if totalOds
+    else if($totalOds < $totalPartiner){
+      for ($i = 0; $i < count($this->partiner); $i++) {
+        for ($j = 0; $j < count($this->opOds); $j++) {
+          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$j] . "," . $this->partiner[$i] . ");";
+          $sql2 = mysqli_query($banco, $querryInsertOds);
+          echo ($sql2);
+        }
+      }
     }
-    foreach($this ->partiner as $partiners){
-      $querryInsertPartiners = "insert into projetos_com_ods_parceiros (projeto_id, parceiro_id) values (" . $ultimo_id . ", '" . $partiners . "');";
-      $sql3 = mysqli_query($banco,$querryInsertPartiners);
-    }
-    if ($sql == false || $sql2 == false || $sql3 == false) {
+      else if ($totalOds == $totalPartiner){
+        for ($i = 0; $i < count($this->partiner); $i++) 
+        {
+          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
+          $sql2 = mysqli_query($banco, $querryInsertOds);
+        }
+      }// if totalPartiners
+    if ($sql == false || !$sql2) {
       echo ('Erro no banco de dados' . mysqli_error($banco));
     }
   }    

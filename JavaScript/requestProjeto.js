@@ -3,7 +3,7 @@ alterarId.value= localStorage.getItem("id");
 
 let btnEnviar = document.querySelector("#btnEnviar")
 btnEnviar.addEventListener('click', function () {
-    EnviarProjeto();
+   EnviarProjeto();
 })
 function EnviarProjeto() {
 
