@@ -178,3 +178,15 @@ console.log("nomeProjeto: ", nomeProjeto);
     console.log("idCriador: ", idCriador);
     console.log("opOds: ", opOds);
     console.log("opPartiners: ", opPartiners);
+
+      $totalOds = count($this->opOds);
+    $totalPartiner = count($this->partiner);
+
+    echo "Total de Ods vaiavel global: " . print_r($this->opOds, true);
+    echo("<br>");
+    echo "Total de Patrocinadores variavel global: " . print_r($this->partiner, true); 
+    echo("<br>");    
+     echo("total ods ->  ".$totalOds);
+     echo("<br>");
+     echo("total ods ->  ".$totalPartiner);
+     echo("<br>");

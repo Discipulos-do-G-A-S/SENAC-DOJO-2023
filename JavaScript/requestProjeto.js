@@ -3,10 +3,10 @@ alterarId.value= localStorage.getItem("id");
 
 let btnEnviar = document.querySelector("#btnEnviar")
 btnEnviar.addEventListener('click', function () {
-   EnviarProjeto();
+   EnviarProjeto(event);
 })
 function EnviarProjeto() {
-
+    event.preventDefault();
     let opcaosOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
     let odsSelecionadas = [];
 
@@ -38,6 +38,7 @@ function EnviarProjeto() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Requisição concluída com sucesso");
             alert("Projeto inserido com sucesso");
+           console.log(xhr.responseText);
         }
     };
     xhr.send("nomeProjeto="+encodeURIComponent(nomeProjeto)+
@@ -45,7 +46,7 @@ function EnviarProjeto() {
              "&descricaoProjeto="+encodeURIComponent(descricaoProjeto)+
              "&objetivoProjeto="+encodeURIComponent(objetivoProjeto)+
              "&idCriador="+encodeURIComponent(idCriador)+
-             "&opcaoOds="+encodeURIComponent(opOds.join(','))+
-             "&opcaoPatrocinador="+encodeURIComponent(opPartiners.join(',')) 
+             "&opcaoOds="+encodeURIComponent(JSON.stringify(opOds))+
+             "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(opPartiners)) 
     );    
 }// function project
