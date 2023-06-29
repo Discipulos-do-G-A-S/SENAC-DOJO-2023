@@ -64,3 +64,12 @@ insert into projetos values (null,'teste','poa','fazer um teste','objetivo',null
 insert into projetos_com_ods_parceiros values(1,1,null);
                             
 select id_user,cpf_user,password_user from users where cpf_user = '12345' and password_user='teste';
+
+
+select * from projetos_com_ods_parceiros;
+
+SELECT projetos.*, ods.*, parceiros.*
+FROM projetos_com_ods_parceiros
+INNER JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+INNER JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+INNER JOIN projetos ON projetos_com_ods_parceiros.projeto_id = id_projeto;
