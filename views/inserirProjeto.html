@@ -2,54 +2,112 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/stylesheets/inserirProjeto.css">
-    <link rel="stylesheet" href="../public/stylesheets/index.css">
-    <script type="text/javascript" src="../JavaScript/app.js"></script>
-    <title>InserirProjeto</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../public/stylesheets/inserirProjeto.css">
+  <link rel="stylesheet" href="../public/stylesheets/index.css">
+  <script type="text/javascript" src="../JavaScript/app.js"></script>
+  <title>InserirProjeto</title>
 </head>
 
 <body>
-    <header>
-        <div class="container-header">
-            <a href="../index.html" class="logo-header"><img src="../public/img/logo.png"></a>
-            <div class="container-header-right">
-                <a href="../index.html" class="hover-underline-animation">Home</a>
-                <a href="../views/ods.html" class="hover-underline-animation">Projetos</a>
-            </div>
-        </div>
-    </header>
-    <div class="projeto-container">
-    <div class="projeto-form-container">    
-    <form class="form-projeto">
+  <header>
+    <div class="container-header">
+      <a href="../index.html" class="logo-header"><img src="../public/img/logo.png"></a>
+      <div class="container-header-right">
+        <a href="../index.html" class="hover-underline-animation">Home</a>
+        <a href="../views/ods.html" class="hover-underline-animation">Projetos</a>
+      </div>
+    </div>
+  </header>
+  <div class="projeto-container">
+    <div class="projeto-form-container">
+      <form class="form-projeto">
         <input type="text" name="nomeProjeto" id="nomeProjeto" placeholder="Nome do Projeto">
         <input type="text" name="cidadeProjeto" id="cidadeProjeto" placeholder="Cidade do Projeto">
-        <textarea name="descricaoProjeto" id="descricaoProjeto" cols="30" rows="10" placeholder="Descrição do Projeto"></textarea>
+        <textarea name="descricaoProjeto" id="descricaoProjeto" cols="30" rows="10"
+          placeholder="Descrição do Projeto"></textarea>
         <input type="text" name="objetivoProjeto" id="objetivoProjeto" placeholder="Objetivo do Projeto">
         <input type="number" name="id" id="idCriador" placeholder="Coloque seu ID" disabled>
-        <input type="number" name="ods" id="ods" placeholder="Ods do Projeto">
         <input type="file" id="photo" multiple accept="image/*, video/*" />
-          <div id="opcaoOds">
-            <label><input type="checkbox" name="opcaoOds[]" value="1"> Ods 1</label>
-            <label><input type="checkbox" name="opcaoOds[]" value="2"> Ods 2</label>
-            <label><input type="checkbox" name="opcaoOds[]" value="3"> Ods 3</label>
-          </div>
-          <div id="opcaoPartiners">
-            <label><input type="checkbox" name="opcaoPatrocinador[]" value="1"> ONU</label>
-            <label><input type="checkbox" name="opcaoPatrocinador[]" value="2"> SESC</label>
-            <label><input type="checkbox" name="opcaoPatrocinador[]" value="3"> SENAT</label>
-          </div>
+        <div id="opcaoOds" class="opcaoOds">
+          <h3>ODS</h3>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="1">
+            Ods 1</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="2">
+            Ods 2</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="3">
+            Ods 3</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="4">
+            Ods 4</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="5">
+            Ods 5</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="6">
+            Ods 6</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="7">
+            Ods 7</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="8">
+            Ods 8</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="9">
+            Ods 9</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="10">
+            Ods 10</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="11">
+            Ods 11</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="12">
+            Ods 12</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="13">
+            Ods 13</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="14">
+            Ods 14</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="15">
+            Ods 15</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="16">
+            Ods 16</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="" value="17">
+            Ods 17</label>
+
+        </div>
+        <div id="opcaoPartiners">
+          <h3>Patrocinadores </h3>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="1">
+            Onu</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="2">
+            Sesc</label>
+          <label class="cyberpunk-checkbox-label">
+            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="3">
+            Senac</label>
+        </div>
         <button class="btnEnviar" id="btnEnviarImagem">Enviar arquivos</button>
         <button class="btnEnviar" id="btnEnviar">Enviar</button>
-    </form>
+      </form>
     </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
-    <script src="../JavaScript/inserirImagen.js"></script>
-    <script src="../JavaScript/requestProjeto.js"></script>
-    
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  <script src="../JavaScript/inserirImagen.js"></script>
+  <script src="../JavaScript/requestProjeto.js"></script>
+
 </body>
+
 </html>

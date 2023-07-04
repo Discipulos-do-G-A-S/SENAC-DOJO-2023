@@ -22,7 +22,7 @@ body
 
 .projeto-form-container
 {
-    text-align: center;
+  
     padding: 30px;
 }
 
@@ -77,3 +77,60 @@ textarea::placeholder
   transition: 0.2s ease-in-out;
   font-size: 2.5vh;
 }
+h3{
+  text-align: center;
+}
+.cyberpunk-button {
+    background-color: #1B98E0 ;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .cyberpunk-checkbox {
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #1B98E0 !important;
+    border-radius: 5px !important;
+    background-color: transparent !important;
+    display: inline-block !important;
+    position: relative !important;
+    margin-right: 10px !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+  }
+  
+  .cyberpunk-checkbox:before {
+    content: "";
+    background-color: #1B98E0;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .cyberpunk-checkbox:checked:before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .cyberpunk-checkbox-label {
+    font-size: 18px;
+    color: #000000;
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .opcaoPartiners{
+    
+  }
