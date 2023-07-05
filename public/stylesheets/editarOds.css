@@ -1,0 +1,21 @@
+.card {
+    width: 90%;
+    padding: 1%;
+    border-radius: 50px;
+    background-color: #F6F6F6;
+    box-shadow: 10px 10px 10px ;
+    margin: 5%;
+
+}
+img {
+    width: 20%;
+    height: 20%;
+    margin: 3%;
+} 
+.span1{
+    font-size: large;
+    color:#1B98E0 ;
+}
+.span2{
+    color: #000000;
+}

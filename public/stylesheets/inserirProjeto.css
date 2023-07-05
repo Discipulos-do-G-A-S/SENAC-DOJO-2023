@@ -130,7 +130,14 @@ h3{
     user-select: none;
     display: inline-flex;
     align-items: center;
+    margin: 1%; 
+    padding: 0;
   }
   .opcaoPartiners{
-    
+    display: contents;
+  }
+
+  .div1{
+  display: flex;
+  justify-content: start;
   }
