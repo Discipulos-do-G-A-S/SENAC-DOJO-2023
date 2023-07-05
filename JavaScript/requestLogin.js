@@ -24,6 +24,7 @@ function validarLogin(event) {
               document.querySelector("#cpf").focus();
             } else {
               localStorage.setItem("id", response[0].id_user);
+              localStorage.setItem("cpf",response[0].cpf_user);
               window.open("../views/inserirProjeto.html");
             }
           } else {

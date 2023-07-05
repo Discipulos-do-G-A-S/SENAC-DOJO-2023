@@ -1,5 +1,5 @@
-var alterarId= document.querySelector("#idCriador");
-alterarId.value= localStorage.getItem("id");
+var inserirCPF= document.querySelector("#idCriador");
+inserirCPF.value= localStorage.getItem("cpf");
 
 let btnEnviar = document.querySelector("#btnEnviar")
 btnEnviar.addEventListener('click', function () {
