@@ -38,17 +38,19 @@ class dadosProjetos
     echo ("<br>");
     echo ("Total de Patrocinadores: " . $totalPartiner);
     echo ("<br>");
-
+    echo("===========================================================");
     if ($totalOds > $totalPartiner) {
       for ($i = 0; $i < count($this->opOds); $i++) {
-        if ($totalPartiner === 0 || $i >= $totalPartiner) {
+       
+        if ($totalPartiner === 0 || $i > $totalPartiner) {
+          
           $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . ",null);";
           $sql2 = mysqli_query($banco, $querryInsertOds);
           if (!$sql2) {
             echo ('erro no banco de dados ' . mysqli_error($banco));
           }
         } else {
-          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
+          $  = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
           $sql2 = mysqli_query($banco, $querryInsertOds);
           if (!$sql2) {
             echo ('erro no banco de dados ' . mysqli_error($banco));

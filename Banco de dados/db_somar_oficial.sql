@@ -70,6 +70,16 @@ select * from projetos_com_ods_parceiros;
 
 SELECT projetos.*, ods.*, parceiros.*
 FROM projetos_com_ods_parceiros
-INNER JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
-INNER JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
-INNER JOIN projetos ON projetos_com_ods_parceiros.projeto_id = id_projeto;
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+RIGHT JOIN projetos ON projetos_com_ods_parceiros.projeto_id = projetos.id_projeto
+WHERE ods.id_ods = 1 ; 
+
+
+select *  from projetos,ods,parceiros where id_ods =1 order by id_projeto;
+
+drop database db_somar;
+
+
+
+

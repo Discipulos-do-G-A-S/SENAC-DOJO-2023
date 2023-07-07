@@ -29,7 +29,7 @@
         <textarea name="descricaoProjeto" id="descricaoProjeto" cols="30" rows="10"
           placeholder="Descrição do Projeto"></textarea>
         <input type="text" name="objetivoProjeto" id="objetivoProjeto" placeholder="Objetivo do Projeto">
-        <input type="number" name="id" id="idCriador" placeholder="Coloque seu ID" disabled>
+        <input type="number" name="id" id="CPF" placeholder="Coloque seu ID" disabled>
         <input type="file" id="photo" multiple accept="image/*, video/*" />
         <div id="opcaoOds" class="opcaoOds">
           <h3>ODS</h3>
@@ -49,7 +49,7 @@
             <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="5">
               Ods 5</label>
-              <label class="cyberpunk-checkbox-label">
+            <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="6">
               Ods 6</label>
           </div>
@@ -66,10 +66,10 @@
             <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="10">
               Ods 10</label>
-              <label class="cyberpunk-checkbox-label">
+            <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="11">
               Ods 11</label>
-              <label class="cyberpunk-checkbox-label">
+            <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="12">
               Ods 12</label>
           </div>
@@ -83,34 +83,37 @@
             <label class="cyberpunk-checkbox-label">
               <input class="cyberpunk-checkbox" type="checkbox" name="" value="15">
               Ods 15</label>
-              <label class="cyberpunk-checkbox-label">
-            <input class="cyberpunk-checkbox" type="checkbox" name="" value="16">
-            Ods 16</label>
-          <label class="cyberpunk-checkbox-label">
-            <input class="cyberpunk-checkbox" type="checkbox" name="" value="17">
-            Ods 17</label>
+            <label class="cyberpunk-checkbox-label">
+              <input class="cyberpunk-checkbox" type="checkbox" name="" value="16">
+              Ods 16</label>
+            <label class="cyberpunk-checkbox-label">
+              <input class="cyberpunk-checkbox" type="checkbox" name="" value="17">
+              Ods 17</label>
             </div>
-        <div id="opcaoPartiners" class="opcaoPartiners">
-          <h3>Patrocinadores </h3>
-          <label class="cyberpunk-checkbox-label">
-            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="1">
-            Onu</label>
-          <label class="cyberpunk-checkbox-label">
-            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="2">
-            Sesc</label>
-          <label class="cyberpunk-checkbox-label">
-            <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="3">
-            Senac</label>
-        </div>
-        <button class="btnEnviar" id="btnEnviarImagem">Enviar arquivos</button>
-        <button class="btnEnviar" id="btnEnviar">Enviar</button>
+          </div>
+          <div id="opcaoPartiners" class="opcaoPartiners">
+            <h3>Patrocinadores </h3>
+            <label class="cyberpunk-checkbox-label">
+              <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="1">
+              Onu</label>
+            <label class="cyberpunk-checkbox-label">
+              <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="2">
+              Sesc</label>
+            <label class="cyberpunk-checkbox-label">
+              <input class="cyberpunk-checkbox" type="checkbox" name="opcaoPatrocinador[]" value="3">
+              Senac</label>
+          </div>
+          
+          <button class="btnEnviar" id="btnEnviarImagem">Enviar arquivos</button>
+          <button class="btnEnviar" id="btnEnviar">Enviar</button>
+
       </form>
     </div>
   </div>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
   <script src="../JavaScript/inserirImagen.js"></script>
-  <script src="../JavaScript/requestProjeto.js"></script>
+  <script src="../JavaScript/inserirProjeto.js"></script>
 
 </body>
 
