@@ -2,6 +2,7 @@
 include('../Models/InserirNovoProjeto.php');
 $INP = new dadosProjetos;
 $INP->nomeProjeto = $_POST['nomeProjeto'];
+$INP->estadoProjeto = $_POST['estadoProjeto'];
 $INP->cidadeProjeto = $_POST['cidadeProjeto'];
 $INP->descricaoProjeto = $_POST['descricaoProjeto'];
 $INP->objetivoProjeto = $_POST['objetivoProjeto'];

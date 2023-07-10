@@ -2,13 +2,13 @@
 class dadosProjetos
 {
   private $nomeProjeto;
+  private $estadoProjeto;
   private $cidadeProjeto;
   private $descricaoProjeto;
   private $objetivoProjeto;
   private $idCriador;
   private $opOds = [];
   private $partiner = [];
-  private $chave_midia = null;
 
   public function __get($atributo)
   {
@@ -23,7 +23,7 @@ class dadosProjetos
   public function inserirProjeto()
 {
     include('conexao.php');
-    $querry = "INSERT INTO projetos VALUES (null,'" . $this->nomeProjeto . "','" . $this->cidadeProjeto . "','" . $this->descricaoProjeto . "','" . $this->objetivoProjeto . "','" . $this->chave_midia . "'," . $this->idCriador . ")";
+    $querry = "INSERT INTO projetos VALUES (null,'" . $this->nomeProjeto . "','".$this->estadoProjeto."','" . $this->cidadeProjeto . "','" . $this->descricaoProjeto . "','" . $this->objetivoProjeto . "'," . $this->idCriador . ")";
     $sql = mysqli_query($banco, $querry);
     
     if (!$sql) {

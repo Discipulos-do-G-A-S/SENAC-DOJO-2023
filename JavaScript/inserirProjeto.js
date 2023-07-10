@@ -5,6 +5,41 @@ let btnEnviar = document.querySelector("#btnEnviar")
 btnEnviar.addEventListener('click', function () {
    EnviarProjeto(event);
 })
+
+const state = document.querySelector('#estadoProjeto');
+const citys = document.querySelector("#cidadeProjeto")
+document.addEventListener('DOMContentLoaded',async ()=>
+{
+    const urlStates = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", urlStates, false);
+    xhr.send();
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        let response = JSON.parse(xhr.response);
+    const optionsStates = document.createElement('optgroup')
+    optionsStates.setAttribute('label',"selecione um estado")
+    response.forEach(states => {
+        optionsStates.innerHTML +=`<option>${states.sigla}</option>`
+    });
+    state.appendChild(optionsStates)
+    }
+})
+state.addEventListener('change', async()=>
+{
+    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state.value}/municipios`;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", urlCitys, false);
+    xhr.send();
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        let response = JSON.parse(xhr.response);
+    const optionsCitys = document.createElement('optgroup')
+    response.forEach(citys =>
+        {
+            optionsCitys.innerHTML +=`<option>${citys.nome}</option>` 
+        })
+        citys.appendChild(optionsCitys);
+}// if request
+})
 function EnviarProjeto() {
     event.preventDefault();
     let opcaosOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
@@ -25,6 +60,7 @@ function EnviarProjeto() {
     }
 
     let nomeProjeto = document.querySelector("#nomeProjeto").value;
+    let estadoProjeto = document.querySelector("#estadoProjeto").value;
     let cidadeProjeto = document.querySelector("#cidadeProjeto").value;
     let descricaoProjeto = document.querySelector("#descricaoProjeto").value;
     let objetivoProjeto = document.querySelector("#objetivoProjeto").value;
@@ -42,6 +78,7 @@ function EnviarProjeto() {
         }
     };
     xhr.send("nomeProjeto="+encodeURIComponent(nomeProjeto)+
+             "&estadoProjeto="+encodeURIComponent(estadoProjeto)+
              "&cidadeProjeto="+encodeURIComponent(cidadeProjeto)+
              "&descricaoProjeto="+encodeURIComponent(descricaoProjeto)+
              "&objetivoProjeto="+encodeURIComponent(objetivoProjeto)+

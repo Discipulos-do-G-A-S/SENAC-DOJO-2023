@@ -19,10 +19,10 @@ nome_parceiro varchar(45) not null
 create table projetos(
 id_projeto int not null auto_increment primary key,
 nome_projeto varchar(45) not null,
+estado_projeto varchar(2) not null,
 cidade_projeto varchar(45) not null,
 descricao_projeto longtext not null,
 objetivo_projeto varchar(45) not null,
-chave_midia varchar(200),
 user_id int not null,
 foreign key (user_id) references users(id_user)
 );
