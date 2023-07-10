@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var html = ''; // Variável para armazenar o HTML gerado
     for(let i=0; i<response.length;i++)
     { html += '<div>'
-      html += `<a href= ../views/telaProjeto.html>Nome do projeto: ${response[i].nome_projeto}</a>`
+      html += `<a href= ../views/telaProjeto.html?id=${response[i].id_projeto}>Nome do projeto: ${response[i].nome_projeto}</a>`
       html += `<p>ODS do projeto: ${response[i].nome_ods}</p>`
       html += '</div>'
       html += '<br>'
