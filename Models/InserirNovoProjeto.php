@@ -21,13 +21,16 @@ class dadosProjetos
   }
 
   public function inserirProjeto()
-  {
+{
     include('conexao.php');
-    $querry = "insert into projetos values (null,'" . $this->nomeProjeto . "','" . $this->cidadeProjeto . "','" . $this->descricaoProjeto . "','" . $this->objetivoProjeto . "','" . $this->chave_midia . "'," . $this->idCriador . ");";
+    $querry = "INSERT INTO projetos VALUES (null,'" . $this->nomeProjeto . "','" . $this->cidadeProjeto . "','" . $this->descricaoProjeto . "','" . $this->objetivoProjeto . "','" . $this->chave_midia . "'," . $this->idCriador . ")";
     $sql = mysqli_query($banco, $querry);
+    
     if (!$sql) {
-      echo ('erro no banco de dados ' . mysqli_error($banco));
+        echo ('Erro no banco de dados: ' . mysqli_error($banco));
+        return;
     }
+    
     $ultimo_id = mysqli_insert_id($banco);
     echo ('Projeto com id: ' . $ultimo_id . ' inserido com sucesso.');
 
@@ -36,49 +39,24 @@ class dadosProjetos
 
     echo ("Total de Ods: " . $totalOds);
     echo ("<br>");
-    echo ("Total de Patrocinadores: " . $totalPartiner);
+    echo ("Total de Parceiros: " . $totalPartiner);
     echo ("<br>");
     echo("===========================================================");
-    if ($totalOds > $totalPartiner) {
-      for ($i = 0; $i < count($this->opOds); $i++) {
-       
-        if ($totalPartiner === 0 || $i > $totalPartiner) {
-          
-          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . ",null);";
-          $sql2 = mysqli_query($banco, $querryInsertOds);
-          if (!$sql2) {
-            echo ('erro no banco de dados ' . mysqli_error($banco));
-          }
-        } else {
-          $  = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
-          $sql2 = mysqli_query($banco, $querryInsertOds);
-          if (!$sql2) {
-            echo ('erro no banco de dados ' . mysqli_error($banco));
-          }
+
+    $maxLoop = max($totalOds, $totalPartiner);
+    
+    for ($i = 0; $i < $maxLoop; $i++) {
+        $odsid = isset($this->opOds[$i]) ? $this->opOds[$i] : "null";
+        $parceiroid = isset($this->partiner[$i]) ? $this->partiner[$i] : "null";
+        
+        $queryInsertOds = "INSERT INTO projetos_com_ods_parceiros VALUES (" . $ultimo_id . "," . $odsid . "," . $parceiroid . ")";
+        $sql2 = mysqli_query($banco, $queryInsertOds);
+        
+        if (!$sql2) {
+            echo ('Erro no banco de dados: ' . mysqli_error($banco));
         }
-      }
-    } else if ($totalOds < $totalPartiner) {
-      for ($i = 0; $i < count($this->partiner); $i++) {
-        if ($totalOds === 0 || $i >= $totalOds) {
-          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . ",null," . $this->partiner[$i] . ");";
-          $sql2 = mysqli_query($banco, $querryInsertOds);
-          if (!$sql2) {
-            echo ('erro no banco de dados ' . mysqli_error($banco));
-          }
-        } else {
-          $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
-          $sql2 = mysqli_query($banco, $querryInsertOds);
-          if (!$sql2) {
-            echo ('erro no banco de dados ' . mysqli_error($banco));
-          }
-        }
-      }
-    } else if ($totalOds == $totalPartiner) {
-      for ($i = 0; $i < count($this->partiner); $i++) {
-        $querryInsertOds = "insert into projetos_com_ods_parceiros values(" . $ultimo_id . "," . $this->opOds[$i] . "," . $this->partiner[$i] . ");";
-        $sql2 = mysqli_query($banco, $querryInsertOds);
-      }
     }
-  } // method
+}
+
 } // class
 ?>

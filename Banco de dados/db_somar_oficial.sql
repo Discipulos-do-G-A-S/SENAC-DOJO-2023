@@ -9,7 +9,7 @@ cpf_user varchar(11) not null,
 password_user varchar(20) not null
 );
 create table ods (
- id_ods int not null auto_increment primary key,
+ id_ods int not null  auto_increment primary key,
  nome_ods varchar(50) not null
 );
 create table parceiros (
@@ -36,7 +36,9 @@ foreign key (parceiro_id) references parceiros(id_parceiro)
 );
 
 insert into users values (null,'lucas pedroso','pedrosolucas1745@gmail.com','12345','teste');
-insert into ODs values  (null,'Erradicação da pobreza'),
+
+insert into ODs values
+                        (null,'Erradicação da pobreza'),
 					    (null,'Fome zero e agricultura sustentável'),
                         (null,'Saúde e bem-estar'),
                         (null,'Educação de qualidade'),
@@ -53,30 +55,38 @@ insert into ODs values  (null,'Erradicação da pobreza'),
                         (null,'Vida terrestre'),
                         (null,'Paz, justiça e instituições eficazes'),
                         (null,'Parceria e meios de implementação');
-insert into parceiros values(null,'ONU'),
+                        
+insert into parceiros values
+                            (null,'ONU'),
 							(null,'SENAC'),
                             (null,'SESC');
                             
- insert into projetos_com_ods_parceiros (projeto_id,parceiro_id) values (1,1),
-																	(1,2),
-                                                                    (1,3);
 insert into projetos values (null,'teste','poa','fazer um teste','objetivo',null,1);
 insert into projetos_com_ods_parceiros values(1,1,null);
                             
 select id_user,cpf_user,password_user from users where cpf_user = '12345' and password_user='teste';
 
+SELECT projetos.*, ods.nome_ods, COALESCE(parceiros.nome_parceiro, 'NULL') AS nome_parceiro
+FROM projetos
+LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+WHERE ods.id_ods = 1;
+
+SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+FROM projetos
+LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+WHERE id_ods =2;
 
 select * from projetos_com_ods_parceiros;
 
 SELECT projetos.*, ods.*, parceiros.*
 FROM projetos_com_ods_parceiros
-LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
-LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
-RIGHT JOIN projetos ON projetos_com_ods_parceiros.projeto_id = projetos.id_projeto
-WHERE ods.id_ods = 1 ; 
-
-
-select *  from projetos,ods,parceiros where id_ods =1 order by id_projeto;
+INNER JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+INNER JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+INNER JOIN projetos ON projetos_com_ods_parceiros.projeto_id = id_projeto;
 
 drop database db_somar;
 
