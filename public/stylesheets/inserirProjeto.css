@@ -33,6 +33,24 @@ body
     display: grid;
 }
 
+.select1{
+ margin: 2% 0;
+    padding: 2%;
+    border-radius: 10px;
+    border: 0.3px;
+    border-style: solid;
+    font-size: 2.3vh
+}
+
+.select2{
+   margin: 2% 0;
+    padding: 2%;
+    border-radius: 10px;
+    border: 0.3px;
+    border-style: solid;
+    font-size: 2.3vh
+}
+
 .divBotao
 {
     width: 70%; 
@@ -134,7 +152,8 @@ h3{
     padding: 0;
   }
   .opcaoPartiners{
-    display: contents;
+    display: inline;
+    padding: 2vh 0;
   }
 
   .div1{
