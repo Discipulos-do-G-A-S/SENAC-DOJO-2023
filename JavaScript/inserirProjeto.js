@@ -7,9 +7,10 @@ btnEnviar.addEventListener('click', function () {
 })
 
 const state = document.querySelector('#estadoProjeto');
-const citys = document.querySelector("#cidadeProjeto")
+const citys = document.querySelector("#cidadeProjeto");
 document.addEventListener('DOMContentLoaded',async ()=>
 {
+    verifyLogin();
     const urlStates = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
     var xhr = new XMLHttpRequest();
     xhr.open("GET", urlStates, false);
@@ -87,3 +88,8 @@ function EnviarProjeto() {
              "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(opPartiners)) 
     );    
 }// function project
+function verifyLogin()
+{
+if(localStorage.getItem("id")==null){ window.location.href=("../index.html")}
+
+}

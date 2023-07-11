@@ -24,5 +24,5 @@ function includeHTML() {
         return;
       }
     }
-    console.log('cheguei no index');
+
   }

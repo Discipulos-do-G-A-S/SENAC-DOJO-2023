@@ -1,0 +1,29 @@
+
+.card {
+    width: 90%;
+    padding: 1%;
+    border-radius: 50px;
+    background-color: #F6F6F6;
+    box-shadow: 3px 3px 3px;
+    margin: 5%;
+    font-size: large;
+    display: flex;
+}
+
+.card img {
+    width: 20%;
+    height: 20%;
+    margin: 3%;
+align-self: flex-start;
+}
+
+.card a{
+    color: rgb(0, 0, 0);
+    align-self: center;
+
+}
+ .card p{
+align-self: center;
+ }
+
+ 
