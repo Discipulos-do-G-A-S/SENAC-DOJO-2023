@@ -1,3 +1,15 @@
+// Inicializar Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",
+    authDomain: "teste-170423.firebaseapp.com",
+    projectId: "teste-170423",
+    storageBucket: "teste-170423.appspot.com",
+    messagingSenderId: "564787693295",
+    appId: "1:564787693295:web:c7e7590016eace397cbd1a"
+  };
+ firebase.initializeApp(firebaseConfig);
+ const storage = firebase.storage();//Fim da inicialização
+
 var inserirCPF= document.querySelector("#CPF");
 inserirCPF.value= localStorage.getItem("cpf");
 
@@ -75,7 +87,33 @@ function EnviarProjeto() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Requisição concluída com sucesso");
             alert("Projeto inserido com sucesso");
-           console.log(xhr.responseText);
+            console.log(xhr.responseText);
+
+            // Pegar o ID do projeto
+        var response = xhr.responseText;
+        var startIndex = response.indexOf("id: ") + 4; // Obter o índice inicial do ID
+        var endIndex = response.indexOf(" ", startIndex); // Obter o índice final do ID
+        var idProjeto = response.substring(startIndex, endIndex);
+            // Verificar se o ID do projeto é válido
+            if (idProjeto) {
+                // Criando a referência da pasta com base no ID do projeto
+                var folderRef = storage.ref().child(idProjeto);
+
+                // Obtendo os arquivos selecionados no input de fotos e vídeos
+                var input = document.getElementById("photo");
+                var files = input.files;
+
+                // Fazendo o upload dos arquivos para a pasta com o nome do projeto
+                for (let i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var fileRef = folderRef.child(file.name);
+                    fileRef.put(file).then(function(snapshot) {
+                        // Upload concluído
+                    });
+                }
+
+                alert("Arquivos enviados para a pasta -> " + idProjeto);
+            }
         }
     };
     xhr.send("nomeProjeto="+encodeURIComponent(nomeProjeto)+
@@ -86,7 +124,7 @@ function EnviarProjeto() {
              "&idCriador="+encodeURIComponent(idCriador)+
              "&opcaoOds="+encodeURIComponent(JSON.stringify(opOds))+
              "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(opPartiners)) 
-    );    
+    );   
 }// function project
 function verifyLogin()
 {
