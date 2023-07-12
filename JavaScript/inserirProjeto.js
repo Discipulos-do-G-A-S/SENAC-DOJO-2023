@@ -20,6 +20,7 @@ btnEnviar.addEventListener('click', function () {
 
 const state = document.querySelector('#estadoProjeto');
 const citys = document.querySelector("#cidadeProjeto");
+console.log(citys.value);
 document.addEventListener('DOMContentLoaded',async ()=>
 {
     verifyLogin();
@@ -52,6 +53,8 @@ state.addEventListener('change', async()=>
         })
         citys.appendChild(optionsCitys);
 }// if request
+let cityss = document.querySelector("#cidadeProjeto").value;
+    console.log(cityss);
 })
 function EnviarProjeto() {
     event.preventDefault();
