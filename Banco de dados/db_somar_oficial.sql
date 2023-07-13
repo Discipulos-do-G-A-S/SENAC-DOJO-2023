@@ -91,19 +91,5 @@ INNER JOIN projetos ON projetos_com_ods_parceiros.projeto_id = id_projeto;
 drop database db_somar;
 
 
-INSERT INTO projetos (nome_projeto, estado_projeto, cidade_projeto, descricao_projeto, objetivo_projeto, user_id)
-VALUES ('Projeto 1', 'SP', 'São Paulo', 'Descrição do Projeto 1', 'Objetivo do Projeto 1', 1);
-
-INSERT INTO projetos (nome_projeto, estado_projeto, cidade_projeto, descricao_projeto, objetivo_projeto, user_id)
-VALUES ('Projeto 2', 'RJ', 'Rio de Janeiro', 'Descrição do Projeto 2', 'Objetivo do Projeto 2', 1);
-
-INSERT INTO projetos (nome_projeto, estado_projeto, cidade_projeto, descricao_projeto, objetivo_projeto, user_id)
-VALUES ('Projeto 3', 'MG', 'Belo Horizonte', 'Descrição do Projeto 3', 'Objetivo do Projeto 3', 1);
-
-INSERT INTO projetos (nome_projeto, estado_projeto, cidade_projeto, descricao_projeto, objetivo_projeto, user_id)
-VALUES ('Projeto 15', 'RS', 'Porto Alegre', 'Descrição do Projeto 15', 'Objetivo do Projeto 15', 1);
-
-
-
 
 

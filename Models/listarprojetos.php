@@ -54,24 +54,5 @@ class listarOds {
         echo json_encode($registros); 
         mysqli_close($banco);
     }
-
-    function listAllProjects() {
-        include('conexao.php');
-        $query = "SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
-        FROM projetos
-        LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
-        LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
-        LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro;";
-        $sql = mysqli_query($banco, $query);
-        $linhas = mysqli_num_rows($sql);
-        $registros = array();
-        for ($i = 0; $i < $linhas; $i++) {
-            $registro = mysqli_fetch_assoc($sql);
-            $registros[] = $registro; 
-        }
-        echo json_encode($registros); 
-        mysqli_close($banco);
-    }
-
 }
 ?>
