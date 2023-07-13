@@ -1,5 +1,5 @@
 <?php 
-class dadosLogin { 
+class dataLogin { 
     private $cpf; 
     private $password; 
     private $id; 
@@ -12,20 +12,19 @@ class dadosLogin {
         $this->$atributo = $valor; 
     } 
 
-    public function validarLogin() {
+    public function validateLogin() {
         if ($this->cpf == null || $this->password == null) {
             // header('refresh:2.0; http://localhost/SENAC-DOJO-2023/login.html');
         } else {
-            session_start();
-            include('conexao.php');
+            include('connection.php');
             $query = "SELECT id_user, cpf_user, password_user FROM users WHERE cpf_user = '" . $this->cpf . "' AND password_user = '" . $this->password . "';"; 
             $sql = mysqli_query($banco, $query);
-            $rowReturned = mysqli_num_rows($sql);
-            if ($rowReturned == 1) {
-                $registros = array();
-                $registro = mysqli_fetch_assoc($sql);
-                $registros[] = $registro;
-                echo json_encode($registros);
+            $rowsReturneds = mysqli_num_rows($sql);
+            if ($rowsReturneds == 1) {
+                $records = array();
+                $record = mysqli_fetch_assoc($sql);
+                $records[] = $record;
+                echo json_encode($records);
             } else {
                 echo json_encode([]);
             }

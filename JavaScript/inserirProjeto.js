@@ -13,9 +13,9 @@ const firebaseConfig = {
 var inserirCPF= document.querySelector("#CPF");
 inserirCPF.value= localStorage.getItem("cpf");
 
-let btnEnviar = document.querySelector("#btnEnviar")
-btnEnviar.addEventListener('click', function () {
-   EnviarProjeto(event);
+let btnSendProject = document.querySelector("#btnEnviar")
+btnSendProject.addEventListener('click', function () {
+    sendProject(event);
 })
 
 const state = document.querySelector('#estadoProjeto');
@@ -53,35 +53,35 @@ state.addEventListener('change', async()=>
         citys.appendChild(optionsCitys);
 }// if request
 })
-function EnviarProjeto() {
+function sendProject() {
     event.preventDefault();
-    let opcaosOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
-    let odsSelecionadas = [];
+    const optionsOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
+    let selectedOds= [];
 
-    for (let i = 0; i < opcaosOds.length; i++) {
-        if (opcaosOds[i].checked) {
-            odsSelecionadas.push(opcaosOds[i].value)
+    for (let i = 0; i < optionsOds.length; i++) {
+        if (optionsOds[i].checked) {
+            selectedOds.push(optionsOds[i].value)
         }
     }
-    let opcaosPatrocinadores = document.querySelectorAll("#opcaoPartiners input[type='checkbox']")
-    let PatrocinadoresSelecionados = [];
+    const optionsPartiners = document.querySelectorAll("#opcaoPartiners input[type='checkbox']")
+    let selectedPartiners = [];
 
-    for (let i = 0; i < opcaosPatrocinadores.length; i++) {
-        if (opcaosPatrocinadores[i].checked) {
-            PatrocinadoresSelecionados.push(opcaosPatrocinadores[i].value)
+    for (let i = 0; i < optionsPartiners.length; i++) {
+        if (optionsPartiners[i].checked) {
+            selectedPartiners.push(optionsPartiners[i].value)
         }
     }
 
-    let nomeProjeto = document.querySelector("#nomeProjeto").value;
-    let estadoProjeto = document.querySelector("#estadoProjeto").value;
-    let cidadeProjeto = document.querySelector("#cidadeProjeto").value;
-    let descricaoProjeto = document.querySelector("#descricaoProjeto").value;
-    let objetivoProjeto = document.querySelector("#objetivoProjeto").value;
-    let idCriador = localStorage.getItem("id");
-    let opOds = odsSelecionadas;
-    let opPartiners = PatrocinadoresSelecionados;
+    const nameProject = document.querySelector("#nomeProjeto").value;
+    const stateProject = document.querySelector("#estadoProjeto").value;
+    const cityProject = document.querySelector("#cidadeProjeto").value;
+    const descriptionProject = document.querySelector("#descricaoProjeto").value;
+    const objectProject = document.querySelector("#objetivoProjeto").value;
+    const idCreator = localStorage.getItem("id");
+    const optionsOdsFinal = selectedOds;
+    const optionPartinersFinal = selectedPartiners;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerProjeto.php", true);
+    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerProject.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -93,11 +93,11 @@ function EnviarProjeto() {
         var response = xhr.responseText;
         var startIndex = response.indexOf("id: ") + 4; // Obter o índice inicial do ID
         var endIndex = response.indexOf(" ", startIndex); // Obter o índice final do ID
-        var idProjeto = response.substring(startIndex, endIndex);
+        var idProject = response.substring(startIndex, endIndex);
             // Verificar se o ID do projeto é válido
-            if (idProjeto) {
+            if (idProject) {
                 // Criando a referência da pasta com base no ID do projeto
-                var folderRef = storage.ref().child(idProjeto);
+                var folderRef = storage.ref().child(idProject);
 
                 // Obtendo os arquivos selecionados no input de fotos e vídeos
                 var input = document.getElementById("photo");
@@ -112,18 +112,18 @@ function EnviarProjeto() {
                     });
                 }
 
-                alert("Arquivos enviados para a pasta -> " + idProjeto);
+                alert("Arquivos enviados para a pasta -> " + idProject);
             }
         }
     };
-    xhr.send("nomeProjeto="+encodeURIComponent(nomeProjeto)+
-             "&estadoProjeto="+encodeURIComponent(estadoProjeto)+
-             "&cidadeProjeto="+encodeURIComponent(cidadeProjeto)+
-             "&descricaoProjeto="+encodeURIComponent(descricaoProjeto)+
-             "&objetivoProjeto="+encodeURIComponent(objetivoProjeto)+
-             "&idCriador="+encodeURIComponent(idCriador)+
-             "&opcaoOds="+encodeURIComponent(JSON.stringify(opOds))+
-             "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(opPartiners)) 
+    xhr.send("nomeProjeto="+encodeURIComponent(nameProject)+
+             "&estadoProjeto="+encodeURIComponent(stateProject)+
+             "&cidadeProjeto="+encodeURIComponent(cityProject)+
+             "&descricaoProjeto="+encodeURIComponent(descriptionProject)+
+             "&objetivoProjeto="+encodeURIComponent(objectProject)+
+             "&idCriador="+encodeURIComponent(idCreator)+
+             "&opcaoOds="+encodeURIComponent(JSON.stringify(optionsOdsFinal))+
+             "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(optionPartinersFinal)) 
     );   
 }// function project
 function verifyLogin()

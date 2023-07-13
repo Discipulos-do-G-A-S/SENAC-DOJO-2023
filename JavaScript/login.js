@@ -1,9 +1,9 @@
 let btnLogin = document.querySelector("#login");
 btnLogin.addEventListener('click', function(event) {
-  validarLogin(event);
+  validateLogin(event);
 });
 
-function validarLogin(event) {
+function validateLogin(event) {
     event.preventDefault();
     let cpf = document.querySelector("#cpf").value;
     let password = document.querySelector("#senha").value;

@@ -1,7 +1,7 @@
 <?php
 include('../Models/login.php');
-$Dl = new dadosLogin;
+$Dl = new dataLogin;
 $Dl -> cpf = $_POST['cpf'] ;
 $Dl -> password = $_POST['senha'];
-$Dl ->validarLogin();
+$Dl ->validateLogin();
 ?>

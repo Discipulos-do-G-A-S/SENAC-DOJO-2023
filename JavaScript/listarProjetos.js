@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  RequisitarTodosProjetos()
+  requestAllProjects()
 });
 
-const botoes = document.querySelectorAll('button[name="btn"]');
-botoes.forEach(botao => {
-  botao.addEventListener('click', () => {
-    enviarValorOds(botao.value);
+const buttons = document.querySelectorAll('button[name="btn"]');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    sendOdsValue(button.value);
   });
 });
 
-function enviarValorOds(valorBotao) {
-  window.location.href = "../views/projetos.html?valor=" + valorBotao;
+function sendOdsValue(buttonValue) {
+  window.location.href = "../views/projetos.html?ods=" + buttonValue;
 }
 
-function RequisitarTodosProjetos() {
+function requestAllProjects() {
   filtro = "*"
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerAllProjetos.php", false);
+  xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerAllProjects.php", false);
   xhr.send();
   if (xhr.readyState === 4 && xhr.status === 200) {
     var responseJson = JSON.parse(xhr.responseText);
