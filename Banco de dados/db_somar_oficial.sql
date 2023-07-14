@@ -81,7 +81,7 @@ LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
 LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
 WHERE ods.id_ods = 1;
 
-SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+SELECT projetos.*, ods.nome_ods , ods.texto_ods,ods.causa_atuacao_id, parceiros.nome_parceiro
 FROM projetos
 LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
 LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods

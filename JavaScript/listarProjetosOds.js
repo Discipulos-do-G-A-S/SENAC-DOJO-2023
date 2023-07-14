@@ -1,52 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   displayAllprojectsFromCity()
+  displayAllProjects()
 });
 
-function displayAllProjects() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var valor = urlParams.get("ods");
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, false);
-  xhr.send();
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    let response = JSON.parse(xhr.responseText);
-    console.log(response);
-    var html = ''; // Variável para armazenar o HTML gerado
-    for (let i = 0; i < response.length; i++) {
-      html += '<div class="container">'
-      html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">'
-      html += '<div class="card">'
-      html += '<img src="../public/img/img_projeto_vida_verde.jpg">'
-      html += `<a href= ../views/telaProjeto.html?id=${response[i].id_projeto}>Nome do projeto: ${response[i].nome_projeto}</a>`
-      html += `<p>ODS do projeto: ${response[i].nome_ods}</p>`
-      html += '</div>'
-      html += '</div>'
-      html += '<br>'
-    }
-    document.getElementById('divNomeProjeto').innerHTML = html;
-  }
-}// request allProjects
 function displayAllprojectsFromCity()
 {
-  const state = document.querySelector("#estadoProjeto");
   const citys = document.querySelector("#cidadeProjeto");
-  const urlStates = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", urlStates, true);
-  xhr.send();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      let responseState = JSON.parse(xhr.response);
-      const optionsStates = document.createElement("optgroup");
-      optionsStates.setAttribute("label", "Selecione um estado");
-      responseState.forEach((stateItem) => {
-        optionsStates.innerHTML += `<option>${stateItem.sigla}</option>`;
-      });
-      state.appendChild(optionsStates);
-    }
-  };
-  state.addEventListener("change", async () => {
-    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state.value}/municipios`;
+    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/43/municipios`;
     var xhrcitys = new XMLHttpRequest();
     xhrcitys.open("GET", urlCitys, true);
     xhrcitys.send();
@@ -54,6 +14,7 @@ function displayAllprojectsFromCity()
       if (xhrcitys.readyState === 4 && xhrcitys.status === 200) {
         let responsecitys = JSON.parse(xhrcitys.response);
         const optionsCitys = document.createElement("optgroup");
+        optionsCitys.innerHTML += `<option>Selecione uma cidade</option>`;
         responsecitys.forEach((city) => {
           optionsCitys.innerHTML += `<option>${city.nome}</option>`;
         });
@@ -61,7 +22,6 @@ function displayAllprojectsFromCity()
         citys.appendChild(optionsCitys);
       }
     };
-  });
 citys.addEventListener("change",()=>
 {
   var xhrProject = new XMLHttpRequest()
@@ -74,8 +34,7 @@ citys.addEventListener("change",()=>
       const valueCitys = document.querySelector("#cidadeProjeto").value;
   console.log(valueCitys)
       let responseProject = JSON.parse(xhrProject.responseText);
-      console.log(responseProject);
-      responseProject = responseProject.filter((res) => res.cidade_projeto == "Alvarães");
+      responseProject = responseProject.filter((res) => res.cidade_projeto == valueCitys);
       var html = "";
       console.log(responseProject.length)
       for (let i = 0; i < responseProject.length; i++) {
@@ -93,5 +52,22 @@ citys.addEventListener("change",()=>
     }
   }
 }) 
-
-}
+} // method listAll from city
+function displayAllProjects() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var valor = urlParams.get("ods");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, false);
+  xhr.send();
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    let response = JSON.parse(xhr.responseText);
+    console.log(response)
+    console.log(typeof response.texto_ods)
+    console.log(response.texto_ods)
+    var html=""
+    html += `<h1>${response[0].nome_ods}</h1>`
+    html +=`<h1>Total de projetos da ODS: ${response.length}</h1>`
+    html += `<textarea cols='180'>${response[0].texto_ods}</textarea>`
+    }
+    document.getElementById('totalProjetos').innerHTML = html;
+  }// method request allProjects

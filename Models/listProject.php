@@ -25,7 +25,7 @@ class listProjects {
     }
     function listarAllFromODS($ods) {
         include('connection.php');
-        $query = "SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+        $query = "SELECT projetos.*, ods.nome_ods , ods.texto_ods,ods.causa_atuacao_id, parceiros.nome_parceiro
         FROM projetos
         LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
         LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods

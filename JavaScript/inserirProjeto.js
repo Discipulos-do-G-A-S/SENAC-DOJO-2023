@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded',async ()=>
+{
+    const citys = document.querySelector("#cidadeProjeto");
+    verifyLogin();
+    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/43/municipios`;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", urlCitys, false);
+    xhr.send();
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        let response = JSON.parse(xhr.response);
+    const optionsCitys = document.createElement('optgroup')
+    response.forEach(citys =>
+        {
+            optionsCitys.innerHTML +=`<option>${citys.nome}</option>` 
+        })
+        citys.appendChild(optionsCitys);
+}// if request
+})
 // Inicializar Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",
@@ -17,42 +35,7 @@ let btnSendProject = document.querySelector("#btnEnviar")
 btnSendProject.addEventListener('click', function () {
     sendProject(event);
 })
-
-const state = document.querySelector('#estadoProjeto');
-const citys = document.querySelector("#cidadeProjeto");
-document.addEventListener('DOMContentLoaded',async ()=>
-{
-    verifyLogin();
-    const urlStates = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", urlStates, false);
-    xhr.send();
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        let response = JSON.parse(xhr.response);
-    const optionsStates = document.createElement('optgroup')
-    optionsStates.setAttribute('label',"selecione um estado")
-    response.forEach(states => {
-        optionsStates.innerHTML +=`<option>${states.sigla}</option>`
-    });
-    state.appendChild(optionsStates)
-    }
-})
-state.addEventListener('change', async()=>
-{
-    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state.value}/municipios`;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", urlCitys, false);
-    xhr.send();
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        let response = JSON.parse(xhr.response);
-    const optionsCitys = document.createElement('optgroup')
-    response.forEach(citys =>
-        {
-            optionsCitys.innerHTML +=`<option>${citys.nome}</option>` 
-        })
-        citys.appendChild(optionsCitys);
-}// if request
-})
+ 
 function sendProject() {
     event.preventDefault();
     const optionsOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
