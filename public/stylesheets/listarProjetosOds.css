@@ -1,5 +1,8 @@
-
-.card {
+.container {
+    display: flex;
+  }
+  
+  .card {
     width: 90%;
     padding: 1%;
     border-radius: 50px;
@@ -8,22 +11,27 @@
     margin: 5%;
     font-size: large;
     display: flex;
-}
-
-.card img {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card img {
+    margin: 3%;
+    padding: 0;
     width: 20%;
     height: 20%;
-    margin: 3%;
-align-self: flex-start;
-}
-
-.card a{
+    align-self: flex-start;
+  }
+  
+  .card a {
     color: rgb(0, 0, 0);
-    align-self: center;
-
-}
- .card p{
-align-self: center;
- }
-
- 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .card p {
+    margin: 0;
+    padding: 0;
+  }

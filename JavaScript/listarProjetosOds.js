@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  displayAllProjects()
+  displayAllprojectsFromCity()
 });
 
 function displayAllProjects() {
   var urlParams = new URLSearchParams(window.location.search);
-  var valor = urlParams.get("valor");
+  var valor = urlParams.get("ods");
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, false);
   xhr.send();
@@ -65,14 +65,19 @@ function displayAllprojectsFromCity()
 citys.addEventListener("change",()=>
 {
   var xhrProject = new XMLHttpRequest()
-  xhrProject.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valueOds, true);
+  var urlParams = new URLSearchParams(window.location.search);
+  var valor = urlParams.get("ods");
+  xhrProject.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, true);
   xhrProject.send();
   xhrProject.onreadystatechange = function () {
     if (xhrProject.readyState === 4 && xhrProject.status === 200) {
+      const valueCitys = document.querySelector("#cidadeProjeto").value;
+  console.log(valueCitys)
       let responseProject = JSON.parse(xhrProject.responseText);
       console.log(responseProject);
-      responseProject = responseProject.filter((res) => res.cidade_projeto === citys.value);
+      responseProject = responseProject.filter((res) => res.cidade_projeto == "Alvarães");
       var html = "";
+      console.log(responseProject.length)
       for (let i = 0; i < responseProject.length; i++) {
         html += '<div class="container">';
         html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
