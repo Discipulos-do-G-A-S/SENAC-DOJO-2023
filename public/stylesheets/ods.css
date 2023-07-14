@@ -92,3 +92,24 @@ body
     padding-top: 2%;
 
 }
+
+.causas
+{
+    padding: 2.5vh;
+    text-align: center;
+}
+.causas h1{
+    font-size: 2.5vh;
+}
+.causas ul {
+    list-style-type:none;
+    cursor: pointer;
+   
+}
+.causas p  {
+    color: #1B98E0;
+    font-size: 2.5vh;
+}
+.causas a {
+    text-decoration: none;
+}
