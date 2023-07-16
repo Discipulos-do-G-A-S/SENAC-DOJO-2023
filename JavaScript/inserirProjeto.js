@@ -39,6 +39,23 @@ btnSendProject.addEventListener('click', function () {
 })
  
 function sendProject() {
+    //Filtro de imagem/video
+    var input = document.getElementById("photo");
+    var files = input.files;
+    for (let i = 0; i < files.length; i++) {//for para percorrer todo o input
+        const file = files[i];//const que recebe arquivo por arquivo
+        const type = file.type;//const que recebe o tipo do arquivo para fazer a verificação
+    
+        if (type.startsWith('video/') || type.startsWith('image/')) {//verificação de se o arquivo especifico é video ou imagem
+        } else {//else caso arquivo não seja imagem ou video, ele da um alerta, reseta o input e termina a função
+          alert("Tipo de arquivo inválido");
+          input.value = ''; // Limpar a seleção do arquivo
+          return; // Terminar a função
+        }
+      }
+
+
+    //fim do filtro de imagem/video
     event.preventDefault();
     const optionsOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
     let selectedOds= [];
@@ -86,8 +103,8 @@ function sendProject() {
                 var folderRef = storage.ref().child(idProject);
 
                 // Obtendo os arquivos selecionados no input de fotos e vídeos
-                var input = document.getElementById("photo");
-                var files = input.files;
+                //var input = document.getElementById("photo");
+                //var files = input.files;
 
                 // Fazendo o upload dos arquivos para a pasta com o nome do projeto
                 for (let i = 0; i < files.length; i++) {
