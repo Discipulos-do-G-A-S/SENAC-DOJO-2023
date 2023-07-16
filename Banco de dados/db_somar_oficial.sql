@@ -47,6 +47,7 @@ insert into causas_atuacao values (null,'pessoas'),
 								  (null,'educação'),
 								  (null,'economia'),
 								  (null,'natureza');
+                                  
 INSERT INTO ods VALUES (null,'Erradicação da pobreza', 'Em 2000, o mundo comprometeu-se em reduzir pela metade o número de pessoas vivendo em extrema pobreza e alcançou ganhos notáveis no desenvolvimento humano. Até 2015, a pobreza havia sido reduzida significativamente, o acesso ao ensino básico e os resultados da saúde melhoraram, bem como foram realizados progressos na promoção da igualdade de gênero e no empoderamento das mulheres e meninas. No entanto, a erradicação da pobreza extrema continua a ser um desafio, com mais de 700 milhões de pessoas vivendo, globalmente, com menos de US$ 1,90 (PPP) por dia e mais da metade da população global vivendo com menos de US$ 8,00 por dia. Em um mundo confrontado pelos crescentes desafios para o desenvolvimento, a Agenda 2030 reconhece que a erradicação da pobreza, em todas as suas formas, é o maior desafio global para atingirmos o desenvolvimento sustentável. Por isso, a grande prioridade do desenvolvimento sustentável deve ser os mais pobres e vulneráveis: ninguém será deixado para trás!', 1),
 					   (null,'Fome zero e agricultura sustentável', 'Durante as duas últimas décadas, o rápido crescimento econômico e o desenvolvimento da agricultura foram responsáveis pela redução pela metade da proporção de pessoas subnutridas no mundo. Entretanto, ainda há 795 milhões de pessoas no mundo que, em 2014, viviam sob o espectro da desnutrição crônica. O ODS 2 pretende acabar com todas as formas de fome e má-nutrição até 2030, de modo a garantir que todas as pessoas – especialmente as crianças – tenham acesso suficiente a alimentos nutritivos durante todos os anos. Para alcançar este objetivo, é necessário promover práticas agrícolas sustentáveis, por meio do apoio à agricultura familiar, do acesso equitativo à terra, à tecnologia e ao mercado.', 3),
 					   (null,'Saúde e bem-estar', 'Desde os ODM foram registrados progressos históricos na redução da mortalidade infantil, na melhoria da saúde materna e na luta contra o HIV/Aids, a tuberculose, a malária e outras doenças. Em 15 anos, o número de pessoas infectadas pelo HIV anualmente caiu de 3,1 milhões para 2 milhões e mais de 6,2 milhões de vidas foram salvas da malária. Apesar do progresso, as doenças crônicas e aquelas resultantes de desastres continuam a ser os principais fatores que contribuem para a pobreza e para a privação dos mais vulneráveis. Atualmente, 63% de todas as mortes do mundo provêm de doenças não transmissíveis, principalmente cardiovasculares, respiratórias, câncer e diabetes. Estima-se que as perdas econômicas para os países de renda média e baixa provenientes destas doenças ultrapassaram US$ 7 trilhões até 2025. Os ODS propõem metas integradas que abordam a promoção da saúde e bem estar como essenciais ao fomento das capacidades humanas.', 1),
@@ -68,18 +69,10 @@ INSERT INTO ods VALUES (null,'Erradicação da pobreza', 'Em 2000, o mundo compr
 insert into parceiros values (null,'ONU'),
 							 (null,'SENAC'),
                              (null,'SESC');
-                            
-insert into projetos values (null,'teste','poa','fazer um teste','objetivo',null,1);
+                             
 insert into projetos_com_ods_parceiros values(1,1,null);
                             
 select id_user,cpf_user,password_user from users where cpf_user = '12345' and password_user='teste';
-
-SELECT projetos.*, ods.nome_ods, COALESCE(parceiros.nome_parceiro, 'NULL') AS nome_parceiro
-FROM projetos
-LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
-LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
-LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
-WHERE ods.id_ods = 1;
 
 SELECT projetos.*, ods.nome_ods , ods.texto_ods,ods.causa_atuacao_id, parceiros.nome_parceiro
 FROM projetos
@@ -88,14 +81,42 @@ LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
 LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
 WHERE id_ods =2;
 
-select * from projetos_com_ods_parceiros;
+SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+FROM projetos
+LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+where id_ods =1;
 
-SELECT projetos.*, ods.*, parceiros.*
-FROM projetos_com_ods_parceiros
-INNER JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
-INNER JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
-INNER JOIN projetos ON projetos_com_ods_parceiros.projeto_id = id_projeto;
+select * from ods where id_ods = 1;
 
+SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+FROM projetos
+LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+where id_ods =1 and id_ods =2;
+
+SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+FROM projetos
+JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+JOIN causas_atuacao ON ods.causa_atuacao_id = causas_atuacao.id_causa_atuacao
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+WHERE causas_atuacao.id_causa_atuacao = 1;
+
+SELECT DISTINCT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+FROM projetos
+JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+JOIN causas_atuacao ON ods.causa_atuacao_id = causas_atuacao.id_causa_atuacao
+LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+WHERE causas_atuacao.id_causa_atuacao = 1
+group by projetos.id_projeto;
+
+select * from ods where causa_atuacao_id = 1;
+
+select * from projetos where user_id =1;
 drop database db_somar;
 
 

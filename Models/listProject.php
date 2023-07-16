@@ -25,7 +25,7 @@ class listProjects {
     }
     function listarAllFromODS($ods) {
         include('connection.php');
-        $query = "SELECT projetos.*, ods.nome_ods , ods.texto_ods,ods.causa_atuacao_id, parceiros.nome_parceiro
+        $query = "SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
         FROM projetos
         LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
         LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
@@ -41,5 +41,68 @@ class listProjects {
         echo json_encode($records); 
         mysqli_close($banco);
     }
-}
+    function listAllDataFromODS($ods)
+    {
+        include('connection.php');
+        $query = "select * from ods where id_ods=".$ods.";";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array();
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_assoc($sql);
+            $records[] = $record; 
+        }
+        echo json_encode($records); 
+        mysqli_close($banco);
+    }
+    function listAllProjectsFromCause($cause)
+    {
+        include('connection.php');
+        $query = "SELECT DISTINCT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+        FROM projetos
+        JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+        JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+        JOIN causas_atuacao ON ods.causa_atuacao_id = causas_atuacao.id_causa_atuacao
+        LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+        WHERE causas_atuacao.id_causa_atuacao = ".$cause."
+        group by projetos.id_projeto;";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array();
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_assoc($sql);
+            $records[] = $record; 
+        }
+        echo json_encode($records); 
+        mysqli_close($banco);
+    }
+    function listAllProjectsFromIdUser($id)
+    {
+        include('connection.php');
+        $query = "select * from projetos where user_id =".$id.";";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array();
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_assoc($sql);
+            $records[] = $record; 
+        }
+        echo json_encode($records); 
+        mysqli_close($banco);
+    }
+    function listProjectFromId($id)
+    {
+        include('connection.php');
+        $query = "select * from projetos where id_projeto =".$id.";";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array();
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_assoc($sql);
+            $records[] = $record; 
+        }
+        echo json_encode($records); 
+        mysqli_close($banco);
+    }
+}// class
 ?>

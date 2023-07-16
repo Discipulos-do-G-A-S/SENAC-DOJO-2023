@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded',async ()=>
         })
         citys.appendChild(optionsCitys);
 }// if request
+const stateProject = document.querySelector("#estadoProjeto").value;
+console.log(stateProject);
 })
 // Inicializar Firebase
 const firebaseConfig = {
@@ -57,6 +59,7 @@ function sendProject() {
 
     const nameProject = document.querySelector("#nomeProjeto").value;
     const stateProject = document.querySelector("#estadoProjeto").value;
+    console.log(stateProject);
     const cityProject = document.querySelector("#cidadeProjeto").value;
     const descriptionProject = document.querySelector("#descricaoProjeto").value;
     const objectProject = document.querySelector("#objetivoProjeto").value;
