@@ -107,15 +107,14 @@ function displayAllprojectsFromCityofCause() {
           html += "</div>";
         }
         for (let i = 0; i < responseProject.length; i++) {
-          html += '<div class="container">';
+          html += '<div class="containerProjetos">';
           html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
-          html += '<div class="card">';
+          html += '<div class="cardProjetos">';
           html += '<img src="../public/img/img_projeto_vida_verde.jpg">';
           html += `<a href=../views/telaProjeto.html?id=${responseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
           html += `<p>ODS do projeto: ${responseProject[i].nome_ods}</p>`;
           html += "</div>";
           html += "</div>";
-          html += "<br>";
         }
         document.getElementById("divNomeProjeto").innerHTML = html;
       }

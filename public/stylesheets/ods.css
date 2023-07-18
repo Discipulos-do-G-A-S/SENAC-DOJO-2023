@@ -96,13 +96,15 @@ body
 .causas
 {
     padding: 2.5vh;
-    text-align: center;
+    
 }
 .causas h1{
     font-size: 2.5vh;
+    text-align: center;
+    font-weight: bold;
 }
 .causas ul {
-    list-style-type:none;
+    list-style-type: disclosure-closed;
     cursor: pointer;
    
 }
@@ -113,3 +115,4 @@ body
 .causas a {
     text-decoration: none;
 }
+

@@ -85,12 +85,10 @@ p
 
 .video {
     padding: 3% 0;
-    max-width: 1024px;
+    display: flex;
+    justify-content: center;
 }
 
-iframe{
-    width: 100%;
-}
 
 .btn-iframe 
 {

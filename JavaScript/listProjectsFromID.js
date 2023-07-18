@@ -13,16 +13,17 @@ function displayAllProjects() {
       var html=""
       for(let i=0; i < response.length; i++)
       {
-        html += `<div class="card">`
-        html += `<span class="span1">`
-        html += `<img class="img" src="../public/img/img_projeto_vida_verde.jpg"> projeto: `
+        html += `<div class="cardProjeto">`
+        html += `<img class="imgCard" src="../public/img/img_projeto_vida_verde.jpg">`
+        html += `<div class="conteudoCard">`
+        html += `<p>Projeto: </p>`
         html += `<span class="span2">${response[i].nome_projeto}</span>`
-        html += ` ID do projeto: `
+        html += `<p>ID do projeto: </p>`
         html += `<span class="span2">${response[i].id_projeto}</span>`
-        html += `<div class"buttons">`
+        html += `<div class"buttonsCard">`
         html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="material-symbols-outlined">edit</button></a> <a><button class="material-symbols-outlined">Delete</button></a>`
         html += `</div>`
-        html += `</span>`
+        html += `</div>`
         html += `</div>`
       }
       }
