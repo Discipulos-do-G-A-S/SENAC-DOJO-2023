@@ -1,6 +1,7 @@
 <?php
 class listProjects {
     private $ods;
+    private $id;
 
     public function __get($atributo) {
         return $this->$atributo;
@@ -94,6 +95,24 @@ class listProjects {
     {
         include('connection.php');
         $query = "select * from projetos where id_projeto =".$id.";";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array();
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_assoc($sql);
+            $records[] = $record; 
+        }
+        echo json_encode($records); 
+        mysqli_close($banco);
+    }
+    function listProject($id){
+        include('connection.php');
+        $query = "SELECT projetos.*, ods.nome_ods, parceiros.nome_parceiro
+        FROM projetos
+        LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+        LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+        LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+        where id_projeto =".$id.";";
         $sql = mysqli_query($banco, $query);
         $rows = mysqli_num_rows($sql);
         $records = array();
