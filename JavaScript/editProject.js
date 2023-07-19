@@ -103,7 +103,38 @@ function sendEditProject()
              "&cidadeProjeto="+encodeURIComponent(cityProject)+
              "&descricaoProjeto="+encodeURIComponent(descriptionProject)+
              "&objetivoProjeto="+encodeURIComponent(objectProject)
-            );  
+            );
+    //inicio da modificação do firebase
+    const storageRef = storage.ref();
+    const namefolder = idProjeto;//alterar para algum id fixo para realizar os testes 
+    
+    storageRef.child(namefolder).listAll().then(function(result) {//Parte de apagar
+        // Usando Promise.all para aguardar a exclusão de todos os arquivos
+        return Promise.all(result.items.map(function(item) {
+          return item.delete();
+        }));
+      }).then(function() {//Parte de inserir
+        console.log("Arquivos do firebase excluidos");
+        // Iniciando o envio dos novos arquivos
+        const files = document.querySelector("#photo").files;
+        const uploadPromises = [];
+
+        for (const file of files) {
+            const fileRef = storageRef.child(namefolder + "/" + file.name);
+            uploadPromises.push(fileRef.put(file));
+        }
+
+        // Aguardando o envio de todos os novos arquivos
+        return Promise.all(uploadPromises);
+      }).then(function() {
+        console.log("Novos arquivos enviados com sucesso!");
+
+        // Resto do seu código que vem após o envio dos arquivos
+        // ...
+
+    }).catch(function(error) {
+        console.error("Erro ao excluir os arquivos:", error);
+      });
 }
 function teste ()
 {
