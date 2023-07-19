@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   var urlParams = new URLSearchParams(window.location.search);
   var valor = urlParams.get("ods");
-  if (valor !== null && valor !== "") {
-    displayAllprojectsFromCity();
+  var valueCause = urlParams.get("causa");
+  if(valor)
+  {
     displayAllProjects();
-  } else {
-    displayAllprojectsFromCityofCause();
+    displayAllprojectsFromCity();
   }
+  else 
+  {
+    displayAllprojectsFromCityofCause();
+  }  
 });
 
 function displayAllprojectsFromCity() {
@@ -128,19 +132,21 @@ function displayAllProjects() {
   console.log(valor)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
-  xhr.send();
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    let response = JSON.parse(xhr.responseText);
-    console.log(response);
-    if (response.length == 0) {
-      var html = "";
-      document.getElementById('totalProjetos').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
-    } else {
-      var html = "";
-      html += `<h1>${response[0].nome_ods}</h1>`;
-      html += `<h1>Total de projetos da ODS: ${response.length}</h1>`;
-      html += `<textarea cols='180'>${response[0].texto_ods}</textarea>`;
-      document.getElementById('totalProjetos').innerHTML = html;
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      console.log(response);
+      if (response.length == 0) {
+        var html = "";
+        document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
+      } else {
+        var html = "";
+        html += `<h1>${response[0].nome_ods}</h1>`;
+        html += `<h1>Total de projetos da ODS: ${response.length}</h1>`;
+        html += `<textarea cols='180'>${response[0].texto_ods}</textarea>`;
+        document.getElementById('textOds').innerHTML = html;
+      }
     }
-  }
+  };
+  xhr.send();
 }

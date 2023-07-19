@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',async ()=>
 {
     const citys = document.querySelector("#cidadeProjeto");
     verifyLogin();
-    const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/43/municipios`;
+    const urlCitys = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/43/municipios';
     var xhr = new XMLHttpRequest();
     xhr.open("GET", urlCitys, false);
     xhr.send();
@@ -31,7 +31,7 @@ const firebaseConfig = {
  const storage = firebase.storage();//Fim da inicialização
 
 var inserirCPF= document.querySelector("#CPF");
-inserirCPF.value= localStorage.getItem("cpf");
+inserirCPF.value= sessionStorage.getItem("cpf");
 
 let btnSendProject = document.querySelector("#btnEnviar")
 btnSendProject.addEventListener('click', function () {
@@ -76,11 +76,10 @@ function sendProject() {
 
     const nameProject = document.querySelector("#nomeProjeto").value;
     const stateProject = document.querySelector("#estadoProjeto").value;
-    console.log(stateProject);
     const cityProject = document.querySelector("#cidadeProjeto").value;
     const descriptionProject = document.querySelector("#descricaoProjeto").value;
     const objectProject = document.querySelector("#objetivoProjeto").value;
-    const idCreator = localStorage.getItem("id");
+    const idCreator = sessionStorage.getItem("id");
     const optionsOdsFinal = selectedOds;
     const optionPartinersFinal = selectedPartiners;
     var xhr = new XMLHttpRequest();
@@ -131,6 +130,6 @@ function sendProject() {
 }// function project
 function verifyLogin()
 {
-if(localStorage.getItem("id")==null){ window.location.href=("../index.html")}
+if(sessionStorage.getItem("id")==null){ window.location.href=("../index.html")}
 
 }

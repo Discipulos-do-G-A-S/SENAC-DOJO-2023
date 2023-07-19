@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function ()
  verifyLogin();
 });
 function displayAllProjects() {
-    const idCreator = localStorage.getItem("id");
+    const idCreator = sessionStorage.getItem("id");
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerProjectsFromIdUser.php?id=" + idCreator, false);
     xhr.send();
@@ -21,7 +21,7 @@ function displayAllProjects() {
         html += `<p>ID do projeto: </p>`
         html += `<span class="span2">${response[i].id_projeto}</span>`
         html += `<div class"buttonsCard">`
-        html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="material-symbols-outlined">edit</button></a> <a><button class="material-symbols-outlined">Delete</button></a>`
+        html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="material-symbols-outlined">edit</button></a> <a href="./deleteProject.html?id=${response[i].id_projeto}" ><button class="material-symbols-outlined">Delete</button></a>`
         html += `</div>`
         html += `</div>`
         html += `</div>`
@@ -31,7 +31,7 @@ function displayAllProjects() {
     }// method request allProjects
     function verifyLogin()
     {
-    if(localStorage.getItem("id")==null){ window.location.href=("../index.html")}
+    if(sessionStorage.getItem("id")==null){ window.location.href=("../index.html")}
     else
     {
         displayAllProjects();
