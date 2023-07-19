@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   var urlParams = new URLSearchParams(window.location.search);
   var valor = urlParams.get("ods");
-  if (valor !== null && valor !== "") {
-    displayAllprojectsFromCity();
+  var valueCause = urlParams.get("causa");
+  if(valor)
+  {
     displayAllProjects();
-  } else {
-    displayAllprojectsFromCityofCause();
+    displayAllprojectsFromCity();
   }
+  else 
+  {
+    displayAllprojectsFromCityofCause();
+  }  
 });
 
 function displayAllprojectsFromCity() {
@@ -45,14 +49,15 @@ function displayAllprojectsFromCity() {
         var html = "";
         if(responseProject.length === 0)
         {
-          html += '<div class="container">';
-          html += `<h1>Ainda não existem projetos dessa Causa</h1>`
+          html += '<div class="cardSemProjetos">';
+          html += `<h1>Não há projetos cadastrados.</h1>`
           html += "</div>";
+          
         }
         for (let i = 0; i < responseProject.length; i++) {
-          html += '<div class="container">';
+          html += '<div class="containerProjetos">';
           html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
-          html += '<div class="card">';
+          html += '<div class="cardProjetos">';
           html += '<img src="../public/img/img_projeto_vida_verde.jpg">';
           html += `<a href=../views/telaProjeto.html?id=${responseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
           html += `<p>ODS do projeto: ${responseProject[i].nome_ods}</p>`;
@@ -102,8 +107,8 @@ function displayAllprojectsFromCityofCause() {
         var html = "";
         if(responseProject.length === 0)
         {
-          html += '<div class="container">';
-          html += `<h1>Ainda não existem projetos dessa Causa</h1>`
+          html += '<div class="cardSemProjetos">';
+          html += `<h1>Não há projetos cadastrados.</h1>`
           html += "</div>";
         }
         for (let i = 0; i < responseProject.length; i++) {
@@ -128,19 +133,21 @@ function displayAllProjects() {
   console.log(valor)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
-  xhr.send();
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    let response = JSON.parse(xhr.responseText);
-    console.log(response);
-    if (response.length == 0) {
-      var html = "";
-      document.getElementById('totalProjetos').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
-    } else {
-      var html = "";
-      html += `<h1>${response[0].nome_ods}</h1>`;
-      html += `<h1>Total de projetos da ODS: ${response.length}</h1>`;
-      html += `<textarea cols='180'>${response[0].texto_ods}</textarea>`;
-      document.getElementById('totalProjetos').innerHTML = html;
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      console.log(response);
+      if (response.length == 0) {
+        var html = "";
+        document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
+      } else {
+        var html = "";
+        html += `<h1>Total de projetos da ODS: ${response.length}</h1>`;
+        html += `<h1>${response[0].nome_ods}</h1>`;        
+        html += `<p>${response[0].texto_ods}</p>`;
+        document.getElementById('textOds').innerHTML = html;
+      }
     }
-  }
+  };
+  xhr.send();
 }

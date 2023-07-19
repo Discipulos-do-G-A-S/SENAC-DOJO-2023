@@ -34,7 +34,7 @@ inserirCPF.value= sessionStorage.getItem("cpf");
 
 let btnSendProject = document.querySelector("#btnEnviar")
 btnSendProject.addEventListener('click', function () {
-    sendEditProject(event);
+    sendDeleteProject(event);
 })
 function verifyLogin()
 {
@@ -49,7 +49,7 @@ function seacrhProject()
     const cityProject = document.querySelector("#cidadeProjeto")
     const descriptionProject = document.querySelector("#descricaoProjeto")
     const objectProject = document.querySelector("#objetivoProjeto")
-    const idCreator = localStorage.getItem("id");
+    const idCreator = sessionStorage.getItem("id");
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get("id");
     console.log(id);
@@ -72,23 +72,12 @@ function seacrhProject()
     xhr.send();
 } 
 
-function sendEditProject()
+function sendDeleteProject()
 {
     event.preventDefault();
     const idProjeto = document.querySelector('#idProjeto').value
-    const nameProject = document.querySelector("#nomeProjeto").value;
-    const stateProject = document.querySelector("#estadoProjeto").value
-    const cityProject = document.querySelector("#cidadeProjeto").value
-    const descriptionProject = document.querySelector("#descricaoProjeto").value
-    const objectProject = document.querySelector("#objetivoProjeto").value
-    console.log(idProjeto)
-    console.log(nameProject)
-    console.log(stateProject)
-    console.log(cityProject)
-    console.log(descriptionProject)
-    console.log(objectProject)
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerEditProject.php", true);
+    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerDeleteProject.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
@@ -97,15 +86,5 @@ function sendEditProject()
             console.log(response)
         }
     } 
-    xhr.send("idProjeto="+encodeURIComponent(idProjeto)+
-             "&nomeProjeto="+encodeURIComponent(nameProject)+
-             "&estadoProjeto="+encodeURIComponent(stateProject)+
-             "&cidadeProjeto="+encodeURIComponent(cityProject)+
-             "&descricaoProjeto="+encodeURIComponent(descriptionProject)+
-             "&objetivoProjeto="+encodeURIComponent(objectProject)
-            );  
-}
-function teste ()
-{
-    console.log("ois")
+    xhr.send("idProjeto="+encodeURIComponent(idProjeto));  
 }
