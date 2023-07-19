@@ -159,7 +159,8 @@ folder.listAll()
     html+=`<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${i+1}" aria-label="Slide ${i+2}"></button>`
     }
   }//fim for (até aqui ta funfa aparentemente)
-  html+=`<div class="carousel-inner">
+  html+=`</div>
+  <div class="carousel-inner">
   <div class="carousel-item active">
                     <img src="" class="d-block w-100 img-project changeImg" alt="...">
                     <div class="carousel-caption d-none d-md-block">
