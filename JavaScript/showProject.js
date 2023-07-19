@@ -32,9 +32,11 @@ async function ImageURL(item){
 
 async function VideoURL(item){
   const url = await item.getDownloadURL(); // Pegar a URL do video em específico
-  const video= document.getElementById("video");
-  console.log(url)
+  console.log(url);
+  let video= document.getElementById("iframe");
   video.src=url;
+  console.log(video)
+  //video.src=url;
 }
 
 
@@ -139,7 +141,6 @@ xhr.send();
 
 
 
-
 async function executar(){
   let html= "";
   html+=`<div class="container-texto">`;
@@ -197,7 +198,7 @@ folder.listAll()
                 </button>
               </div>
               <div class="video">
-                <iframe id="iframe video" name="janela" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="iframe" name="janela" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`
   document.getElementById("projeto").innerHTML = html;
 
