@@ -86,11 +86,11 @@ header
   width: 50px;
 }
 
-/* The design is inspired from the mockapi.io */
+
 
 .popup {
   --burger-line-width: 1.125em;
-  --burger-line-height: 0.125em;
+  --burger-line-height: 1.125em;
   --burger-offset: 0.625em;
   --burger-bg: rgba(0, 0, 0, .15);
   --burger-color: #333;
@@ -105,10 +105,10 @@ header
   --burger-enable-outline-width: 0.125em;
   --burger-enable-outline-offset: var(--burger-enable-outline-width);
   /* nav */
-  --nav-padding-x: 0.25em;
-  --nav-padding-y: 0.625em;
+  --nav-padding-x: 1.125em;
+  --nav-padding-y: 1.125em;
   --nav-border-radius: 0.375em;
-  --nav-border-color: #ccc;
+  --nav-border-color: #f6f6f6;
   --nav-border-width: 0.0625em;
   --nav-shadow-color: rgba(0, 0, 0, .2);
   --nav-shadow-width: 0 1px 5px;
@@ -118,18 +118,16 @@ header
   --nav-active-scale: 1;
   --nav-position-left: 0;
   --nav-position-right: unset;
-  /* if you want to change sides just switch one property */
-  /* from properties to "unset" and the other to 0 */
   /* title */
   --nav-title-size: 0.625em;
   --nav-title-color: #777;
   --nav-title-padding-x: 1rem;
   --nav-title-padding-y: 0.25em;
   /* nav button */
-  --nav-button-padding-x: 1rem;
-  --nav-button-padding-y: 0.375em;
+  --nav-button-padding-x: 2rem;
+  --nav-button-padding-y: 1.535em;
   --nav-button-border-radius: 0.375em;
-  --nav-button-font-size: 12px;
+  --nav-button-font-size: large;
   --nav-button-hover-bg: #6495ed;
   --nav-button-hover-text-color: #fff;
   --nav-button-distance: 0.875em;
@@ -138,8 +136,6 @@ header
   --underline-border-color: #ccc;
   --underline-margin-y: 0.3125em;
 }
-
-/* popup settings 👆 */
 
 .popup {
   display: inline-block;
@@ -240,7 +236,7 @@ header
 
 .popup-window ul li:nth-child(1) svg,
 .popup-window ul li:nth-child(2) svg {
-  color: cornflowerblue;
+  color:#1B98E0;
 }
 
 .popup-window ul li:nth-child(4) svg,
