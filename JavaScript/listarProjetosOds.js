@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   var urlParams = new URLSearchParams(window.location.search);
   var valor = urlParams.get("ods");
-  var valueCause = urlParams.get("causa");
   if(valor)
   {
-    displayAllProjects();
     displayAllprojectsFromCity();
+    displayAllProjects();
   }
   else 
   {
@@ -125,29 +124,43 @@ function displayAllprojectsFromCityofCause() {
       }
     };
   }
+  return totalProjects;
 }
 
 function displayAllProjects() {
   var urlParams = new URLSearchParams(window.location.search);
   var valor = urlParams.get("ods");
-  console.log(valor)
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      let response = JSON.parse(xhr.responseText);
-      console.log(response);
-      if (response.length == 0) {
-        var html = "";
-        document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
-      } else {
-        var html = "";
-        html += `<h1>Total de projetos da ODS: ${response.length}</h1>`;
-        html += `<h1>${response[0].nome_ods}</h1>`;        
-        html += `<p>${response[0].texto_ods}</p>`;
-        document.getElementById('textOds').innerHTML = html;
-      }
+  console.log(valor);
+
+  var xhrProjectData = new XMLHttpRequest();
+  xhrProjectData.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, true);
+  xhrProjectData.send();
+
+  xhrProjectData.onreadystatechange = function () {
+    if (xhrProjectData.readyState === 4 && xhrProjectData.status === 200) {
+      let responseSizeProjects = JSON.parse(xhrProjectData.responseText);
+      let totalProjects = responseSizeProjects.length;
+      console.log(totalProjects);
+
+      var xhrDataOds = new XMLHttpRequest();
+      xhrDataOds.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
+      xhrDataOds.onreadystatechange = function () {
+        if (xhrDataOds.readyState === 4 && xhrDataOds.status === 200) {
+          let response = JSON.parse(xhrDataOds.responseText);
+          console.log(response);
+          if (response.length == 0) {
+            var html = "";
+            document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
+          } else {
+            var html = "";
+            html += `<h1>Total de projetos da ODS:${totalProjects}</h1>`;
+            html += `<h1>${response[0].nome_ods}</h1>`;
+            html += `<p>${response[0].texto_ods}</p>`;
+            document.getElementById('textOds').innerHTML = html;
+          }
+        }
+      };
+      xhrDataOds.send();
     }
   };
-  xhr.send();
 }

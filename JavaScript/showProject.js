@@ -24,7 +24,15 @@ async function ImageURL(item){
     const url = await item.getDownloadURL(); // Pegar a URL da imagem em específico
     if(countImg<5){//if para evitar que de comandos para locais do carroussel que n existam
       const img= document.getElementsByClassName("changeImg");
-      img[countImg].src=url;
+      switch (countImg){
+        case 0:img[0].src=url;
+        case 1:img[1].src=url;
+        case 2:img[2].src=url;
+        case 3:img[3].src=url;
+        case 4:img[4].src=url;
+      }
+      
+
       countImg++;
   }
   
@@ -147,7 +155,7 @@ async function executar(){
   html = await datas(html);
     html+=`<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">`;
     html+=`<div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
+          <button id="indicator0" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
           // A lista de itens na pasta
           
           //linkar o carroussel e o iframe com const
@@ -155,53 +163,46 @@ folder.listAll()
 .then(function(res) {
   // A lista de itens na pasta
   var items = res.items;
-  for (let i = 0; i < items.length; i++) {
+
+  
+  for (let i = 0; i < 4; i++) {
     if(i<4){
-    html+=`<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${i+1}" aria-label="Slide ${i+2}"></button>`
+    html+=`<button id="indicator${i+1}" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${i+1}" aria-label="Slide ${i+2}"></button>`
     }
-  }//fim for (até aqui ta funfa aparentemente)
+  }//fim for 
+
+
   html+=`</div>
   <div class="carousel-inner">
-  <div class="carousel-item active">
+  <div id="carousel0" class="carousel-item active">
                     <img src="" class="d-block w-100 img-project changeImg" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                     </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="" class="d-block w-100 img-project changeImg" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="" class="d-block w-100 img-project changeImg" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="" class="d-block w-100 img-project changeImg" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="" class="d-block w-100 img-project changeImg" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-              <div class="video">
-                <iframe id="iframe" name="janela" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>`
+  for (let i = 0; i < 4; i++) {
+    if(i<4){
+      html+=`<div id="carousel${i+1}" class="carousel-item">
+    <img src="" class="d-block w-100 img-project changeImg" alt="...">
+    <div class="carousel-caption d-none d-md-block">
+    </div>
+  </div>`
+    }
+  }
+    html+=`</div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="video">
+    <iframe id="iframe" name="janela" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>`
   document.getElementById("projeto").innerHTML = html;
-
+  
 
 
   // Iterar sobre os itens para obter as informações desejadas
@@ -223,6 +224,7 @@ folder.listAll()
       console.error("Erro ao obter metadados do arquivo:", error);
     });
   });
+  
 })
 .catch(function(error) {
   // Ocorreu um erro ao obter a lista de itens

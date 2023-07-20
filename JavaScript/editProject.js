@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',async ()=>
         })
         citys.appendChild(optionsCitys);
 }// if request
-seacrhProject()
+await searchProject()
 })// event DOM
 // Inicializar Firebase
 const firebaseConfig = {
@@ -39,9 +39,8 @@ btnSendProject.addEventListener('click', function () {
 function verifyLogin()
 {
 if(sessionStorage.getItem("id")==null){ window.location.href=("../index.html")}
-
 }
-function seacrhProject()
+function seacrhSetProject()
 {
     const idProjeto = document.querySelector('#idProjeto')
     const nameProject = document.querySelector("#nomeProjeto");
@@ -49,12 +48,13 @@ function seacrhProject()
     const cityProject = document.querySelector("#cidadeProjeto")
     const descriptionProject = document.querySelector("#descricaoProjeto")
     const objectProject = document.querySelector("#objetivoProjeto")
-    const idCreator = localStorage.getItem("id");
+    const idCreator = sessionStorage.getItem("id");
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get("id");
     console.log(id);
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerSearchProject.php?id="+id, false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -71,22 +71,120 @@ function seacrhProject()
     };
     xhr.send();
 } 
+ async function searchProject() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idProjetoSearch = urlParams.get("id");
+    const idProjeto = document.querySelector('#idProjeto')
+    const nameProject = document.querySelector("#nomeProjeto");
+    const stateProject = document.querySelector("#estadoProjeto")
+    const cityProject = document.querySelector("#cidadeProjeto")
+    const descriptionProject = document.querySelector("#descricaoProjeto")
+    const objectProject = document.querySelector("#objetivoProjeto")
+    fetch(`http://localhost/senac-dojo-2023/controllers/controllerAllDataProject.php?id=${idProjetoSearch}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        idProjeto.value = data[0].id_projeto;
+        nameProject.value = data[0].nome_projeto;
+        stateProject.value = data[0].estado_projeto;
+        cityProject.value = data[0].cidade_projeto;
+        descriptionProject.value = data[0].descricao_projeto;
+        objectProject.value = data[0].objetivo_projeto;
+        if (Array.isArray(data)) {
+          const odsSelecionados = [];
+          const parceirosSelecionados = [];
+  
+          data.forEach((item) => {
+            if (item.id_ods) {
+              odsSelecionados.push(item.id_ods);
+            }
+            if (item.nome_parceiro) {
+              parceirosSelecionados.push(item.nome_parceiro);
+            }
+          });
+          var htmlODs = ""; 
+          if(odsSelecionados.length == 0)
+          {
+            htmlODs += `<p> Não existem ODS no projeto</p>`
+            document.getElementById('oldOds').innerHTML = htmlODs;
+          }
+          else
+          {
+            htmlODs += `<p> ODS presentes no projeto</p>`
+            for(let i=0; i<odsSelecionados.length; i++)
+         {
+            htmlODs += `<p> ODS: ${odsSelecionados[i]}</p>`
+         }
+         document.getElementById('oldOds').innerHTML = htmlODs;
+          }
+         
+
+         var htmlPartiners = "";
+         if(parceirosSelecionados.length ==0)
+         {
+            htmlPartiners += `<p> Não existem Parceiros no projeto</p>`
+            document.getElementById('oldPartiners').innerHTML = htmlPartiners;
+         }
+         else
+         {
+            htmlPartiners += `<p>Parceiros presentes no projeto</p>`
+            for(let j=0; j<parceirosSelecionados.length; j++)
+         {
+            htmlPartiners += `<p>${parceirosSelecionados[j]}</p>`
+         }
+         document.getElementById('oldPartiners').innerHTML = htmlPartiners;
+         }
+         
+          console.log('Parceiros selecionados:', parceirosSelecionados);
+          console.log('ODS selecionados:', odsSelecionados);
+  
+          // Agora você pode usar esses dados para preencher os campos do formulário de edição
+        } else {
+          console.error('Dados do projeto não estão no formato esperado.');
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao obter os dados do projeto:', error);
+      });
+}
+  
 
 function sendEditProject()
-{
+{ 
+const optionsOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
+let selectedOds= [];
+
+for (let i = 0; i < optionsOds.length; i++) {
+    if (optionsOds[i].checked) {
+        selectedOds.push(optionsOds[i].value)
+    }
+}
+const optionsPartiners = document.querySelectorAll("#opcaoPartiners input[type='checkbox']")
+let selectedPartiners = [];
+
+for (let i = 0; i < optionsPartiners.length; i++) {
+    if (optionsPartiners[i].checked) {
+        selectedPartiners.push(optionsPartiners[i].value)
+    }
+}
     event.preventDefault();
     const idProjeto = document.querySelector('#idProjeto').value
     const nameProject = document.querySelector("#nomeProjeto").value;
     const stateProject = document.querySelector("#estadoProjeto").value
     const cityProject = document.querySelector("#cidadeProjeto").value
     const descriptionProject = document.querySelector("#descricaoProjeto").value
+    const id = document.querySelector("#CPF").value
     const objectProject = document.querySelector("#objetivoProjeto").value
+    const optionsOdsFinal = selectedOds
+    const optionPartinersFinal = selectedPartiners
     console.log(idProjeto)
     console.log(nameProject)
     console.log(stateProject)
     console.log(cityProject)
     console.log(descriptionProject)
     console.log(objectProject)
+    console.log(optionsOdsFinal)
+    console.log(optionPartinersFinal)
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerEditProject.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -97,15 +195,44 @@ function sendEditProject()
             console.log(response)
         }
     } 
-    xhr.send("idProjeto="+encodeURIComponent(idProjeto)+
+    xhr.send("idProjeto="+encodeURI(idProjeto)+
              "&nomeProjeto="+encodeURIComponent(nameProject)+
              "&estadoProjeto="+encodeURIComponent(stateProject)+
              "&cidadeProjeto="+encodeURIComponent(cityProject)+
              "&descricaoProjeto="+encodeURIComponent(descriptionProject)+
-             "&objetivoProjeto="+encodeURIComponent(objectProject)
-            );  
-}
-function teste ()
-{
-    console.log("ois")
+             "&objetivoProjeto="+encodeURIComponent(objectProject)+
+             "&idCriador="+encodeURIComponent(id)+
+             "&opcaoOds="+encodeURIComponent(JSON.stringify(optionsOdsFinal))+
+             "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(optionPartinersFinal)) 
+    ); 
+    const storageRef = storage.ref();
+    const namefolder = idProjeto;//alterar para algum id fixo para realizar os testes 
+    
+    storageRef.child(namefolder).listAll().then(function(result) {//Parte de apagar
+        // Usando Promise.all para aguardar a exclusão de todos os arquivos
+        return Promise.all(result.items.map(function(item) {
+          return item.delete();
+        }));
+      }).then(function() {//Parte de inserir
+        console.log("Arquivos do firebase excluidos");
+        // Iniciando o envio dos novos arquivos
+        const files = document.querySelector("#photo").files;
+        const uploadPromises = [];
+
+        for (const file of files) {
+            const fileRef = storageRef.child(namefolder + "/" + file.name);
+            uploadPromises.push(fileRef.put(file));
+        }
+
+        // Aguardando o envio de todos os novos arquivos
+        return Promise.all(uploadPromises);
+      }).then(function() {
+        console.log("Novos arquivos enviados com sucesso!");
+
+        // Resto do seu código que vem após o envio dos arquivos
+        // ...
+
+    }).catch(function(error) {
+        console.error("Erro ao excluir os arquivos:", error);
+      }); 
 }

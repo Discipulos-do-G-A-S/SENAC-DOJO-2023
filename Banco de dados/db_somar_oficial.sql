@@ -114,6 +114,13 @@ LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_par
 WHERE causas_atuacao.id_causa_atuacao = 1
 group by projetos.id_projeto;
 
+SELECT projetos.*, ods.id_ods, parceiros.nome_parceiro
+        FROM projetos
+        LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
+        LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
+        LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
+        where id_projeto = 3;
+
 select * from ods where causa_atuacao_id = 1;
 
 select * from projetos where user_id =1;
