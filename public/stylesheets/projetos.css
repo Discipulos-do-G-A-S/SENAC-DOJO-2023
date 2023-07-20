@@ -69,6 +69,9 @@ body
     margin: 3%;
 }
 
-
+.selectProjetos {
+    max-width: 85rem;
+    margin: auto;
+}
 
 

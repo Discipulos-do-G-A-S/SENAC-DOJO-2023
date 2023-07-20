@@ -199,7 +199,7 @@ folder.listAll()
     </button>
   </div>
   <div class="video">
-    <iframe id="iframe" name="janela" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe id="iframe" name="janela" src="" frameborder="0" width="720" height="480" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
             </div>`
   document.getElementById("projeto").innerHTML = html;
   

@@ -63,7 +63,7 @@ function seacrhProject()
            console.log(responseSearchProject)
            idProjeto.value = responseSearchProject[0].id_projeto;
            nameProject.value = responseSearchProject[0].nome_projeto;
-           stateProject.value = responseSearchProject[0].stateProject;
+           stateProject.value = responseSearchProject[0].estado_projeto;
            cityProject.value = responseSearchProject[0].cidade_projeto;
            descriptionProject.value = responseSearchProject[0].descricao_projeto;
            objectProject.value = responseSearchProject[0].objetivo_projeto;
@@ -77,7 +77,7 @@ function sendDeleteProject()
     event.preventDefault();
     const idProjeto = document.querySelector('#idProjeto').value
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerDeleteProject.php", true);
+    xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerDeleteProject.php?idProjeto="+idProjeto, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
@@ -87,4 +87,15 @@ function sendDeleteProject()
         }
     } 
     xhr.send("idProjeto="+encodeURIComponent(idProjeto));  
+    const storageRef = storage.ref();
+    const namefolder = idProjeto;//alterar para algum id fixo para realizar os testes 
+    
+    storageRef.child(namefolder).listAll().then(function(result) {//Parte de apagar
+        // Usando Promise.all para aguardar a exclusão de todos os arquivos
+        return Promise.all(result.items.map(function(item) {
+          return item.delete();
+        }));
+      }).catch(function(error) {
+        console.error("Erro ao excluir os arquivos:", error);
+      });
 }
