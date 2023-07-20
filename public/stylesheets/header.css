@@ -89,6 +89,7 @@ header
 
 
 .popup {
+  z-index: 7;
   --burger-line-width: 1.125em;
   --burger-line-height: 1.125em;
   --burger-offset: 0.625em;
@@ -116,7 +117,7 @@ header
   --nav-font-family: Menlo, Roboto Mono, monospace;
   --nav-default-scale: .8;
   --nav-active-scale: 1;
-  --nav-position-left: 0;
+  --nav-position-left: -320%;
   --nav-position-right: unset;
   /* title */
   --nav-title-size: 0.625em;
@@ -295,4 +296,5 @@ header
   transform: scale(var(--nav-active-scale));
   visibility: visible;
   opacity: 1;
+  left: -320%;
 }

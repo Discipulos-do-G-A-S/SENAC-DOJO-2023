@@ -57,7 +57,7 @@ function displayAllprojectsFromCity() {
           html += '<div class="containerProjetos">';
           html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
           html += '<div class="cardProjetos">';
-          html += '<img src="../public/img/img_projeto_vida_verde.jpg">';
+          html += '<img src="../public/img/SDG-Wheel.png">';
           html += `<a href=../views/telaProjeto.html?id=${responseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
           html += `<p>ODS do projeto: ${responseProject[i].nome_ods}</p>`;
           html += "</div>";
@@ -114,8 +114,8 @@ function displayAllprojectsFromCityofCause() {
           html += '<div class="containerProjetos">';
           html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
           html += '<div class="cardProjetos">';
-          html += '<img src="../public/img/img_projeto_vida_verde.jpg">';
-          html += `<a href=../views/telaProjeto.html?id=${responseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
+          html += '<img src="../public/img/SDG-Wheel.png">';
+          html += `<a href=../views/telaProjeto.html?id=${respdeonseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
           html += `<p>ODS do projeto: ${responseProject[i].nome_ods}</p>`;
           html += "</div>";
           html += "</div>";
@@ -124,7 +124,6 @@ function displayAllprojectsFromCityofCause() {
       }
     };
   }
-  return totalProjects;
 }
 
 function displayAllProjects() {

@@ -14,7 +14,7 @@ function displayAllProjects() {
       for(let i=0; i < response.length; i++)
       {
         html += `<div class="cardProjeto">`
-        html += `<img class="imgCard" src="../public/img/img_projeto_vida_verde.jpg">`
+        html += `<img class="imgCard" src="../public/img/SDG-Wheel.png">`
         html += `<div class="conteudoCard">`
         html += `<p>Projeto: </p>`
         html += `<span class="span2">${response[i].nome_projeto}</span>`

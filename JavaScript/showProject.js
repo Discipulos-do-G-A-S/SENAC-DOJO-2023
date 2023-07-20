@@ -104,10 +104,10 @@ function datas(html){
        textPartners=response[i].nome_parceiro;
      }
      else if(i==counterPartners){
-       textPartners+=" e "+response[i].nome_parceiro;
+       textPartners+=" ; "+response[i].nome_parceiro;
      }        
      else if(i<counterPartners){
-       textPartners+=", "+response[i].nome_parceiro;
+       textPartners+="; "+response[i].nome_parceiro;
      }
      
      //agora as ods
@@ -118,20 +118,20 @@ function datas(html){
        textOds=response[i].nome_ods;
      }
      else if(i==counterOds){
-       textOds+=" e "+response[i].nome_ods;
+       textOds+="; "+response[i].nome_ods;
      }        
      else if(i<counterOds){
-       textOds+=", "+response[i].nome_ods;
+       textOds+="; "+response[i].nome_ods;
      }
      }
      textPartners+=".";
-     textOds+=".";
+     textOds+="";
      html+=`
      <div>
      <h2>Parceiros: <span>${textPartners}</span></h2>
      </div>
      <div class="texto">
-               <h2>ODSs vinculados: <span>${textOds}</span></h2>
+               <h2>ODSs vinculados: <span>${textOds}</span>.</h2>
      </div>
    </div>`;
    resolve(html);

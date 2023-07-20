@@ -13,16 +13,7 @@
     <link rel="icon" type="image/x-icon" href="../public/img/SDG-Wheel.png">
 </head>
 <body>
-
-    <header>
-        <div class="container-header">
-            <a href="../index.html" class="logo-header"><img src="../public/img/logo.png"></a>
-            <div class="container-header-right">
-                <a href="../index.html" class="hover-underline-animation">Home</a>
-                <a href="../views/ods.html" class="hover-underline-animation">Projetos</a>
-            </div>
-        </div>
-    </header>
+    <div id="header"></div>
     <div class="container" id="container">
     </div>  
     <div include-html="../assets/footer.html"></div>
@@ -31,4 +22,18 @@
     </script>
     <script src="../JavaScript/listProjectsFromID.js"></script>
 </body>
+<script>
+	document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+</script>
 </html>

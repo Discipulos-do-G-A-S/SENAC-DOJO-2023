@@ -84,6 +84,8 @@ function sendDeleteProject()
         {
             response = xhr.responseText;
             console.log(response)
+            alert("Projeto deletado com sucesso")
+            window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send("idProjeto="+encodeURIComponent(idProjeto));  

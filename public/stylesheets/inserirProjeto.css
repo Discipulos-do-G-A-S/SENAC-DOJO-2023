@@ -156,7 +156,22 @@ h3{
     padding: 2vh 0;
   }
 
-  .div1{
-  display: flex;
-  justify-content: start;
+  .div1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  #oldOds {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opcaoPartiners {
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  }
+
+  .opcaoPartiners label {
+    margin: auto;
   }

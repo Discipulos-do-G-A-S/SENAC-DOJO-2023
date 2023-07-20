@@ -190,9 +190,10 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
-        {
+        {   alert("Projeto editado com sucesso")
             response = xhr.responseText;
             console.log(response)
+            window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send("idProjeto="+encodeURI(idProjeto)+

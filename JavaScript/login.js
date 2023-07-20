@@ -23,7 +23,7 @@ function validateLogin(event) {
             } else {
               sessionStorage.setItem("id", response[0].id_user);
               sessionStorage.setItem("cpf",response[0].cpf_user);
-              window.open("../views/inserirProjeto.html");
+              window.open("../views/restrictArea.html");
             }
           } else {
             console.log("Erro na requisição: " + xhr.status);
