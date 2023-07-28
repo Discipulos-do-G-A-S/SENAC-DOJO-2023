@@ -16,11 +16,11 @@
     <div id="header"></div>
     <div class="container" id="container">
     </div>  
-    <div include-html="../assets/footer.html"></div>
     <script>
         includeHTML();
     </script>
     <script src="../JavaScript/listProjectsFromID.js"></script>
+    <footer id="footer"></footer>
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded',()=>
@@ -35,5 +35,19 @@
 	}
 	xhr.send()
 	})
+
+    
+    document.addEventListener('DOMContentLoaded',()=>
+    {
+        var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("footer").innerHTML = this.responseText;
+    }
+    }
+    xhr.send()
+    })
 </script>
 </html>

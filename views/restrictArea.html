@@ -74,56 +74,7 @@
 			</div>
 		</div>
  </main>
- <footer>
-	<div class="footer__container">
-		<div class="footer__container_left">
-				<img class="footer__container__left__logo" src="../public/img/Logo-Fecomercio-RS_cor.png">
-				<ul class="footer__container__left__icons">
-				<li><a href=""><img src="../public/img/wpp_logo.png"></a></li>
-				<li><a href=""><img src="../public/img/youtube_logo.png"></a></li>
-				<li><a href=""><img src="../public/img/twitter_logo.png"></a></li>
-				<li><a href=""><img src="../public/img/facebook_logo.png"></a></li>
-				<li><a href=""><img src="../public/img/instagram_logo.png"></a></li>
-				</ul>
-		</div>
-		<div class="footer__container__content">
-			<ul>
-				<h1>PACTO GLOBAL</h1>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-			</ul>
-		</div>
-		<div class="footer__container__content">
-			<ul>
-				<h1>PACTO GLOBAL</h1>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-			</ul>
-		</div>
-		<div class="footer__container__content">
-			<ul>
-				<h1>PACTO GLOBAL</h1>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-			</ul>
-		</div>
-		<div class="footer__container__content">
-			<ul>
-				<h1>PACTO GLOBAL</h1>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-				<li>INICIATIVAS</li>
-			</ul>
-		</div>
-	</div>
-</footer>
+ <footer id="footer"></footer>
 </body>
 <script>
 	document.addEventListener('DOMContentLoaded',()=>
@@ -144,5 +95,19 @@
 	html +=`<a href='inserirProjeto.html'>Inserir projeto</a>`
 	html +=`<a href='../index.html'>Sair</a>`
 	document.getElementById("nameUser").innerHTML = html;
+</script>
+<script>
+	document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("footer").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
 </script>
 </html>
