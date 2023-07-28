@@ -112,7 +112,7 @@ function datas(html){
      
      //agora as ods
      if(counterOds==-1){
-       textOds="Este Projeto não possui parceiros";
+       textOds="Este Projeto não possui ods";
      }
      else if(i==0){
        textOds=response[i].nome_ods;

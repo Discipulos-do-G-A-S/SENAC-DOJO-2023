@@ -24,7 +24,8 @@ function validateLogin(event) {
             } else {
               sessionStorage.setItem("id", response[0].id_user);
               sessionStorage.setItem("cpf",response[0].cpf_user);
-              sessionStorage.setItem("user",response[0].nome_user)
+              sessionStorage.setItem("user",response[0].nome_user);
+              sessionStorage.setItem("office",response[0].cargo);
               window.open("../views/restrictArea.html");
             }
           } else {
