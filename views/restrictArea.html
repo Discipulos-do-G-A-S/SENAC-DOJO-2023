@@ -89,11 +89,19 @@
 	}
 	xhr.send()
 	})
+	var cargo;
+	switch (sessionStorage.office){
+		case "1": cargo="Administrador"
+		break;
+		case "2": cargo="Usuário"
+		break;
+	}
 	var html = "";
 	html+= `<p>Bem vindo: ${sessionStorage.user} </p>`
-	html+=`<p>Atualmente o seu cargo é de ${sessionStorage.office}</p>`
+	html+=`<p>Atualmente o seu cargo é de ${cargo}</p>`
 	html +=`<a href='perfil.html'> perfil</a>`
 	html +=`<a href='inserirProjeto.html'>Inserir projeto</a>`
+	html +=`<a href='cadastro.html'>Cadastrar Usuário</a>`
 	html +=`<a href='../index.html'>Sair</a>`
 	document.getElementById("nameUser").innerHTML = html;
 </script>
