@@ -6,7 +6,8 @@ id_user int not null auto_increment primary key,
 nome_user varchar(50) not null,
 email_user varchar(50) not null,
 cpf_user varchar(11) not null,
-password_user varchar(20) not null
+password_user varchar(20) not null,
+cargo int not null
 );
 create table causas_atuacao(
 id_causa_atuacao int not null auto_increment primary key,
@@ -42,7 +43,7 @@ foreign key (ods_id) references ods(id_ods),
 foreign key (parceiro_id) references parceiros(id_parceiro)
 );
 
-insert into users values (null,'lucas pedroso','pedrosolucas1745@gmail.com','12345','teste');
+insert into users values (null,'lucas pedroso','pedrosolucas1745@gmail.com','12345','teste',1);
 insert into causas_atuacao values (null,'pessoas'),
 								  (null,'educação'),
 								  (null,'economia'),

@@ -17,7 +17,7 @@ class dataLogin {
             // header('refresh:2.0; http://localhost/SENAC-DOJO-2023/login.html');
         } else {
             include('connection.php');
-            $query = "SELECT id_user, cpf_user, password_user, nome_user FROM users WHERE cpf_user = '" . $this->cpf . "' AND password_user = '" . $this->password . "';"; 
+            $query = "SELECT id_user, cpf_user, password_user, nome_user, cargo FROM users WHERE cpf_user = '" . $this->cpf . "' AND password_user = '" . $this->password . "';"; 
             $sql = mysqli_query($banco, $query);
             $rowsReturneds = mysqli_num_rows($sql);
             if ($rowsReturneds == 1) {
