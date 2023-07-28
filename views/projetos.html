@@ -12,13 +12,17 @@
 </head>
 <body>
     <div include-html="../assets/header.html"></div>
-    <div class="containerProjetos">            
-        <div id="totalProjetos">    
+    <div class="containerProjetos">  
+        <div id="totalProjetos">
+            <label for="ActivateFilter">Marque para filtrar por cidade</label>  
+            <input type="checkbox" name="" id="ActivateFilter" class="select1">    
+        </div>      
+        <div id="totalProjetos">
             <select class="select1" name="estadoProjeto" id="estadoProjeto" disabled >
                 <option value="">RS</option>
             </select>
             <select class="select2" name="cidadeProjeto" id="cidadeProjeto"></select>                
-        </div>            
+        </div>              
     </div>
     <div id="textOds"></div>
     <div id="divNomeProjeto"></div>         

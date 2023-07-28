@@ -14,6 +14,7 @@ function validateLogin(event) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {     
             let response = JSON.parse(xhr.responseText);
+            console.log(response)
             if (response.length === 0 || (response.length > 0 && (response[0].cpf_user !== cpf || response[0].password_user  !== password))) {
               var html = "<p>Dados incorretos, digite novamente</p>";
               document.getElementById('snhError').innerHTML = html;
@@ -23,6 +24,7 @@ function validateLogin(event) {
             } else {
               sessionStorage.setItem("id", response[0].id_user);
               sessionStorage.setItem("cpf",response[0].cpf_user);
+              sessionStorage.setItem("user",response[0].nome_user)
               window.open("../views/restrictArea.html");
             }
           } else {

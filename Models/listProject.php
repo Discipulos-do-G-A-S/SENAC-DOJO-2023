@@ -31,7 +31,8 @@ class listProjects {
         LEFT JOIN projetos_com_ods_parceiros ON projetos.id_projeto = projetos_com_ods_parceiros.projeto_id
         LEFT JOIN ods ON projetos_com_ods_parceiros.ods_id = ods.id_ods
         LEFT JOIN parceiros ON projetos_com_ods_parceiros.parceiro_id = parceiros.id_parceiro
-        WHERE id_ods = ".$ods.";";
+        WHERE id_ods = ".$ods." GROUP BY projetos.id_projeto;";
+        
         $sql = mysqli_query($banco, $query);
         $rows = mysqli_num_rows($sql);
         $records = array();

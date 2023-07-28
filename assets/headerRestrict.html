@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="../index.html">
+                            <a href="../index.html" id="btnExit">
                               <button>
                                 <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="red" fill="none" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
                                   <line y2="18" x2="6" y1="6" x1="18"></line>
@@ -61,4 +61,13 @@
         </div>
     </header>
 </body>
+<script>
+ const btnExit = document.querySelector("#btnExit button");
+btnExit.addEventListener("click",()=>
+{
+  console.log("Clicou no botão de saída"); // Verifica se o clique é acionado
+        sessionStorage.clear();
+        console.log(sessionStorage.getItem("user"));
+})
+</script>
 </html>

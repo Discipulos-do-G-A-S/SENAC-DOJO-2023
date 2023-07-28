@@ -10,6 +10,15 @@ function displayAllProjects() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let response = JSON.parse(xhr.responseText);
       console.log(response)
+      if(response.length == 0)
+      {
+        var html=""
+        html += `<div class="cardProjeto">`
+        html += `<p>Não há projetos</p>`
+        html += `</div>`
+        document.getElementById('container').innerHTML = html;
+      }
+      else{
       var html=""
       for(let i=0; i < response.length; i++)
       {
@@ -28,6 +37,7 @@ function displayAllProjects() {
       }
       }
       document.getElementById('container').innerHTML = html;
+    }
     }// method request allProjects
     function verifyLogin()
     {

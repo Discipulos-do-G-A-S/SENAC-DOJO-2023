@@ -124,6 +124,7 @@ SELECT projetos.*, ods.id_ods, parceiros.nome_parceiro
 select * from ods where causa_atuacao_id = 1;
 
 select * from projetos where user_id =1;
+
 drop database db_somar;
 
 

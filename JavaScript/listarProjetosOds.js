@@ -3,16 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
   var valor = urlParams.get("ods");
   if(valor)
   {
-    displayAllprojectsFromCity();
+    //displayAllprojectsFromCity();
     displayAllProjects();
+    //searchDataFromOds();
   }
   else 
   {
+    displayAllProjects();
     displayAllprojectsFromCityofCause();
   }  
+  let checkFilter = document.querySelector("#ActivateFilter");
+  checkFilter.addEventListener("change", verifyfilter);
 });
-
+var urlParams = new URLSearchParams(window.location.search);
+var valor = urlParams.get("ods");
+let totalProjects;
 function displayAllprojectsFromCity() {
+  console.log("cheguei na função pelo evento");
   const citys = document.querySelector("#cidadeProjeto");
   const urlCitys = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/43/municipios`;
   var xhrcitys = new XMLHttpRequest();
@@ -30,10 +37,7 @@ function displayAllprojectsFromCity() {
       citys.appendChild(optionsCitys);
     }
   };
-
-  // Registrando o evento change apenas uma vez
   citys.addEventListener("change", handleCityChange);
-
   function handleCityChange() {
     var xhrProject = new XMLHttpRequest();
     var urlParams = new URLSearchParams(window.location.search);
@@ -51,7 +55,6 @@ function displayAllprojectsFromCity() {
           html += '<div class="cardSemProjetos">';
           html += `<h1>Não há projetos cadastrados.</h1>`
           html += "</div>";
-          
         }
         for (let i = 0; i < responseProject.length; i++) {
           html += '<div class="containerProjetos">';
@@ -68,6 +71,39 @@ function displayAllprojectsFromCity() {
       }
     };
   }
+}
+function displayAllProjects() {
+  var xhrProjectData = new XMLHttpRequest();
+  xhrProjectData.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, true);
+  xhrProjectData.send();
+  xhrProjectData.onreadystatechange = function () {
+    if (xhrProjectData.readyState === 4 && xhrProjectData.status === 200) {
+      let responseProjects = JSON.parse(xhrProjectData.responseText);
+       totalProjects = responseProjects.length;
+      console.log("total de projetos -> "+totalProjects);
+      var html = "";
+        if(responseProjects.length === 0)
+        {
+          html += '<div class="cardSemProjetos">';
+          html += `<h1>Não há projetos cadastrados.</h1>`
+          html += "</div>";
+          
+        }
+        for (let i = 0; i < responseProjects.length; i++) {
+          html += '<div class="containerProjetos">';
+          html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
+          html += '<div class="cardProjetos">';
+          html += '<img src="../public/img/SDG-Wheel.png">';
+          html += `<a href=../views/telaProjeto.html?id=${responseProjects[i].id_projeto}>Nome do projeto: ${responseProjects[i].nome_projeto}</a>`;
+          html += `<p>ODS do projeto: ${responseProjects[i].nome_ods}</p>`;
+          html += "</div>";
+          html += "</div>";
+          html += "<br>";
+        }
+        document.getElementById("divNomeProjeto").innerHTML = html;
+    }
+    searchDataFromOds();
+  };
 }
 
 function displayAllprojectsFromCityofCause() {
@@ -115,7 +151,7 @@ function displayAllprojectsFromCityofCause() {
           html += '<link rel="stylesheet" href="../public/stylesheets/listarProjetosOds.css">';
           html += '<div class="cardProjetos">';
           html += '<img src="../public/img/SDG-Wheel.png">';
-          html += `<a href=../views/telaProjeto.html?id=${respdeonseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
+          html += `<a href=../views/telaProjeto.html?id=${responseProject[i].id_projeto}>Nome do projeto: ${responseProject[i].nome_projeto}</a>`;
           html += `<p>ODS do projeto: ${responseProject[i].nome_ods}</p>`;
           html += "</div>";
           html += "</div>";
@@ -126,40 +162,37 @@ function displayAllprojectsFromCityofCause() {
   }
 }
 
-function displayAllProjects() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var valor = urlParams.get("ods");
-  console.log(valor);
-
-  var xhrProjectData = new XMLHttpRequest();
-  xhrProjectData.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerOds.php?ods=" + valor, true);
-  xhrProjectData.send();
-
-  xhrProjectData.onreadystatechange = function () {
-    if (xhrProjectData.readyState === 4 && xhrProjectData.status === 200) {
-      let responseSizeProjects = JSON.parse(xhrProjectData.responseText);
-      let totalProjects = responseSizeProjects.length;
-      console.log(totalProjects);
-
-      var xhrDataOds = new XMLHttpRequest();
-      xhrDataOds.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
-      xhrDataOds.onreadystatechange = function () {
-        if (xhrDataOds.readyState === 4 && xhrDataOds.status === 200) {
-          let response = JSON.parse(xhrDataOds.responseText);
-          console.log(response);
-          if (response.length == 0) {
-            var html = "";
-            document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
-          } else {
-            var html = "";
-            html += `<h1>Total de projetos da ODS:${totalProjects}</h1>`;
-            html += `<h1>${response[0].nome_ods}</h1>`;
-            html += `<p>${response[0].texto_ods}</p>`;
-            document.getElementById('textOds').innerHTML = html;
-          }
-        }
-      };
-      xhrDataOds.send();
+function searchDataFromOds()
+{
+  var xhrDataOds = new XMLHttpRequest();
+  xhrDataOds.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerDataOds.php?ods=" + valor, true);
+  xhrDataOds.onreadystatechange = function () {
+    if (xhrDataOds.readyState === 4 && xhrDataOds.status === 200) {
+      let response = JSON.parse(xhrDataOds.responseText);
+      console.log(response);
+      if (response.length == 0) {
+        var html = "";
+        document.getElementById('textOds').innerHTML = "<p>Nenhum dado encontrado para essa ODS.</p>";
+      } else {
+        var html = "";
+        html += `<h1>Total de projetos da ODS:${totalProjects}</h1>`;
+        html += `<h1>${response[0].nome_ods}</h1>`;
+        html += `<p>${response[0].texto_ods}</p>`;
+        document.getElementById('textOds').innerHTML = html;
+      }
     }
   };
+  xhrDataOds.send();
+}
+
+function verifyfilter()
+{
+  let checkFilter = document.querySelector("#ActivateFilter");
+  if (checkFilter.checked) {
+    displayAllprojectsFromCity();
+  }
+  else
+  {
+    displayAllProjects();
+  }
 }
