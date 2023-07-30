@@ -315,9 +315,9 @@ header
   left: 0 !important;
 }
 .menu__btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
+  position: absolute;
+  top: 35px;
+  left: 30px;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -372,10 +372,6 @@ header
 .menu__item:hover {
   background-color: #f6f6f6;
 }
-
-.hamburger-menu {
-  align-items: center;
-}
 @media (min-width: 768px) {
   /* Esconda o menu hamburger quando a largura da tela for 768 pixels ou menos */
   .hamburger-menu {
@@ -384,13 +380,16 @@ header
 }
 @media (max-width: 768px) {
   /* Esconda o menu hamburger quando a largura da tela for 768 pixels ou menos */
-  .container-header {
-    margin: auto;
-  }
+
   .container-header-right {
       display: none;
   }
+
   .logo-header {
-    text-align: center;
+    margin: auto;
+  }
+
+  .logo-header img {
+    width: 200px;
   }
 }

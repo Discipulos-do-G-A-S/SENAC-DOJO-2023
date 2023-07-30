@@ -113,11 +113,23 @@
             </ul>
         </div>
     </div>
-    <div include-html="../assets/footer.html"></div>
-    <script>
-        includeHTML();
-    </script>
-    <script src="../JavaScript/listarProjetos.js"></script>
+    <footer id="footer"></footer>
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("footer").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+</script>
+<script src="../JavaScript/listarProjetos.js">
+    
+</script>
 </html>
