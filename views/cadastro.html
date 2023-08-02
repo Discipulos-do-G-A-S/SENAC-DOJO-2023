@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../public/img/SDG-Wheel.png">
+    <link rel="stylesheet" href="../public/stylesheets/cadastro.css">
+	<script type="text/javascript" src="../JavaScript/app.js"></script>
+    <title>Cadastro</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="cadastroContainer">
+        <div class="cadastroFormContainer">
+            <h1>Cadastro</h1>
+                <p>Nome:</p>
+                <input type="text" id="nome">
+                <p>E-mail:</p>
+                <input type="text" id="email">
+                <p>CPF:</p>
+                <input type="text" id="cpf">
+                <p>Senha:</p>
+                <input type="text" id="senha">
+                <p>Selecione o cargo</p>
+                <label><input type="radio" name="cargo" value="1">Administrador</label>
+                <label><input type="radio" name="cargo" value="2">Usuário</label>
+                <button id="cadastrar">Cadastrar</button>
+                <script src="../JavaScript/cadastro.js"></script>
+            </div>
+        </div>
+</body>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>
+	    {
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+    })
+</script>
+</html>

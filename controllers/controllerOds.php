@@ -1,6 +1,6 @@
 <?php
- include('../Models/listarprojetos.php');
-    $lp = new listarOds;
-    $lp -> ods = $_GET['valor'];
-    $lp ->listardados();
+ include('../Models/listProject.php');
+    $lp = new listProjects;
+    $ods = $_GET['ods'];
+    $lp ->listarAllFromODS($ods);
 ?>

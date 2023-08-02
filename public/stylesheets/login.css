@@ -22,13 +22,15 @@ body
     margin: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
+    display: grid;
+    grid-auto-rows: 25% 75%;
 }
 
 .login-form-container h1
 {
     color:#1B98E0;
     text-align: center;
-    padding: 60px;
+    padding: 25%;
     font-weight: bold;
 }
 
@@ -40,16 +42,14 @@ body
 
 .form button
 {
-  width: 40%;
+  width: 100%;
   padding: 10px;
-  margin-top: 2%;
+  margin-top: 4%;
   border: none;
   border-radius: 20px;
   background-color: #1B98E0;
   color: #fff;
   cursor: pointer;
-  margin-left: 12px;
-  margin-right: 12px;
   transition: 0.2s ease-in-out;
 }
 
@@ -63,7 +63,7 @@ body
 {
   width: 100%;
   padding: 10px;
-  margin: 10px -10px;
+  margin-top: 10px;
   border: none;
   background-color: transparent;
   border-bottom: 1px solid grey;
@@ -94,6 +94,6 @@ input:focus::placeholder {
   max-width: 450px;
   font-size: 1.5vh;
   text-align: center;
-  padding: 2% 0;
+  padding-top: 10% ;
   color: #b70906;
 }

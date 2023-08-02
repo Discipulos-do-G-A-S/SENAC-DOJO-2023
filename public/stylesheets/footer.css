@@ -6,6 +6,7 @@ footer
     background-color: #F6F6F6;
     text-align: start;
     width: auto;
+    
 }
 
 .footer__container {
@@ -49,9 +50,17 @@ footer
     font-size: 1.85vh;
 }
 
-@media (max-width: 1251px) {
-    .footer__container__content li{
-        text-align: auto;
-        display: flex;
+@media screen and (max-width: 767px){
+    .footer__container {
+        flex-direction: column; /* Disposição vertical dos elementos */
+    }
+    .footer__container__left__logo {
+        width: 100%; /* Ocupa toda a largura em dispositivos menores */
+    }
+    .footer__container__left__icons {
+        justify-content: center; /* Centraliza os ícones em dispositivos menores */
+    }
+    .footer__container__content {
+        width: 100%; /* Ocupa toda a largura em dispositivos menores */
     }
 }

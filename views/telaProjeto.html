@@ -11,85 +11,11 @@
     <title>Projeto proteger a vida terrestre</title>
 </head>
 <body>
-    <div include-html="../assets/header.html"></div>
-    <div class="container">
-        <div class="container-texto">
-                <div>
-                    <h2>Projeto: <span>Tramandai Mais Verde</span></h2>
-                </div>
-                <div>
-                    <h2>Cidade de realização: <span>Tramandai/RS</span></h2>
-                </div>
-                <div>
-                    <h2>Causa de atuação: <span>Reflorestamento e arborização</span></h2>
-                </div>
-                <div class="texto">
-                    <h2>Objetivo do Projeto:</h2>
-                    <p> O objetivo do projeto Tramandaí mais Verde é arborizar os espaços 
-                        públicos de Tramandaí e, com isso, propiciar uma melhoria no bem-estar dos 
-                        cidadãos, bem como contribuir para a melhoria da qualidade do ar e da 
-                        sensação térmica, entre outros benefícios. Para atingir esse objetivo foi 
-                        estruturado um projeto em conjunto com diversos parceiros, com a meta de 
-                        plantar 5.000 árvores em espaços públicos da cidade, em 5 anos.</p>
-                </div>
-                <div>
-                    <h2>Parceiros: <span>Sesc, Senac, Sindicato e Prefeitura Municipal de Tramandaí</span></h2>
-                </div>
-                <div class="texto">
-                    <h2>ODSs vinculados: <span>Vinculados: 15 (Proteger a vida terrestre) e 11 (Cidades e comunidades sustentaveis)</span></h2>
-                </div>
-            </div> 
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="../public/img/img_projeto_vida_verde.jpg" class="d-block w-100 img-project" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../public/img/img_projeto_vida_verde.jpg" class="d-block w-100 img-project" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../public/img/img_projeto_vida_verde.jpg" class="d-block w-100 img-project" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../public/img/img_projeto_vida_verde.jpg" class="d-block w-100 img-project" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../public/img/img_projeto_vida_verde.jpg" class="d-block w-100 img-project" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-              <div class="video">
-                <iframe id="iframe" name="janela" src="https://www.youtube.com/watch?v=HSsqzzuGTPo&list=RDQMLm4GNUlfPYo&start_radio=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>       
-    </div>
-    <div include-html="../assets/footer.html"></div>
-	<script>
-		includeHTML();
-	</script>
+    <div id="header"></div>
+    <div class="container" id="projeto"></div>
+    <footer id="footer"></footer>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  <script src="../JavaScript/showProject.js"></script>
 </body>
 </html>

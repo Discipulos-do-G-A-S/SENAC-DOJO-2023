@@ -1,5 +1,5 @@
 <?php 
-class dadosLogin { 
+class dataLogin { 
     private $cpf; 
     private $password; 
     private $id; 
@@ -12,26 +12,24 @@ class dadosLogin {
         $this->$atributo = $valor; 
     } 
 
-    public function validarLogin() {
+    public function validateLogin() {
         if ($this->cpf == null || $this->password == null) {
             // header('refresh:2.0; http://localhost/SENAC-DOJO-2023/login.html');
         } else {
-            session_start();
-            include('conexao.php');
-            $querry = ("select cpf_user, senha_user, id_logins from logins where cpf_user = '" . $this->cpf . "' and senha_user='" . $this->password . "';");
-            $sql = mysqli_query($banco, $querry);
-            $resultado = mysqli_num_rows($sql);
-            if ($resultado == 1) {
-                $registros = array(); // Array to store the records
-                $registro = mysqli_fetch_assoc($sql); // Use mysqli_fetch_assoc to get an associative array
-                $registros[] = $registro;
-                echo json_encode($registros);
+            include('connection.php');
+            $query = "SELECT id_user, cpf_user, password_user, nome_user, cargo FROM users WHERE cpf_user = '" . $this->cpf . "' AND password_user = '" . $this->password . "';"; 
+            $sql = mysqli_query($banco, $query);
+            $rowsReturneds = mysqli_num_rows($sql);
+            if ($rowsReturneds == 1) {
+                $records = array();
+                $record = mysqli_fetch_assoc($sql);
+                $records[] = $record;
+                echo json_encode($records);
             } else {
-                echo json_encode([]); // Retorna JSON vazio
+                echo json_encode([]);
             }
             mysqli_close($banco);
         }
     }
-    
 } 
 ?>

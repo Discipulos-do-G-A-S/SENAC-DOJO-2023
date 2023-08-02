@@ -4,10 +4,6 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-body
-{
-  margin: 0;
-}
 h2
 {
     color:#1B98E0;
@@ -85,12 +81,10 @@ p
 
 .video {
     padding: 3% 0;
-    max-width: 1024px;
+    display: flex;
+    justify-content: center;
 }
 
-iframe{
-    width: 100%;
-}
 
 .btn-iframe 
 {
@@ -142,4 +136,68 @@ iframe{
 {
     text-align: center;
     padding-top: 2%;
+}
+
+.nameUser {
+    max-width: 60rem;
+    margin: auto;
+}
+
+.nameUser a {
+    text-decoration: none;
+    padding: 10px;
+    font-size: 2.5vh;
+}
+
+.containerUser {
+    padding: 3%;
+    display: flex;
+    width: 100%;
+}
+
+.containerUser img {
+    width: 150px;
+    height: fit-content;
+}
+
+.containerLinks {
+    display: grid;
+    flex-grow: 1; 
+    flex-basis: 0;
+}
+
+.containerInfos {
+    padding: 2%;
+    width: auto;
+    flex-grow: 1; 
+    flex-basis: 0;
+}
+
+.containerInfos p {
+    padding-left: 10%;
+}
+
+.cardSemProjeto {
+    background-color: #F6F6F6;
+    max-width: 65%;
+    margin: auto;
+    text-align: center;
+    padding: 2%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardSemProjeto p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 5%;
+    border: 2px solid #1B98E0;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.imgCardSemProjeto {
+    height: 100px;
 }
