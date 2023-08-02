@@ -23,6 +23,8 @@
 
 ## Autores
 | [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Dostoevskij_1872.jpg/800px-Dostoevskij_1872.jpg" width=115><br><sub>Andy</sub>](https://github.com/anderson-santos-dev) |
+| :---: |
 | [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Dostoevskij_1872.jpg/800px-Dostoevskij_1872.jpg" width=115><br><sub>Lucas Pedroso</sub>](https://github.com/1lucaspedroso) |
-| [<img src="https://avatars.githubusercontent.com/u/84260409?v=4" width=115><br><sub>Gilberto Cardozo</sub>](https://github.com/jvniorgc) |
+| :---: |
+| [<img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Dostoevskij_1872.jpg/800px-Dostoevskij_1872.jpg](https://avatars.githubusercontent.com/u/84260409?v=4)" width=115><br><sub>Gilberto Cardozo</sub>](https://github.com/jvniorgc) |
 | :---: |
