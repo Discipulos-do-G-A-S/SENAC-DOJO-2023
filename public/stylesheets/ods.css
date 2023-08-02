@@ -115,3 +115,13 @@ body
 .causas a {
     text-decoration: none;
 }
+
+@media screen and (max-width: 767px) {
+    .ods-container {
+        text-align: center;
+    }
+
+    .titulo {
+        font-size: 2.50rem;
+    }
+}

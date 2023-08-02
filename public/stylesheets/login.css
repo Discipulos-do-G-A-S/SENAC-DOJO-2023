@@ -97,3 +97,16 @@ input:focus::placeholder {
   padding: 2% 0;
   color: #b70906;
 }
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    margin: auto;
+  }
+
+  .login-form-container {
+    background-color: white;
+    box-shadow: none;
+    height: 700px;
+    width: auto;
+  }
+}
