@@ -118,21 +118,31 @@ function sendProject() {
                     console.log(files[i]);
                     var file = files[i];
                     var fileRef = folderRef.child(file.name);
-                    fileRef.put(file).then(function(snapshot) {
-                        // Upload do arquivo concluído com sucesso
-        console.log("Upload do arquivo", file.name, "concluído com sucesso!");
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Progresso do upload:", progress + "%");
-
-        // Atualizar a barra de progresso na página
-        var progressBar = document.getElementById("progressBar");
-        progressBar.value = progress;
-        contador++;
-        if(contador==files.length){
-            alert("Arquivos enviados para a pasta -> " + idProject);
-            window.location.href="../views/restrictArea.html";
-        }
-                    });
+                    //---------
+                    fileRef.put(file).on(
+                        "state_changed",
+                        function(snapshot) {
+                            // Atualizar a barra de progresso
+                            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            console.log("Progresso do upload:", progress + "%");
+                
+                            var progressBar = document.getElementById("progressBar");
+                            progressBar.value = progress;
+                        },
+                        function(error) {
+                            // Tratar erros, se necessário
+                        },
+                        function() {
+                            // Upload do arquivo concluído com sucesso
+                            console.log("Upload do arquivo", file.name, "concluído com sucesso!");
+                            contador++;
+                            if (contador == files.length) {
+                                alert("Arquivos enviados para a pasta -> " + idProject);
+                                window.location.href = "../views/restrictArea.html";
+                            }
+                        }
+                    );
+                    //---------esses - foram usados para delimitar o código que iria ser substituido para teste
                 }
             }
         }

@@ -193,7 +193,7 @@ for (let i = 0; i < optionsPartiners.length; i++) {
         {   alert("Projeto editado com sucesso")
             response = xhr.responseText;
             console.log(response)
-            window.location.href=('../views/restrictArea.html')
+            //window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send("idProjeto="+encodeURI(idProjeto)+
@@ -209,31 +209,60 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     const storageRef = storage.ref();
     const namefolder = idProjeto;//alterar para algum id fixo para realizar os testes 
     
-    storageRef.child(namefolder).listAll().then(function(result) {//Parte de apagar
-        // Usando Promise.all para aguardar a exclusão de todos os arquivos
-        return Promise.all(result.items.map(function(item) {
-          return item.delete();
-        }));
-      }).then(function() {//Parte de inserir
-        console.log("Arquivos do firebase excluidos");
-        // Iniciando o envio dos novos arquivos
-        const files = document.querySelector("#photo").files;
+    //-------------------inicio delimitador da parte do código que efetivamente posta as imagens no firebase e administra a barra de progresso
+
+    storageRef.child(namefolder).listAll()
+    .then(function(result) {
+        const promisesExclusao = result.items.map(function(item) {
+            return item.delete().catch(function(erro) {
+                console.error("Erro ao excluir arquivo:", erro);
+            });
+        });
+
+        return Promise.all(promisesExclusao);
+    })
+    .then(function() {
+        console.log("Arquivos existentes do Firebase excluídos");
+
+        // Iniciar o envio de novos arquivos
+        const arquivos = document.querySelector("#photo").files;
         const uploadPromises = [];
 
-        for (const file of files) {
-            const fileRef = storageRef.child(namefolder + "/" + file.name);
-            uploadPromises.push(fileRef.put(file));
+        for (const arquivo of arquivos) {
+            const referenciaArquivo = storageRef.child(namefolder + "/" + arquivo.name);
+            const uploadTask = referenciaArquivo.put(arquivo);
+
+            // Manipular o progresso do upload usando a variável snapshot
+            uploadTask.on("state_changed", function(snapshot) {
+                const progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Progresso do upload:", progresso + "%");
+
+                // Atualizar a barra de progresso aqui (se for necessário)
+                // Por exemplo, você pode selecionar a barra de progresso por um seletor
+                // e definir o valor da propriedade "value" com o progresso calculado.
+                const progressBar = document.querySelector("#progressBar");
+                progressBar.value = progresso;
+
+                // Ou você pode criar uma div ou elemento visual para mostrar o progresso
+                // e atualizá-lo conforme o upload progride.
+            });
+
+            uploadPromises.push(uploadTask);
         }
 
-        // Aguardando o envio de todos os novos arquivos
-        return Promise.all(uploadPromises);
-      }).then(function() {
-        console.log("Novos arquivos enviados com sucesso!");
+        // Aguardar o envio de todos os novos arquivos
+        return Promise.all(uploadPromises).then(function() {
+            console.log("Novos arquivos enviados com sucesso!");
 
-        // Resto do seu código que vem após o envio dos arquivos
-        // ...
+            // Resto do seu código que vem após o envio de arquivos
+            // ...
 
-    }).catch(function(error) {
-        console.error("Erro ao excluir os arquivos:", error);
-      }); 
+        });
+    })
+    .catch(function(erro) {
+        console.error("Erro:", erro);
+    });
+ 
+
+      //----------------fim do delimitador
 }
