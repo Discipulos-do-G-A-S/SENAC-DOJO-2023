@@ -14,29 +14,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<header id="header"></header>
 <body>
-	<header>
-        <div class="container-header">
-			<div class="hamburger-menu">
-                <input id="menu__toggle" type="checkbox" />
-                <label class="menu__btn" for="menu__toggle">
-                  <span></span>
-                </label>
-            
-                <ul class="menu__box">
-                  <li><a class="menu__item" href="../index.html">Home</a></li>
-                  <li><a class="menu__item" href="../views/projetos.html">Projetos</a></li>
-                  <li><a class="menu__item" href="../views/login.html">Login</a></li>
-                </ul>
-              </div>
-            <a href="../index.html" class="logo-header"><img src="./public/img/logo.png"></a>
-            <div class="container-header-right">
-                <a href="./index.html" class="hover-underline-animation">Home</a>
-                <a href="./views/ods.html" class="hover-underline-animation">Projetos</a>
-                <button class="login-button" onclick="window.location.href='./views/login.html';">Login</button>
-            </div>
-        </div>
-    </header>
 	<main>
 		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 			<div class="carousel-indicators">
@@ -104,6 +83,19 @@
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
 			document.getElementById("footer").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+
+	document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerIndex.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
 	}
 	}
 	xhr.send()
