@@ -33,33 +33,24 @@ inserirCPF.value= sessionStorage.getItem("cpf");
 
 let btnSendProject = document.querySelector("#btnEnviar")
 btnSendProject.addEventListener('click', function () {
-    sendProject(event);
+    verifyInputfiles(event);
 })
  
 function sendProject() {
     //Filtro de imagem/video
     var input = document.getElementById("photo");
     var files = input.files;
-    let countImg=0;
-    for (let i = 0; i < files.length; i++) {//for para percorrer todo o input
-        const file = files[i];//const que recebe arquivo por arquivo
-        const type = file.type;//const que recebe o tipo do arquivo para fazer a verificação
-    
-        if (type.startsWith('video/')) {//verificação de se o arquivo especifico é video ou imagem
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const type = file.type;
+        if (type.startsWith('video/') || type.startsWith('image/')) {
+            // Verificação de se o arquivo especifico é vídeo
+        } else {
+            alert("Tipo de arquivo inválido");
+            input.value = ''; // Limpar a seleção do arquivo
+            return; // Terminar a função
         }
-        else if(type.startsWith('image/')){//verificação de se o arquivo é imagem(aqui tem o adicional do contador de imagens para garantir que vai ter pelo menos 1)
-            countImg=1;
-        }
-         else {//else caso arquivo não seja imagem ou video, ele da um alerta, reseta o input e termina a função
-          alert("Tipo de arquivo inválido");
-          input.value = ''; // Limpar a seleção do arquivo
-          return; // Terminar a função
-        }
-          }
-      if(countImg==0){
-        alert("Favor inserir pelo menos 1 imagem para o projeto.");
-        return;
-      }
+    }
 
 
     //fim do filtro de imagem/video
@@ -161,4 +152,15 @@ function verifyLogin()
 {
 if(sessionStorage.getItem("id")==null){ window.location.href=("../index.html")}
 
+}
+function verifyInputfiles(event) {
+    let input = document.getElementById("photo");
+    if (input.files.length == 0) {
+        alert("Favor inserir pelo menos 1 imagem para o projeto.");
+        input.style.borderColor = 'red';
+        input.focus();
+        event.preventDefault();
+    } else {
+        sendProject();
+    }
 }
