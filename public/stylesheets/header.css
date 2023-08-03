@@ -316,8 +316,10 @@ header
 }
 .menu__btn {
   position: absolute;
-  top: 55px;
-  left: 30px;
+  top: 4%;
+  bottom: 4%;
+  left: 6%;
+  right: 4%;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -351,7 +353,6 @@ header
   border-radius: 3%;
   color: #1B98E0;
   width: 50%;
-  height: 100%;
   margin: 0;
   padding: 80px 0;
   list-style: none;
