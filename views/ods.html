@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div id="header"></div>
+    <header id="header"></header>
     <h1 class="titulo">Objetivos de Desenvolvimento Sustentável (ODS)</h1>
     <div class="text-container">
         <p>Os Objetivos de Desenvolvimento Sustentável (ODS) são uma série de 17 metas estabelecidas pela Organização
@@ -90,22 +90,22 @@
         <div class="causas">
             <h1>CAUSAS DE ATUAÇÃO</h1>
             <ul>
-                <a href="./projetosCausa.html?causa=1">
+                <a href="./projetos.html?causa=1">
                     <li>
                         <p>Sociedade</p>
                     </li>
                 </a>
-                <a href="./projetosCausa.html?causa=2">
+                <a href="./projetos.html?causa=2">
                     <li>
                         <p>Economia</p>
                     </li>
                 </a>
-                <a href="./projetosCausa.html?causa=3">
+                <a href="./projetos.html?causa=3">
                     <li>
                         <p>Educação</p>
                     </li>
                 </a>
-                <a href="./projetosCausa.html?causa=4">
+                <a href="./projetos.html?causa=4">
                     <li>
                         <p>Natureza</p>
                     </li>
@@ -114,6 +114,34 @@
         </div>
     </div>
     <footer id="footer"></footer>
-    <script src="../JavaScript/listarProjetos.js"></script>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("footer").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+    document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/header.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+</script>
+<script src="../JavaScript/listarProjetos.js">
+    
+</script>
 </html>
