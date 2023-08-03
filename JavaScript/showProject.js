@@ -19,10 +19,12 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const folder = storage.ref(id);
 
-
 async function ImageURL(item){
     const url = await item.getDownloadURL(); // Pegar a URL da imagem em específico
     if(countImg<5){//if para evitar que de comandos para locais do carroussel que n existam
+      divCarrosel = document.querySelector('#carouselExampleCaptions');
+      divCarrosel.style.height = '480px';
+      divCarrosel.style.display = 'block';
       const img= document.getElementsByClassName("changeImg");
       switch (countImg){
         case 0:img[0].src=url;
@@ -31,28 +33,21 @@ async function ImageURL(item){
         case 3:img[3].src=url;
         case 4:img[4].src=url;
       }
-      
-
       countImg++;
   }
-  
 }
-
 async function VideoURL(item){
   const url = await item.getDownloadURL(); // Pegar a URL do video em específico
   console.log(url);
   let video= document.getElementById("iframe");
+  video.style.width="720px"
+  video.style.height="480px"
   video.src=url;
   console.log(video)
   //video.src=url;
 }
-
-
-
-
-
 function datas(html){
-  return new Promise ((resolve, reject)=>{
+  return new Promise ((resolve)=>{
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerShowProject.php?id=" + id, true);
   
@@ -141,19 +136,11 @@ function datas(html){
 xhr.send();
 })
 }//fim da função
-
-
-
-
-
-
-
-
 async function executar(){
   let html= "";
   html+=`<div class="container-texto">`;
   html = await datas(html);
-    html+=`<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">`;
+    html+=`<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" style="display: none;">`;
     html+=`<div class="carousel-indicators">
           <button id="indicator0" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
           // A lista de itens na pasta
@@ -170,10 +157,8 @@ folder.listAll()
     html+=`<button id="indicator${i+1}" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${i+1}" aria-label="Slide ${i+2}"></button>`
     }
   }//fim for 
-
-
   html+=`</div>
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="height: 480px;">
   <div id="carousel0" class="carousel-item active">
                     <img src="" class="d-block w-100 img-project changeImg" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -199,12 +184,9 @@ folder.listAll()
     </button>
   </div>
   <div class="video">
-  <iframe id="iframe" name="janela" src="" frameborder="0" width="720" height="480" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
+  <iframe id="iframe" name="janela" src="" frameborder="0" width="0" height="0" allow="accelerometer; autoplay; encrypted-media; clipboard-write; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
             </div>`
   document.getElementById("projeto").innerHTML = html;
-  
-
-
   // Iterar sobre os itens para obter as informações desejadas
   items.forEach(function(item) {
     // Aqui é para lidar com cada item separadamente
@@ -224,7 +206,6 @@ folder.listAll()
       console.error("Erro ao obter metadados do arquivo:", error);
     });
   });
-  
 })
 .catch(function(error) {
   // Ocorreu um erro ao obter a lista de itens
