@@ -174,3 +174,14 @@ h3{
   .opcaoPartiners label {
     margin: auto;
   }
+
+  .progressBar {
+    vertical-align: baseline;
+    margin: 5%;
+    width: auto;
+  }
+
+  .aviso p {
+    text-align: center;
+    color: red;
+  }

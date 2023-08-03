@@ -24,6 +24,9 @@
           placeholder="Descrição do Projeto"></textarea>
         <input type="text" name="objetivoProjeto" id="objetivoProjeto" placeholder="Objetivo do Projeto">
         <input type="number" name="id" id="CPF" placeholder="Coloque seu ID" disabled>
+        <div id="aviso" class="aviso">
+          <p>Ao selecionar novas imagens, todos os arquivos serão deletados.</p>
+        </div>
         <input type="file" id="photo" multiple accept="image/*, video/*" />
         <div id="oldOds"></div>
         <div id="oldPartiners"></div>
@@ -96,7 +99,7 @@
               SENAC</label>
           </div>
           <button class="btnEnviar" id="btnEnviar">Enviar projeto Editado</button>
-          <progress id="progressBar" max="100" value="0"></progress>
+          <progress id="progressBar" class="progressBar" max="100" value="0"></progress>
       </form>
     </div>
   </div>

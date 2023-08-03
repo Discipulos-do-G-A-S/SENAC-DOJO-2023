@@ -28,7 +28,7 @@ function displayAllProjects() {
         var html = "";
           if(responseProjects.length === 0)
           {
-          html += '<div class="cardSemProjetos">';
+          html += '<div class="cardSemProjeto">';
           html += `<img class="imgCardSemProjeto" src="../public/img/semProjeto.png">`
           html += `<h1>Não existem Projetos Cadastrados.</h1>`
           html += "</div>";
@@ -87,9 +87,10 @@ function displayAllProjects() {
           var html = "";
           if(responseProject.length === 0)
           {
-            html += '<div class="cardSemProjetos">';
-            html += `<h1>Não há projetos cadastrados.</h1>`
-            html += "</div>";
+          html += '<div class="cardSemProjeto">';
+          html += `<img class="imgCardSemProjeto" src="../public/img/semProjeto.png">`
+          html += `<h1>Não existem Projetos Cadastrados.</h1>`
+          html += "</div>";
           }
           for (let i = 0; i < responseProject.length; i++) {
             html += '<div class="containerProjetos">';

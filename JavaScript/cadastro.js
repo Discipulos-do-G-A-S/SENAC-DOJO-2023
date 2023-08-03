@@ -1,6 +1,6 @@
 const enviar=document.getElementById("cadastrar");
 enviar.addEventListener('click',cadastrar);
-function cadastrar(){
+function cadastrar(event){
 event.preventDefault();
 let cargo=document.getElementsByName("cargo");//pegar todos os radios
 let cargoSelecionado=0;//será usado para salvar o resultado do cargo selecionado nos radios
