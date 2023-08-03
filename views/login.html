@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../JavaScript/app.js"></script>
 </head>
 <body>
-  <div id="header"></div>
+  <header id="header"></header>
   <div class="login-container">
     <div class="login-form-container">
         <h1>Login</h1>
@@ -19,6 +19,7 @@
             <input type="password" required id="senha" name="senha" placeholder="Senha *" >
             <div id="snhError"></div>
             <button type="submit" id="login">Login</button>
+            <button  onclick="window.location.href='cadastro.html';">Cadastrar</button>
         </form>
     </div>
   </div>
@@ -26,31 +27,30 @@
   <script>
     document.addEventListener('DOMContentLoaded',()=>
     {
-        var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/header.html", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("header").innerHTML = this.responseText;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("footer").innerHTML = this.responseText;
     }
     }
     xhr.send()
     })
-</script>    
-<script>
+  
     document.addEventListener('DOMContentLoaded',()=>
     {
-        var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("footer").innerHTML = this.responseText;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost/senac-dojo-2023/assets/header.html", false);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("header").innerHTML = this.responseText;
     }
     }
     xhr.send()
     })
-</script>
+  </script>
   <script src="../JavaScript/login.js"></script>
 </body>
 </html>
