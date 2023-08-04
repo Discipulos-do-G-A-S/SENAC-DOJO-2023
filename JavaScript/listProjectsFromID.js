@@ -65,6 +65,8 @@ function displayAllProjects() {
         html += `<span class="span2">${response[i].nome_projeto}</span>`
         html += `<p>ID do projeto: </p>`
         html += `<span class="span2">${response[i].id_projeto}</span>`
+        html += `<p>Cidade de realização: </p>`
+        html += `<span class="span2">${response[i].cidade_projeto}</span>`
         html += `<div class"buttonsCard">`
         html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="material-symbols-outlined">edit</button></a> <a href="./deleteProject.html?id=${response[i].id_projeto}" ><button class="material-symbols-outlined">Delete</button></a>`
         html += `</div>`

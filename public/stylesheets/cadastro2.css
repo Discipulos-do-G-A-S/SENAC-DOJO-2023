@@ -21,7 +21,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     display: grid;
-    grid-auto-rows: 25% 75%;
+    grid-auto-rows: 25% 50% 25%;
 }
 
 
@@ -36,8 +36,9 @@ body {
 .login-form-container h2 {
     color: #1B98E0;
     text-align: center;
-    padding: 2%;
+    padding: 5%;
     font-weight: bold;
+    font-size: 1.1rem;
 
 }
 

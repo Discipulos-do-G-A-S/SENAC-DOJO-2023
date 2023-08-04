@@ -107,6 +107,8 @@ body
 .causas ul {
     list-style-type: disclosure-closed;
     cursor: pointer;
+    display: grid;
+    justify-content: center;
    
 }
 .causas p  {
