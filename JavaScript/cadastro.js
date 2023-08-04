@@ -39,7 +39,7 @@ function cadastrar(event) {
     }
   });
   if (cargoSelecionado == 0 || nome == "" || email == "" || cpf == "" || senha == "") {
-    alert("Algum campo está incompleto, favor completar tudo antes de enviar.");
+    alert("Favor preencher todos os campos.");
   } else {
     //enviar para o controller
     const formData = new FormData();

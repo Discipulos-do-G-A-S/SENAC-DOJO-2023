@@ -98,7 +98,7 @@ function sendProject() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Requisição concluída com sucesso");
-            alert("Projeto inserido com sucesso");
+            alert("Você será redirecionado após a conclusão do envio dos arquivos. Favor aguarde.")
             console.log(xhr.responseText);
 
             // Pegar o ID do projeto

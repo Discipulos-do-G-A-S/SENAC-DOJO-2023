@@ -179,7 +179,7 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
-        {   alert("Projeto editado com sucesso")
+        {   alert("Você será redirecionado após a conclusão do envio dos arquivos. Favor aguarde.")
             window.location.href=('../views/restrictArea.html')
         }
     } 

@@ -62,7 +62,8 @@ function displayAllProjects() {
         html += `<img class="imgCard" src="../public/img/SDG-Wheel.png">`
         html += `<div class="conteudoCard">`
         html += `<p>Projeto: </p>`
-        html += `<span class="span2">${response[i].nome_projeto}</span>`
+        //html += `<span class="span2">${response[i].nome_projeto}</span>`
+        html += `<a href=../views/telaProjeto.html?id=${response[i].id_projeto}><span class="span2">${response[i].nome_projeto}</span></a>`;
         html += `<p>ID do projeto: </p>`
         html += `<span class="span2">${response[i].id_projeto}</span>`
         html += `<p>Cidade de realização: </p>`
