@@ -9,6 +9,13 @@
     box-shadow: 1.5px 1.5px 5px;
     margin: 2% auto;
 }
+@media (max-width: 768px) {
+    .cardProjeto {
+        display: block;
+    width: 100%;
+    text-align: center;
+    }
+    }
 
 .imgCard {
     grid-row: 1 / span 3;
