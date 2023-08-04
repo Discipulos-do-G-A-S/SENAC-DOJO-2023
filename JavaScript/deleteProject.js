@@ -17,6 +17,18 @@ document.addEventListener('DOMContentLoaded',async ()=>
 }// if request
 seacrhProject()
 })// event DOM
+document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
 // Inicializar Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",

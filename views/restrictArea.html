@@ -25,42 +25,4 @@
  </main>
  <footer id="footer"></footer>
 </body>
-<script>
-	
-	var cargo;
-	switch (sessionStorage.office){
-		case "1": cargo="Administrador"
-		break;
-		case "2": cargo="Usuário"
-		break;
-	}
-	var html = "";
-	html+=`<div class="containerUser">`
-	html+=`<img src="../public/img/perfil-usuario.png">`
-	html+=`<div class="containerLinks">`
-	html +=`<a href='inserirProjeto.html'>Inserir Projeto</a>`
-	if(sessionStorage.office==1){
-	html +=`<a href='cadastro.html'>Cadastrar Usuário</a>`
-	}
-	html +=`<a href='../index.html'>Sair</a>`
-	html+=`</div>`
-	html+=`<div class="containerInfos">`
-	html+= `<p>Olá, <b>${sessionStorage.user} </b></p>`
-	html+=`<p>Seu cargo é: <b>${cargo}</b></p>`
-	html+=`</div>`
-
-	document.getElementById("nameUser").innerHTML = html;
-	document.addEventListener('DOMContentLoaded',()=>
-	{
-		var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-			document.getElementById("header").innerHTML = this.responseText;
-	}
-	}
-	xhr.send()
-    })
-</script>
 </html>

@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded',()=>
+{
+    var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("header").innerHTML = this.responseText;
+}
+}
+xhr.send()
+})
 document.addEventListener('DOMContentLoaded',async ()=>
 {
     const citys = document.querySelector("#cidadeProjeto");
@@ -14,10 +26,10 @@ document.addEventListener('DOMContentLoaded',async ()=>
             optionsCitys.innerHTML +=`<option>${citys.nome}</option>` 
         })
         citys.appendChild(optionsCitys);
-}// if request
+}
 await searchProject()
-})// event DOM
-// Inicializar Firebase
+})
+
 const firebaseConfig = {
     apiKey: "AIzaSyDyZVF1WDjTLkKcnDhz1e-wKGVOl9g5Hn8",
     authDomain: "teste-170423.firebaseapp.com",
@@ -48,19 +60,15 @@ function seacrhSetProject()
     const cityProject = document.querySelector("#cidadeProjeto")
     const descriptionProject = document.querySelector("#descricaoProjeto")
     const objectProject = document.querySelector("#objetivoProjeto")
-    const idCreator = sessionStorage.getItem("id");
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get("id");
-    console.log(id);
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerSearchProject.php?id="+id, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("Requisição concluída com sucesso");
            responseSearchProject = JSON.parse(xhr.responseText);
-           console.log(responseSearchProject)
            idProjeto.value = responseSearchProject[0].id_projeto;
            nameProject.value = responseSearchProject[0].nome_projeto;
            stateProject.value = responseSearchProject[0].stateProject;
@@ -83,7 +91,6 @@ function seacrhSetProject()
     fetch(`http://localhost/senac-dojo-2023/controllers/controllerAllDataProject.php?id=${idProjetoSearch}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         idProjeto.value = data[0].id_projeto;
         nameProject.value = data[0].nome_projeto;
         stateProject.value = data[0].estado_projeto;
@@ -93,7 +100,6 @@ function seacrhSetProject()
         if (Array.isArray(data)) {
           const odsSelecionados = [];
           const parceirosSelecionados = [];
-  
           data.forEach((item) => {
             if (item.id_ods) {
               odsSelecionados.push(item.id_ods);
@@ -116,9 +122,7 @@ function seacrhSetProject()
             htmlODs += `<p> ODS: ${odsSelecionados[i]}</p>`
          }
          document.getElementById('oldOds').innerHTML = htmlODs;
-          }
-         
-
+        }
          var htmlPartiners = "";
          if(parceirosSelecionados.length ==0)
          {
@@ -134,11 +138,6 @@ function seacrhSetProject()
          }
          document.getElementById('oldPartiners').innerHTML = htmlPartiners;
          }
-         
-          console.log('Parceiros selecionados:', parceirosSelecionados);
-          console.log('ODS selecionados:', odsSelecionados);
-  
-          // Agora você pode usar esses dados para preencher os campos do formulário de edição
         } else {
           console.error('Dados do projeto não estão no formato esperado.');
         }
@@ -147,8 +146,6 @@ function seacrhSetProject()
         console.error('Erro ao obter os dados do projeto:', error);
       });
 }
-  
-
 function sendEditProject()
 { 
 const optionsOds = document.querySelectorAll("#opcaoOds input[type='checkbox']")
@@ -177,23 +174,13 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     const objectProject = document.querySelector("#objetivoProjeto").value
     const optionsOdsFinal = selectedOds
     const optionPartinersFinal = selectedPartiners
-    console.log(idProjeto)
-    console.log(nameProject)
-    console.log(stateProject)
-    console.log(cityProject)
-    console.log(descriptionProject)
-    console.log(objectProject)
-    console.log(optionsOdsFinal)
-    console.log(optionPartinersFinal)
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost/senac-dojo-2023/controllers/controllerEditProject.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
         {   alert("Projeto editado com sucesso")
-            response = xhr.responseText;
-            console.log(response)
-            //window.location.href=('../views/restrictArea.html')
+            window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send("idProjeto="+encodeURI(idProjeto)+
@@ -207,10 +194,7 @@ for (let i = 0; i < optionsPartiners.length; i++) {
              "&opcaoPatrocinador="+encodeURIComponent(JSON.stringify(optionPartinersFinal)) 
     ); 
     const storageRef = storage.ref();
-    const namefolder = idProjeto;//alterar para algum id fixo para realizar os testes 
-    
-    //-------------------inicio delimitador da parte do código que efetivamente posta as imagens no firebase e administra a barra de progresso
-
+    const namefolder = idProjeto;
     storageRef.child(namefolder).listAll()
     .then(function(result) {
         const promisesExclusao = result.items.map(function(item) {
@@ -218,51 +202,26 @@ for (let i = 0; i < optionsPartiners.length; i++) {
                 console.error("Erro ao excluir arquivo:", erro);
             });
         });
-
         return Promise.all(promisesExclusao);
     })
     .then(function() {
-        console.log("Arquivos existentes do Firebase excluídos");
-
-        // Iniciar o envio de novos arquivos
         const arquivos = document.querySelector("#photo").files;
         const uploadPromises = [];
 
         for (const arquivo of arquivos) {
             const referenciaArquivo = storageRef.child(namefolder + "/" + arquivo.name);
             const uploadTask = referenciaArquivo.put(arquivo);
-
-            // Manipular o progresso do upload usando a variável snapshot
             uploadTask.on("state_changed", function(snapshot) {
                 const progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log("Progresso do upload:", progresso + "%");
-
-                // Atualizar a barra de progresso aqui (se for necessário)
-                // Por exemplo, você pode selecionar a barra de progresso por um seletor
-                // e definir o valor da propriedade "value" com o progresso calculado.
                 const progressBar = document.querySelector("#progressBar");
                 progressBar.value = progresso;
-
-                // Ou você pode criar uma div ou elemento visual para mostrar o progresso
-                // e atualizá-lo conforme o upload progride.
             });
-
             uploadPromises.push(uploadTask);
         }
-
-        // Aguardar o envio de todos os novos arquivos
         return Promise.all(uploadPromises).then(function() {
-            console.log("Novos arquivos enviados com sucesso!");
-
-            // Resto do seu código que vem após o envio de arquivos
-            // ...
-
         });
     })
     .catch(function(erro) {
         console.error("Erro:", erro);
     });
- 
-
-      //----------------fim do delimitador
 }

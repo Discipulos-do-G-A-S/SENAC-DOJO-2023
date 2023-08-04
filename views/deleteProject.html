@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,7 @@
   <link rel="stylesheet" href="../public/stylesheets/inserirProjeto.css">
   <link rel="stylesheet" href="../public/stylesheets/index.css">
   <script type="text/javascript" src="../JavaScript/app.js"></script>
-  <title>Deletar projeto Projeto</title>
+  <title>Deletar Projeto</title>
 </head>
 
 <body>
@@ -34,18 +33,4 @@
   <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
   <script src="../JavaScript/deleteProject.js"></script>
 </body>
-<script>
-	document.addEventListener('DOMContentLoaded',()=>
-	{
-		var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-			document.getElementById("header").innerHTML = this.responseText;
-	}
-	}
-	xhr.send()
-	})
-  </script>
 </html>

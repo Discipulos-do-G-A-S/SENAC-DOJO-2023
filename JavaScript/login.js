@@ -1,3 +1,28 @@
+document.addEventListener('DOMContentLoaded',()=>
+{
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/senac-dojo-2023/assets/header.html", false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+    document.getElementById("header").innerHTML = this.responseText;
+}
+}
+xhr.send()
+})
+document.addEventListener('DOMContentLoaded',()=>
+{
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost/senac-dojo-2023/assets/footerRestrict.html", false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+    document.getElementById("footer").innerHTML = this.responseText;
+}
+}
+xhr.send()
+})
+
 let btnLogin = document.querySelector("#login");
 btnLogin.addEventListener('click', function(event) {
   validateLogin(event);
