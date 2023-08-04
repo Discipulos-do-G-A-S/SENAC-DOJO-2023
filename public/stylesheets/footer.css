@@ -62,5 +62,6 @@ footer
     }
     .footer__container__content {
         width: 100%; /* Ocupa toda a largura em dispositivos menores */
+        text-align: center;
     }
 }
