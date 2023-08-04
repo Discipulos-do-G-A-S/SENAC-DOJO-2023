@@ -315,11 +315,9 @@ header
   left: 0 !important;
 }
 .menu__btn {
-  position: absolute;
-  top: 4%;
-  bottom: 4%;
-  left: 6%;
-  right: 4%;
+  position: relative;
+  display: inline-table;
+  padding: 10%;
   width: 26px;
   height: 26px;
   cursor: pointer;

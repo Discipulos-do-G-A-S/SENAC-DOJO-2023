@@ -26,6 +26,15 @@ body
     grid-auto-rows: 25% 75%;
 }
 
+@media (max-width: 768px) {
+  .login-form-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+  }
+}
+
 .login-form-container h1
 {
     color:#1B98E0;
