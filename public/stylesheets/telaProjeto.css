@@ -154,6 +154,13 @@ p
     display: flex;
     width: 100%;
 }
+@media (max-width: 768px) {
+    .containerUser {
+        padding: 3%;
+        text-align: center;
+        display: block;
+    }
+    }
 
 .containerUser img {
     width: 150px;
