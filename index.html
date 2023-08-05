@@ -16,6 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<<<<<<< Updated upstream
 	<header>
         <div class="container-header">
 			<div class="hamburger-menu">
@@ -38,6 +39,9 @@
             </div>
         </div>
     </header>
+=======
+	<header id="header"></header>
+>>>>>>> Stashed changes
 	<main>
 		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 			<div class="carousel-indicators">
@@ -109,6 +113,18 @@
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
 			document.getElementById("footer").innerHTML = this.responseText;
+	}
+	}
+	xhr.send()
+	})
+		document.addEventListener('DOMContentLoaded',()=>
+	{
+		var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/senac-dojo-2023/assets/header.html", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+			document.getElementById("header").innerHTML = this.responseText;
 	}
 	}
 	xhr.send()
