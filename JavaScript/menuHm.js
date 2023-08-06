@@ -1,6 +1,3 @@
-// Seu código JavaScript atual
-
-// Adicione este código abaixo do seu código JavaScript atual
 document.addEventListener("click", function(event) {
     const menuToggle = document.getElementById("menu__toggle");
     const menuBox = document.querySelector(".menu__box");
