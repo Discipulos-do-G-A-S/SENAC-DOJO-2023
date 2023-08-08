@@ -180,7 +180,6 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200)
         {   alert("Você será redirecionado após a conclusão do envio dos arquivos. Favor aguarde.")
-            window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send("idProjeto="+encodeURI(idProjeto)+
