@@ -206,7 +206,6 @@ for (let i = 0; i < optionsPartiners.length; i++) {
     .then(function() {
         const arquivos = document.querySelector("#photo").files;
         const uploadPromises = [];
-
         for (const arquivo of arquivos) {
             const referenciaArquivo = storageRef.child(namefolder + "/" + arquivo.name);
             const uploadTask = referenciaArquivo.put(arquivo);
@@ -218,6 +217,7 @@ for (let i = 0; i < optionsPartiners.length; i++) {
             uploadPromises.push(uploadTask);
         }
         return Promise.all(uploadPromises).then(function() {
+                window.location.href = "../views/restrictArea.html";
         });
     })
     .catch(function(erro) {
