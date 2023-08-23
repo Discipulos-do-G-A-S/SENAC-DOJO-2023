@@ -51,6 +51,7 @@ function validateLogin(event) {
               sessionStorage.setItem("cpf",response[0].cpf_user);
               sessionStorage.setItem("user",response[0].nome_user);
               sessionStorage.setItem("office",response[0].cargo);
+              sessionStorage.setItem("company",response[0].empresa_id);
               window.location.href=("../views/restrictArea.html");
             }
           } else {

@@ -1,13 +1,20 @@
 create database DB_somar;
 use DB_somar;
 
+create table empresa(
+id_empresa int not null auto_increment primary key,
+nome_empresa varchar(50) not null
+);
+
 create table users (
 id_user int not null auto_increment primary key,
 nome_user varchar(50) not null,
 email_user varchar(50) not null,
 cpf_user varchar(11) not null,
 password_user varchar(20) not null,
-cargo int not null
+cargo int not null,
+empresa_id int not null,
+foreign key (empresa_id) references empresa(id_empresa)
 );
 create table causas_atuacao(
 id_causa_atuacao int not null auto_increment primary key,
@@ -42,8 +49,9 @@ foreign key (projeto_id) references projetos(id_projeto),
 foreign key (ods_id) references ods(id_ods),
 foreign key (parceiro_id) references parceiros(id_parceiro)
 );
-
-insert into users values (null,'Discípulos do G.A.S.®','pedrosolucas1745@gmail.com','12345','teste',1);
+insert into empresa values (null,'SOMAR');
+insert into users values (null,'Discípulos do G.A.S.®','pedrosolucas1745@gmail.com','12345','teste',1,1);
+insert into users values (null,'Fulano','pedrosolucas1745@gmail.com','111','111',2,1);
 insert into causas_atuacao values (null,'pessoas'),
 								  (null,'educação'),
 								  (null,'economia'),
