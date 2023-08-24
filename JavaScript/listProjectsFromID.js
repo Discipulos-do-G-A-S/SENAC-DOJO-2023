@@ -27,6 +27,7 @@ let cargo;
 	html +=`<a href='inserirProjeto.html'>Inserir Projeto</a>`
 	if(sessionStorage.office==1){
 	html +=`<a href='cadastro.html'>Cadastrar Usuário</a>`
+  html +=`<a href='usersList.html'>Administrar Usuários</a>`
 	}
 	html +=`<a href='../index.html'>Sair</a>`
 	html+=`</div>`

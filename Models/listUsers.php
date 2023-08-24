@@ -8,9 +8,9 @@ class listUsers {
         $this->$atributo = $valor;
     }
 
-    function listAllUsers() {
+    function listAllUsers($company) {
         include('connection.php');
-        $query = "SELECT id_user, nome_user FROM users WHERE cargo=2;";//cargo 2 pq é apenas os usuarios e não os adms
+        $query = "SELECT id_user, nome_user FROM users WHERE cargo=2 AND empresa_id=$company;";//cargo 2 pq é apenas os usuarios e não os adms
         $sql = mysqli_query($banco, $query);
         $rows = mysqli_num_rows($sql);
         $records = array(); // Array to store the records

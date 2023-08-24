@@ -1,5 +1,6 @@
 <?php
     include('../Models/listUsers.php');
     $lp = new listUsers;
-    $lp ->listAllUsers()
+    $company = $_GET['company'];
+    $lp ->listAllUsers($company)
 ?>

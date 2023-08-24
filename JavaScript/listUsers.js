@@ -18,7 +18,7 @@ function verifyLogin()
 
     function displayAllUsers(){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerShowUsers.php", false);
+    xhr.open("GET", "http://localhost/senac-dojo-2023/controllers/controllerShowUsers.php?company="+sessionStorage.getItem("company"), false);
     xhr.send();
     if (xhr.readyState === 4 && xhr.status === 200) {
         let response = JSON.parse(xhr.responseText);
@@ -40,9 +40,9 @@ function verifyLogin()
       {
         //construção dos cards com os usuarios
         html += `<div class="cardUsuario">`
-        html += `<a> ${response[i].nome_user}</a>`;
-        html +=`<a href=../views/editUser.html?id=${response[i].id_user}><button>Editar dados do usuario</button></a>`
-        html +=`<a href=../views/deleteUser.html?id=${response[i].id_user}><button id=deleteUser>Apagar usuario</button></a>`
+        html += `<a> ${response[i][1]}</a>`;
+        html +=`<a href=../views/editUser.html?id=${response[i][0]}><button>Editar dados do usuario</button></a>`
+        html +=`<a href=../views/deleteUser.html?id=${response[i][0]}><button id=deleteUser>Apagar usuario</button></a>`
         html +=`</div>`
 
       }//for
