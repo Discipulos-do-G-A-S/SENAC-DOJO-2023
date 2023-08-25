@@ -21,5 +21,21 @@ class listUsers {
         echo json_encode($records); // Print the records in JSON format
         mysqli_close($banco);
     }
+    function listUserData($id){
+        include('connection.php');
+        $query = "SELECT users.id_user, users.nome_user, users.email_user, users.cpf_user, users.password_user, users.cargo, empresa.nome_empresa
+                  FROM users
+                  LEFT JOIN empresa ON users.empresa_id = empresa.id_empresa
+                  where id_user = $id;";
+        $sql = mysqli_query($banco, $query);
+        $rows = mysqli_num_rows($sql);
+        $records = array(); // Array to store the records
+        for ($i = 0; $i < $rows; $i++) {
+            $record = mysqli_fetch_row($sql);
+            $records[] = $record; // Add the record to the array of records
+        }
+        echo json_encode($records); // Print the records in JSON format
+        mysqli_close($banco);
+    }
 }// class
 ?>
