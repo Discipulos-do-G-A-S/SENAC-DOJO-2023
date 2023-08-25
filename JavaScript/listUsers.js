@@ -26,6 +26,7 @@ function verifyLogin()
       if(response.length == 0)
       {
         alert("Atualmente não possui nenhuma conta no nível de usuário cadastrada.")
+        window.location.href=('../views/restrictArea.html')
       }
       else{
         var html=""
