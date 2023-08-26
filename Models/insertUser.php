@@ -5,6 +5,7 @@ class dataUsers{
     private $cpf;
     private $password;
     private $position;
+    private $company;
 
     public function __get($atributo)
   {
@@ -18,7 +19,7 @@ class dataUsers{
 
   public function insertUser(){
     include('connection.php');
-    $querry = "INSERT INTO users VALUES (null,'" . $this->name . "','".$this->email."','" . $this->cpf . "','" . $this->password . "','" . $this->position . "')";
+    $querry = "INSERT INTO users VALUES (null,'" . $this->name . "','".$this->email."','" . $this->cpf . "','" . $this->password . "','" . $this->position . "','".$this->company."')";
     $sql = mysqli_query($banco, $querry);
     if (!$sql) {
         echo ('Erro no banco de dados: ' . mysqli_error($banco));

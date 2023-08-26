@@ -130,7 +130,7 @@ function sendEditUser()
             response = xhr.responseText;
             console.log(response)
             alert("Dados do usuário alterados com sucesso")
-            //window.location.href=('../views/restrictArea.html')
+            window.location.href=('../views/restrictArea.html')
         }
     } 
     xhr.send();

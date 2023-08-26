@@ -48,6 +48,7 @@ function cadastrar(event) {
     formData.append('cpf', cpf);
     formData.append('senha', senha);
     formData.append('cargo', cargoSelecionado);
+    formData.append('empresa', sessionStorage.getItem("company"))
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/senac-dojo-2023/controllers/controllerUser.php', true);
