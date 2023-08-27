@@ -68,6 +68,7 @@ function displayAllProjects() {
       {
         var html=""
         html += `<div class="cardSemProjeto">`
+        html += `<link rel="stylesheet" href="../public/stylesheets/editUser.css">`
         html += `<img class="imgCardSemProjeto" src="../public/img/semProjeto.png">`
         html += `<p>Não existem Projetos Cadastrados.</p>`
         html += `</div>`

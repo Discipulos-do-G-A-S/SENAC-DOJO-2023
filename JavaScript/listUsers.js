@@ -40,8 +40,11 @@ function verifyLogin()
         for(let i=0; i < response.length; i++)
       {
         //construção dos cards com os usuarios
+        html += `<link rel="stylesheet" href="../public/stylesheets/usersList.css">`
         html += `<div class="cardUsuario">`
-        html += `<a> ${response[i][1]}</a>`;
+        html += `<h1>LISTAR USUÁRIO</h1>`
+        html += `<img src="../public/img/perfil-usuario.png">`
+        html += `<a> Usuário: ${response[i][1]}</a>`;
         html +=`<a href=../views/editUser.html?id=${response[i][0]}><button>Editar dados do usuario</button></a>`
         html +=`<a href=../views/deleteUser.html?id=${response[i][0]}><button id=deleteUser>Apagar usuario</button></a>`
         html +=`</div>`
