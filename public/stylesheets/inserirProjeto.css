@@ -157,7 +157,7 @@ h3{
 
   .div1 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   }
 
   #oldOds {
@@ -177,6 +177,7 @@ h3{
 
   .progressBar {
     vertical-align: baseline;
+    margin: 50%;
     margin: 5%;
   }
 

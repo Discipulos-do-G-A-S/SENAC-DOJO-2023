@@ -59,12 +59,12 @@ function displayDataUser(){
     xhr.send();
 }
 
-let btnSendProject = document.querySelector("#btnDeleteUser")
-btnSendProject.addEventListener('click', function () {
-    sendDeleteProject(event);
+let btnSendUser = document.querySelector("#btnDeleteUser")
+btnSendUser.addEventListener('click', function () {
+    sendDeleteUser(event);
 });
 
-function sendDeleteProject()
+function sendDeleteUser()
 {
     event.preventDefault();
     var urlParams = new URLSearchParams(window.location.search);

@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () 
 {
  verifyLogin();
+ var xhr = new XMLHttpRequest();
+ xhr.open("GET", "http://localhost/senac-dojo-2023/assets/headerRestrict.html", false);
+ xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ xhr.onreadystatechange = function() {
+     if (xhr.readyState === 4 && xhr.status === 200) {
+   document.getElementById("header").innerHTML = this.responseText;
+}
+ }
 });
 
 function verifyLogin()
@@ -69,6 +77,7 @@ function displayAllProjects() {
         var html=""
         html += `<div class="cardSemProjeto">`
         html += `<link rel="stylesheet" href="../public/stylesheets/editUser.css">`
+        html += `<link rel="stylesheet" href="../public/stylesheets/usersList.css">`
         html += `<img class="imgCardSemProjeto" src="../public/img/semProjeto.png">`
         html += `<p>Não existem Projetos Cadastrados.</p>`
         html += `</div>`
@@ -79,6 +88,8 @@ function displayAllProjects() {
       for(let i=0; i < response.length; i++)
       {
         html += `<div class="cardProjeto">`
+        html += `<link rel="stylesheet" href="../public/stylesheets/usersList.css">`
+        html += `<link rel="stylesheet" href="../public/stylesheets/editUser.css">`
         html += `<img class="imgCard" src="../public/img/SDG-Wheel.png">`
         html += `<div class="conteudoCard">`
         html += `<p>Projeto: </p>`
@@ -89,7 +100,7 @@ function displayAllProjects() {
         html += `<p>Cidade de realização: </p>`
         html += `<span class="span2">${response[i].cidade_projeto}</span>`
         html += `<div class"buttonsCard">`
-        html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="material-symbols-outlined">edit</button></a> <a href="./deleteProject.html?id=${response[i].id_projeto}" ><button class="material-symbols-outlined">Delete</button></a>`
+        html += `<a href="./editProject.html?id=${response[i].id_projeto}"><button class="">Editar</button></a> <a href="./deleteProject.html?id=${response[i].id_projeto}" ><button class="">Deletar</button></a>`
         html += `</div>`
         html += `</div>`
         html += `</div>`

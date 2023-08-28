@@ -20,6 +20,9 @@
     height: fit-content;
     justify-self: center;
 }
+.imgCard{
+    width: 150px;
+}
 .cardUsuario a {
     font-size: 2.5vh;
     
